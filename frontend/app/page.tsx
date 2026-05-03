@@ -32,21 +32,21 @@ const navItems = [
 
 const heroSlides = [
   {
-    image: "/images/hero-1.jpg",
+    image: "/images/hero-1.JPG",
     title: "Available Across Seattle",
     description:
       "Now serving customers in over 24 retail locations across Washington.",
     link: "#partners",
   },
   {
-    image: "/images/hero-2.jpg",
+    image: "/images/hero-2.JPG",
     title: "Japanese Technology",
     description:
       "Powered by advanced Japanese machinery for  large-scale production.",
     link: "#why-us",
   },
   {
-    image: "/images/hero-3.jpg",
+    image: "/images/hero-3.JPG",
     title: "Healthy Grab & Go",
     description:
       "A modern fast-food alternative built for health-conscious consumers.",

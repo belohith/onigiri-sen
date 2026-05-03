@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import StoreMap from "./components/StoreMap";
 
 const flavors = [
   { name: "Spicy Tuna", image: "/images/flavors/spicy-tuna.webp" },
@@ -29,6 +30,30 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
+const heroSlides = [
+  {
+    image: "/images/hero-1.jpg",
+    title: "Available Across Seattle",
+    description:
+      "Now serving customers in over 24 retail locations across Washington.",
+    link: "#partners",
+  },
+  {
+    image: "/images/hero-2.jpg",
+    title: "Japanese Technology",
+    description:
+      "Powered by advanced Japanese machinery for  large-scale production.",
+    link: "#why-us",
+  },
+  {
+    image: "/images/hero-3.jpg",
+    title: "Healthy Grab & Go",
+    description:
+      "A modern fast-food alternative built for health-conscious consumers.",
+    link: "#flavors",
+  },
+];
+
 type SectionHeaderProps = {
   id: string;
   title: string;
@@ -49,6 +74,20 @@ type InputProps = {
 export default function OnigiriSenSPA() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState("ENG");
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+const nextSlide = () => {
+  setCurrentSlide((prev) =>
+    prev === heroSlides.length - 1 ? 0 : prev + 1
+  );
+};
+
+const prevSlide = () => {
+  setCurrentSlide((prev) =>
+    prev === 0 ? heroSlides.length - 1 : prev - 1
+  );
+};
 
   return (
     <main className="min-h-screen bg-[#fff6f8] text-[#112138] font-sans">
@@ -136,9 +175,73 @@ export default function OnigiriSenSPA() {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-[2rem] border-2 border-[#112138] bg-white shadow-xl">
-              <img src="/images/hero-store.jpg" alt="Onigiri Sen at store" className="h-full w-full object-cover" />
-            </div>
+            <a
+  href={heroSlides[currentSlide].link}
+  className="relative block overflow-hidden rounded-[2rem] border-2 border-[#112138] bg-white shadow-xl"
+>
+  {/* IMAGE */}
+  <img
+    src={heroSlides[currentSlide].image}
+    alt={heroSlides[currentSlide].title}
+    className="h-[420px] w-full object-cover md:h-[520px]"
+  />
+
+  {/* OVERLAY */}
+  <div className="absolute inset-0 bg-black/35" />
+
+  {/* TEXT */}
+  <div className="absolute bottom-0 left-0 w-full">
+    <div className="rounded-b-[2rem] bg-black/50 px-5 pt-5 pb-10">
+      <h3 className="font-[family-name:var(--font-heading)] text-2xl font-black text-white md:text-3xl">
+        {heroSlides[currentSlide].title}
+      </h3>
+
+      <p className="mt-2 text-sm leading-6 text-white/90 md:text-base">
+        {heroSlides[currentSlide].description}
+      </p>
+    </div>
+  </div>
+
+  {/* LEFT BUTTON */}
+  <button
+    onClick={(e) => {
+      e.preventDefault();
+      prevSlide();
+    }}
+    className="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/80 p-3 text-xl font-black text-[#112138] shadow-md backdrop-blur-sm transition hover:scale-110"
+  >
+    &#10094;
+  </button>
+
+  {/* RIGHT BUTTON */}
+  <button
+    onClick={(e) => {
+      e.preventDefault();
+      nextSlide();
+    }}
+    className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/80 p-3 text-xl font-black text-[#112138] shadow-md backdrop-blur-sm transition hover:scale-110"
+  >
+    &#10095;
+  </button>
+
+  {/* DOTS */}
+  <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-3">
+    {heroSlides.map((_, index) => (
+      <button
+        key={index}
+        onClick={(e) => {
+          e.preventDefault();
+          setCurrentSlide(index);
+        }}
+        className={`h-3 w-3 rounded-full transition ${
+          currentSlide === index
+            ? "bg-[#e96f94] scale-125"
+            : "bg-white/70"
+        }`}
+      />
+    ))}
+  </div>
+</a>
           </div>
         </div>
 
@@ -149,9 +252,9 @@ export default function OnigiriSenSPA() {
               The name “Sen” (千) represents one thousand. Rina’s mission is to take a staple of Japanese culture that has flourished for a millennium and cement it into everyday American life.
             </p>
           </div>
-          <div className="mx-auto w-full max-w-md rounded-[2rem] border border-[#112138] bg-white p-4 shadow-md">
-            <img src="/images/seattle-map.png" alt="Seattle store locations map" className="rounded-[1.5rem]" />
-          </div>
+          
+          <StoreMap />
+
           <div className="md:col-span-2 flex flex-wrap items-center justify-center gap-4 text-center text-lg font-bold md:text-2xl">
             <span>Find us in</span>
             <span className="rounded-2xl bg-[#f7c4d5] px-5 py-3 text-4xl font-black">24</span>

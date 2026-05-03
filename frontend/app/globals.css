@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
 :root {
   --background: #ffffff;
@@ -17,4 +18,22 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body), sans-serif;
+}
+
+@keyframes slide {
+  0%, 28% {
+    transform: translateX(0%);
+  }
+
+  33%, 61% {
+    transform: translateX(-100%);
+  }
+
+  66%, 94% {
+    transform: translateX(-200%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
 }

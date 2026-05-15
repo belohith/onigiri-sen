@@ -1,570 +1,200 @@
 "use client";
+import Header from "./components/Header";
+import Link from "next/link";
+import { useLang } from "./context/LangContext";
 
-import React, { useState } from "react";
-import StoreMap from "./components/StoreMap";
+const tagStyle = (type: string): React.CSSProperties => ({
+  fontSize: 11, fontWeight: 700, borderRadius: 999, padding: "2px 10px",
+  background: type==="GF"?"#d4edda":type==="Vegan"?"#2d6a4f":type==="Organic"?"#fff3cd":"#f0f0f0",
+  color: type==="GF"?"#2d6a4f":type==="Vegan"?"#fff":type==="Organic"?"#856404":"#555",
+});
 
-const flavors = [
-  { name: "Spicy Tuna", image: "/images/flavors/spicy-tuna.webp" },
-  { name: "Bulgogi", image: "/images/flavors/bulgogi.webp" },
-  { name: "Unagi", image: "/images/flavors/unagi.webp" },
-  { name: "Shrimp Mayo", image: "/images/flavors/shrimp-mayo.webp" },
-  { name: "Butter Corn", image: "/images/flavors/butter-corn.webp" },
-  { name: "Salmon", image: "/images/flavors/salmon.webp" },
-];
+/*
+  IMAGE PLACEHOLDERS
+  Replace each <div style={imgBox(...)}> with:
+    <Image src="/images/FILENAME.jpg" alt="..." fill style={{objectFit:"cover"}} />
+  wrapped in a <div style={{position:"relative", ...dimensions}}>
 
-const partners = [
-  "PCC Community Markets",
-  "T-Mobile Park",
-  "Town & Country Markets",
-  "T&T Supermarket",
-  "Kitchen & Market",
-  "Artisan Community Kitchen",
-];
+  Images needed:
+    /images/hero-left-tall.jpg   — hero left tall photo
+    /images/hero-top-right.jpg   — hero top-right photo
+    /images/hero-bottom-right.jpg — hero bottom-right photo
+    /images/why-ingredients.jpg  — integrity in ingredients
+    /images/why-healthy.jpg      — healthy & satisfying
+    /images/why-fresh.jpg        — made fresh daily
+    /images/why-scale.jpg        — consistency & scalability
+    /images/banner-landscape.jpg — teal banner right side
+    /images/flavor-spicy-tuna.jpg
+    /images/flavor-salmon.jpg
+    /images/flavor-ume.jpg
+    /images/flavor-shrimp.jpg
+    /images/flavor-tuna.jpg
+    /images/flavor-pork.jpg
+    /images/instagram-1.jpg ... instagram-4.jpg
+    /images/characters.png       — mascot group illustration
+*/
 
-const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Flavors", href: "#flavors" },
-  { label: "Story", href: "#story" },
-  { label: "Why Us", href: "#why-us" },
-  { label: "Partners", href: "#partners" },
-  { label: "Contact", href: "#contact" },
-];
-
-const heroSlides = [
-  {
-    image: "/images/hero-1.JPG",
-    title: "Available Across Seattle",
-    description:
-      "Now serving customers in over 24 retail locations across Washington.",
-    link: "#partners",
-  },
-  {
-    image: "/images/hero-2.JPG",
-    title: "Japanese Technology",
-    description:
-      "Powered by advanced Japanese machinery for  large-scale production.",
-    link: "#why-us",
-  },
-  {
-    image: "/images/hero-3.JPG",
-    title: "Healthy Grab & Go",
-    description:
-      "A modern fast-food alternative built for health-conscious consumers.",
-    link: "#flavors",
-  },
-];
-
-type SectionHeaderProps = {
-  id: string;
-  title: string;
-};
-
-type TechCardProps = {
-  title: string;
-  subtitle: string;
-  image: string;
-  body: string;
-};
-
-type InputProps = {
-  label: string;
-  type?: string;
-};
-
-export default function OnigiriSenSPA() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [language, setLanguage] = useState("ENG");
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-const nextSlide = () => {
-  setCurrentSlide((prev) =>
-    prev === heroSlides.length - 1 ? 0 : prev + 1
+function ImgBox({ src, alt, style }: { src: string; alt: string; style: React.CSSProperties }) {
+  return (
+    <div style={{ background: "#d8ccc0", overflow: "hidden", ...style }}>
+      {/* Replace this div with: <Image src={src} alt={alt} fill style={{objectFit:"cover"}} /> */}
+      {/* (wrap in position:relative container) */}
+    </div>
   );
-};
+}
 
-const prevSlide = () => {
-  setCurrentSlide((prev) =>
-    prev === 0 ? heroSlides.length - 1 : prev - 1
-  );
-};
+export default function HomePage() {
+  const { t } = useLang();
+
+  const whyItems = [
+    { img: "/images/why-ingredients.jpg", n: "01",
+      title: t("Integrity in Ingredients","素材へのこだわり"),
+      body: t("We source only the highest quality ingredients, maintaining a supply chain rooted in transparency and trust. Every item on our menu meets strict quality standards.",
+              "最高品質の素材のみを使用し、透明性と信頼に基づくサプライチェーンを維持しています。") },
+    { img: "/images/why-healthy.jpg", n: "02",
+      title: t("Healthy & Satisfying","健康的で満足感のある食事"),
+      body: t("Onigiri provides a balanced nutritional profile — a wholesome, satisfying food that nourishes without the heaviness of many other options.",
+              "おにぎりはバランスの取れた栄養プロファイルを提供し、他の多くの選択肢の重さなしに栄養を与える、健全で満足のいく食べ物です。") },
+    { img: "/images/why-fresh.jpg", n: "03",
+      title: t("Made Fresh Daily","毎日新鮮に製造"),
+      body: t("Made Daily, Savored the Same Day. In our kitchen, we commit to freshness with every single onigiri produced using only the finest ingredients.",
+              "毎日製造し、その日のうちにお召し上がりください。私たちのキッチンでは、最高の素材のみを使用して製造するすべてのおにぎりに新鮮さを約束します。") },
+    { img: "/images/why-scale.jpg", n: "04",
+      title: t("Consistency & Scalability","一貫性とスケーラビリティ"),
+      body: t("Powered by Japanese Technology. Our state-of-the-art machines provide consistent quality from a single onigiri to stadium scale.",
+              "日本の技術で動く最先端の機械が、1個のおにぎりからスタジアム規模まで一貫した品質を提供します。") },
+  ];
+
+  const flavors = [
+    { img: "/images/flavor-spicy-tuna.jpg", name: t("Spicy Tuna Mayo","スパイシーツナマヨ"), tags: ["GF","Organic"] },
+    { img: "/images/flavor-salmon.jpg",     name: t("Salmon","サーモン"),                    tags: ["GF","Organic"] },
+    { img: "/images/flavor-ume.jpg",        name: t("Umeboshi (Ume)","梅干し（梅）"),         tags: ["GF","Vegan","Organic"] },
+    { img: "/images/flavor-shrimp.jpg",     name: t("Shrimp Mayo","えびマヨ"),               tags: ["GF"] },
+    { img: "/images/flavor-tuna.jpg",       name: t("Tuna","ツナ"),                          tags: ["GF","Organic"] },
+    { img: "/images/flavor-pork.jpg",       name: t("Braised Pork in Ginger Vinegar","生姜酢豚"), tags: ["GF"], wide: true },
+  ];
 
   return (
-    <main className="min-h-screen bg-[#fff6f8] text-[#112138] font-sans">
-      <header className="fixed left-0 top-0 z-50 w-full bg-[#f7c4d5]/95 backdrop-blur-md border-b border-[#112138]/10">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-10">
-          <a href="#home" className="flex items-center gap-3">
-            <img src="/images/logo.png" alt="Onigiri Sen logo" className="h-12 w-12 object-contain" />
-            <span className="text-xl font-black tracking-tight md:text-2xl">Onigiri Sen</span>
-          </a>
+    <>
+      <Header />
+      <main style={{ fontFamily: "Nunito, sans-serif", background: "#fff" }}>
 
-          <nav className="hidden items-center gap-8 text-sm font-bold md:flex">
-            {navItems.map((item) => (
-              <a key={item.href} href={item.href} className="transition hover:text-[#e96f94]">
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="hidden items-center rounded-2xl bg-[#e96f94] p-2 text-sm font-bold text-white md:flex">
-            <button
-              onClick={() => setLanguage("ENG")}
-              className={`rounded-xl px-3 py-2 ${language === "ENG" ? "bg-[#112138]" : ""}`}
-            >
-              ENG
-            </button>
-            <span className="px-2 opacity-70">|</span>
-            <button
-              onClick={() => setLanguage("JPN")}
-              className={`rounded-xl px-3 py-2 ${language === "JPN" ? "bg-[#112138]" : ""}`}
-            >
-              JPN
-            </button>
+        {/* ── HERO ── */}
+        <section style={{ background:"#fdf5ef", display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:460, marginTop:48, overflow:"hidden" }}>
+          <div style={{ display:"grid", gridTemplateColumns:"1.4fr 1fr", gridTemplateRows:"1fr 1fr", gap:4, minHeight:460 }}>
+            <ImgBox src="/images/hero-left-tall.jpg" alt="Onigiri" style={{ gridRow:"1 / 3" }} />
+            <ImgBox src="/images/hero-top-right.jpg" alt="Onigiri package" style={{}} />
+            <ImgBox src="/images/hero-bottom-right.jpg" alt="Store" style={{}} />
           </div>
-
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="rounded-xl border border-[#112138]/20 px-4 py-2 text-sm font-black md:hidden"
-          >
-            {menuOpen ? "Close" : "Menu"}
-          </button>
-        </div>
-
-        {menuOpen && (
-          <div className="border-t border-[#112138]/10 bg-[#fff6f8] px-5 py-5 md:hidden">
-            <div className="flex flex-col gap-4 text-lg font-black">
-              {navItems.map((item) => (
-                <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
-                  {item.label}
-                </a>
-              ))}
-            </div>
-            <div className="mt-6 inline-flex rounded-2xl bg-[#e96f94] p-2 text-sm font-bold text-white">
-              <button
-                onClick={() => setLanguage("ENG")}
-                className={`rounded-xl px-3 py-2 ${language === "ENG" ? "bg-[#112138]" : ""}`}
-              >
-                ENG
-              </button>
-              <span className="px-2 py-2 opacity-70">|</span>
-              <button
-                onClick={() => setLanguage("JPN")}
-                className={`rounded-xl px-3 py-2 ${language === "JPN" ? "bg-[#112138]" : ""}`}
-              >
-                JPN
-              </button>
-            </div>
-          </div>
-        )}
-      </header>
-
-<section id="home" className="pt-16 md:pt-20">
-        <div className="bg-[#f7c4d5]">
-          <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:px-10 md:py-24">
-            <div>
-              <img src="/images/logo.png" alt="Onigiri Sen" className="mb-8 h-24 w-24 drop-shadow-xl md:h-32 md:w-32" />
-              <h1 className="text-5xl font-bold tracking-[0.08em] md:text-7xl">Onigiri Sen</h1>
-              <p className="mt-5 text-xl font-mono md:text-2xl">Japan’s Tradition, Scaled for the USA Market</p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a href="#flavors" className="rounded-2xl bg-[#112138] px-6 py-3 font-black text-white shadow-md">
-                  Explore Flavors
-                </a>
-                <a href="#contact" className="rounded-2xl bg-[#e96f94] px-6 py-3 font-black text-white shadow-md">
-                  Partner With Us
-                </a>
-              </div>
-            </div>
-
-            <a
-  href={heroSlides[currentSlide].link}
-  className="relative block overflow-hidden rounded-[2rem] border-2 border-[#112138] bg-white shadow-xl"
->
-  {/* IMAGE */}
-  <img
-    src={heroSlides[currentSlide].image}
-    alt={heroSlides[currentSlide].title}
-    className="h-[420px] w-full object-cover md:h-[520px]"
-  />
-
-  {/* OVERLAY */}
-  <div className="absolute inset-0 bg-black/35" />
-
-  {/* TEXT */}
-  <div className="absolute bottom-0 left-0 w-full">
-    <div className="rounded-b-[2rem] bg-black/50 px-5 pt-5 pb-10">
-      <h3 className="font-[family-name:var(--font-heading)] text-2xl font-black text-white md:text-3xl">
-        {heroSlides[currentSlide].title}
-      </h3>
-
-      <p className="mt-2 text-sm leading-6 text-white/90 md:text-base">
-        {heroSlides[currentSlide].description}
-      </p>
-    </div>
-  </div>
-
-  {/* LEFT BUTTON */}
-  <button
-    onClick={(e) => {
-      e.preventDefault();
-      prevSlide();
-    }}
-    className="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/80 p-3 text-xl font-black text-[#112138] shadow-md backdrop-blur-sm transition hover:scale-110"
-  >
-    &#10094;
-  </button>
-
-  {/* RIGHT BUTTON */}
-  <button
-    onClick={(e) => {
-      e.preventDefault();
-      nextSlide();
-    }}
-    className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/80 p-3 text-xl font-black text-[#112138] shadow-md backdrop-blur-sm transition hover:scale-110"
-  >
-    &#10095;
-  </button>
-
-  {/* DOTS */}
-  <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-3">
-    {heroSlides.map((_, index) => (
-      <button
-        key={index}
-        onClick={(e) => {
-          e.preventDefault();
-          setCurrentSlide(index);
-        }}
-        className={`h-3 w-3 rounded-full transition ${
-          currentSlide === index
-            ? "bg-[#e96f94] scale-125"
-            : "bg-white/70"
-        }`}
-      />
-    ))}
-  </div>
-</a>
-          </div>
-        </div>
-
-        <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 py-16 md:grid-cols-2 md:px-10 md:py-24">
-          <div>
-            <h2 className="text-2xl font-black md:text-3xl">A 1,000-Year Tradition for the Next 1,000 Years</h2>
-            <p className="mt-5 max-w-2xl text-lg leading-8 md:text-xl">
-              The name “Sen” (千) represents one thousand. Rina’s mission is to take a staple of Japanese culture that has flourished for a millennium and cement it into everyday American life.
+          <div style={{ display:"flex", flexDirection:"column", justifyContent:"center", padding:"60px 56px" }}>
+            <h1 style={{ fontWeight:900, fontSize:40, color:"#1a1a1a", lineHeight:1.2, margin:"0 0 16px" }}>
+              {t("Japan's Tradition.\nScaled for America.","日本の伝統を\nアメリカへ。")}
+            </h1>
+            <p style={{ color:"#888", fontSize:15, lineHeight:1.7, margin:"0 0 32px", maxWidth:360 }}>
+              {t("Crafted with 1,000-year-old recipes — made fresh daily with the finest Japanese ingredients, ready for your everyday life.",
+                 "1,000年の歴史あるレシピで作られた、最高の日本の食材を使った毎日新鮮なおにぎりをお届けします。")}
             </p>
+            <div style={{ display:"flex", gap:12, flexWrap:"wrap" }}>
+              <Link href="/products" style={btnPink}>{t("See Our Products","商品を見る")}</Link>
+              <Link href="/wholesale" style={btnOutline}>{t("Partner With Us","パートナーになる")}</Link>
+            </div>
           </div>
-          
-          <StoreMap />
+        </section>
 
-          <div className="md:col-span-2 flex flex-wrap items-center justify-center gap-4 text-center text-lg font-bold md:text-2xl">
-            <span>Find us in</span>
-            <span className="rounded-2xl bg-[#f7c4d5] px-5 py-3 text-4xl font-black">24</span>
-            <span>locations across</span>
-            <span className="rounded-2xl bg-[#f7c4d5] px-5 py-3 text-4xl font-black">Seattle</span>
-          </div>
-        </div>
-      </section>
-
-      <SectionHeader id="story" title="Our Story" />
-
-<section className="bg-[#fff6f8] px-5 py-14 md:px-10 md:py-20">
-  <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[0.9fr_1.1fr] md:gap-16">
-    {/* LEFT SIDE */}
-    <div className="flex flex-col items-center md:items-start">
-      <div className="w-full max-w-md rotate-1 overflow-hidden rounded-[1.7rem] border border-[#112138] bg-white shadow-sm">
-        <img
-          src="/images/rina-oike.webp"
-          alt="Rina Oike"
-  className="aspect-[1/1] w-full object-cover object-[center_10%]"
-        />
-      </div>
-
-      <div className="z-10 -mt-5 w-[82%] max-w-sm rounded-xl border-2 border-dashed border-[#112138]/45 bg-white px-6 py-4 text-center shadow-sm">
-        <h3 className="font-[family-name:var(--font-heading)] text-2xl font-black">
-          Rina Oike
-        </h3>
-        <p className="mt-1 text-base font-extrabold">
-          Founder & CEO, Onigiri Sen
-        </p>
-      </div>
-
-      <div className="mt-72 w-full max-w-md rounded-2xl border-2 border-dashed border-[#112138]/45 bg-[#f7c4d5] p-7 text-lg leading-8 md:mt-80">
-        <p>
-          “In a market dominated by fast food, I am committed to providing
-          a healthy, high-quality alternative that is as accessible as a
-          hamburger but rooted in tradition. We aren&apos;t just selling rice
-          balls; we are building a reliable, high-tech supply chain for the
-          future of healthy eating in the USA.”
-        </p>
-
-        <p className="mt-8 text-right font-black">Rina Oike</p>
-      </div>
-
-      <a
-        href="https://www.junglecity.com/eat/eat-more/onigiri-sen-rina-oike/"
-        target="_blank"
-  rel="noopener noreferrer"
-        className="mt-10 inline-block rounded-xl bg-[#e96f94] px-5 py-4 font-[family-name:var(--font-heading)] text-xl font-black text-white shadow-sm transition hover:scale-105"
-      >
-        Read her interview on Jungle City
-      </a>
-    </div>
-
-    {/* RIGHT SIDE */}
-    <div className="max-w-xl text-[1.35rem] leading-[1.75] text-black">
-      <h2 className="font-[family-name:var(--font-heading)] text-3xl font-black">
-        Meet the Founder
-      </h2>
-
-      <h3 className="mt-12 text-2xl font-black">
-        A Vision Built on &quot;Reverse Strategy&quot;
-      </h3>
-
-      <p className="mt-3">
-        Rina Oike didn’t just set out to start a business; she set out to
-        lead a cultural shift in the American food market.
-      </p>
-
-      <p className="mt-10">
-        Driven by a philosophy of &quot;Action First,&quot; Rina made the
-        bold decision to withdraw from a top foreign language university in
-        Japan after only three months. Her reasoning was simple: to master
-        business in the world&apos;s largest market, she needed to be in
-        America.
-      </p>
-
-      <p className="mt-10">
-        This &quot;Reverse Thinking&quot;—starting with a massive end goal
-        and working backward—has defined her leadership ever since.
-      </p>
-
-      <h3 className="mt-12 text-2xl font-black">
-        From Startup to the Major Leagues
-      </h3>
-
-      <p className="mt-3">
-        Rina’s approach to Onigiri Sen is rooted in high-level strategic
-        planning. Rather than starting small, she set a definitive target:
-        to enter T-Mobile Park (Home of the Seattle Mariners) within her
-        first year of operation.
-      </p>
-
-      <p className="mt-10">
-        To achieve this, she systematically built the brand&apos;s
-        credibility by securing wholesale partnerships with premium organic
-        retailers like PCC Community Markets and Asian grocery giants like
-        T&amp;T Supermarket.
-      </p>
-
-      <p className="mt-10">
-        By investing in state-of-the-art Japanese food technology and a
-        high-volume infrastructure, she transformed Onigiri Sen from a local
-        startup into a stadium-ready powerhouse in record time.
-      </p>
-    </div>
-  </div>
-</section>
-
-      <SectionHeader id="flavors" title="Our Flavors" />
-      <section className="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-24">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
-          {flavors.map((flavor) => (
-            <article key={flavor.name} className="text-center">
-              <div className="overflow-hidden rounded-[2rem] border-2 border-[#112138] bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-                <img src={flavor.image} alt={flavor.name} className="aspect-square w-full object-cover" />
-              </div>
-              <h3 className="mt-4 text-2xl font-black md:text-3xl">{flavor.name}</h3>
-            </article>
-          ))}
-        </div>
-      </section>
-
-
-     <section id="why-us" className="scroll-mt-24 bg-[#fff6f8]">
-  <SectionHeader
-    id="why-us-tech"
-    title="Advanced Technology & Unmatched Supply Stability"
-  />
-
-  <div className="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-24">
-    <div className="grid gap-20">
-      <div className="grid items-center gap-8 md:grid-cols-[0.8fr_1.2fr]">
-        <div className="space-y-6">
-          <img src="/images/fuji-1.jpg" alt="Fuji Seiki" className="rounded-2xl border border-[#112138]/30 shadow-md" />
-          <img src="/images/fuji-2.webp" alt="Fuji Seiki Factory" className="rounded-2xl border border-[#112138]/30 shadow-md" />
-        </div>
-
-        <div>
-          <h3 className="text-3xl font-black">Fuji Seiki</h3>
-          <p className="mt-2 text-sm font-bold opacity-70">The Global Leader in Onigiri Tech</p>
-
-          <div className="mt-6 space-y-5 text-lg leading-8">
-            <p>We utilize state-of-the-art forming technology from Fuji Seiki, the world’s #1 manufacturer of automated onigiri systems.</p>
-            <p><span className="font-black">Uniform Quality:</span> We eliminate inconsistencies in weight and shape commonly found in hand-made products.</p>
-            <p><span className="font-black">Global Standard of Trust:</span> The same technology is trusted by Japan’s leading convenience store chains.</p>
-          </div>
-
-          <a
-  href="https://international.fuji-seiki.co.jp/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="mt-8 inline-block rounded-xl bg-[#e96f94] px-6 py-3 font-black text-white shadow-md transition hover:scale-105"
->
-  Learn More
-</a>
-        </div>
-      </div>
-
-      <div className="grid items-center gap-8 md:grid-cols-[1.2fr_0.8fr]">
-        <div>
-          <h3 className="text-3xl font-black">AIHO Induction Heating (IH) Rice Systems</h3>
-          <p className="mt-2 text-sm font-bold opacity-70">The Heart of Flavor</p>
-
-          <div className="mt-6 space-y-5 text-lg leading-8">
-            <p>The soul of great onigiri is the rice. We use professional Japanese rice systems from AIHO to ensure consistency and flavor at scale.</p>
-            <p><span className="font-black">Premium Texture:</span> Advanced control systems ensure every grain is cooked evenly.</p>
-            <p><span className="font-black">Safety & Efficiency:</span> Designed for high-volume production while preserving authentic Japanese rice quality.</p>
-          </div>
-
-          <a
-  href="https://www.aiho.co.jp/en/company/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="mt-8 inline-block rounded-xl bg-[#e96f94] px-6 py-3 font-black text-white shadow-md transition hover:scale-105"
->
-  Learn More
-</a>
-        </div>
-
-        <div className="space-y-6">
-          <img src="/images/aiho-1.jpg" alt="AIHO Machine" className="rounded-2xl border border-[#112138]/30 shadow-md" />
-          <img src="/images/aiho-2.jpg" alt="AIHO Rice Cooker" className="rounded-2xl border border-[#112138]/30 shadow-md" />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <SectionHeader
-    id="why-onigiri"
-    title="Why Onigiri Sen?"
-  />
-
-  <div className="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-24">
-    <div className="mx-auto grid max-w-5xl gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-      {[
-        ["Supreme Hygiene", "Automation minimizes human contact and maintains extremely high food safety standards."],
-        ["Stability of Supply", "Whether supplying 100 or 10,000 units, flavor and consistency remain identical."],
-        ["Reliable Capacity", "Built for stadiums, retailers, and high-volume wholesale partners."],
-        ["Strict Safety Protocols", "Every step follows structured production and sanitation systems."],
-        ["Customized Menus", "Flexible flavor options and menu customization for every partner."],
-        ["Merchandising Support", "Shelf presentation, branding support, and grab-and-go optimization."],
-      ].map(([title, body], index) => (
-        <div
-          key={title}
-          className={`rounded-[1.7rem] border-2 border-dashed border-[#112138]/50 bg-[#e96f94] p-6 text-white shadow-md ${
-            index % 2 === 0 ? "-rotate-2" : "rotate-2"
-          }`}
-        >
-          <h3 className="text-lg font-black">{title}</h3>
-          <p className="mt-3 text-sm font-semibold leading-6 opacity-95">{body}</p>
-        </div>
-      ))}
-    </div>
-    {/* EXPANSION BOX */}
-      <div className="mt-16 rounded-[2rem] border-2 border-dashed border-[#112138]/40 bg-[#f7c4d5] p-10 text-center shadow-sm">
-        <p className="text-2xl font-black leading-relaxed">
-          Riding this wave of demand, we are launching a
-          large-scale expansion into San Francisco this year.
-        </p>
-
-        <p className="mt-6 text-lg font-bold">
-          Join us in creating the next major deli trend with
-          Onigiri Sen.
-        </p>
-      </div>
-  </div>
-</section>
-
-      <section id="partners" className="bg-[#112138] px-5 py-20 text-white md:px-10 md:py-28 scroll-mt-24">
-        <div className="mx-auto max-w-6xl text-center">
-          <p className="text-sm font-black tracking-[0.4em]">OUR TRUSTED PARTNERS</p>
-          <div className="mt-16 grid gap-12 text-3xl font-black md:grid-cols-2 md:text-5xl">
-            {partners.map((partner) => (
-              <div key={partner} className="flex min-h-24 items-center justify-center rounded-2xl border border-white/10 px-6 py-8">
-                {partner}
-              </div>
-            ))}
-          </div>
-          <p className="mt-20 text-xl font-black tracking-wide">
-            We provide office catering services with fully customizable menu options upon request.
-          </p>
-        </div>
-      </section>
-
-      <section className="px-5 py-20 md:px-10 md:py-28">
-        <div className="mx-auto max-w-7xl text-center">
-          <h2 className="mx-auto max-w-5xl text-4xl font-black leading-tight md:text-5xl">
-            Our infrastructure is designed to deliver thousands of units on time without compromising quality.
+        {/* ── WHY ONIGIRI SEN ── */}
+        <section style={{ padding:"80px 80px" }}>
+          <h2 style={{ textAlign:"center", fontWeight:800, fontSize:30, color:"#1a1a1a", margin:"0 0 48px" }}>
+            {t("Why Onigiri Sen","なぜおにぎり千？")}
           </h2>
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
-            {["/images/infrastructure-1.webp", "/images/infrastructure-2.JPG", "/images/infrastructure-3.webp"].map((src) => (
-              <img key={src} src={src} alt="Onigiri Sen infrastructure" className="aspect-[4/3] rounded-2xl border-2 border-[#112138] object-cover" />
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:20 }}>
+            {whyItems.map((item) => (
+              <div key={item.n} style={{ background:"#fdf5ef", borderRadius:20, padding:"28px", display:"grid", gridTemplateColumns:"auto 1fr", gap:"0 20px" }}>
+                <div style={{ fontWeight:900, fontSize:42, color:"#f5d0c4", lineHeight:1, gridColumn:1, gridRow:"1 / 3", alignSelf:"start", minWidth:56 }}>{item.n}</div>
+                <h3 style={{ fontWeight:800, fontSize:17, color:"#1a1a1a", margin:0, alignSelf:"end" }}>{item.title}</h3>
+                <p style={{ color:"#888", fontSize:14, lineHeight:1.7, margin:"8px 0 0" }}>{item.body}</p>
+              </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      <SectionHeader id="contact" title="Get in Touch" />
-      <section className="mx-auto max-w-4xl px-5 py-16 md:px-10 md:py-24">
-        <form className="rounded-[2rem] border-2 border-[#112138] bg-white p-8 md:p-12">
-          <div className="grid gap-6">
-            <Input label="First Name" />
-            <Input label="Last Name" />
-            <Input label="Email Address" type="email" />
-            <Input label="Phone Number" />
-            <Input label="Company / Venue Name" />
-            <Input label="Business Type" />
-            <Input label="Estimated Weekly Order Volume" />
-            <textarea className="min-h-32 border-b border-[#112138]/40 bg-transparent py-3 text-xl outline-none placeholder:text-black/35" placeholder="Additional Notes" />
+        {/* ── BANNER ── */}
+        <section style={{ background:"#6a8c9a", padding:"80px", color:"#fff", display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, alignItems:"center" }}>
+          <div>
+            <span style={{ background:"#e8a87a", borderRadius:999, padding:"5px 16px", fontSize:11, fontWeight:700, letterSpacing:1, display:"inline-block", marginBottom:20 }}>
+              {t("WHAT IS ONIGIRI SEN","おにぎり千とは")}
+            </span>
+            <h2 style={{ fontWeight:900, fontSize:38, lineHeight:1.2, margin:"0 0 20px" }}>
+              {t("A 1,000-Year Tradition for\nthe Next 1,000 Years","1,000年の伝統を\n次の1,000年へ")}
+            </h2>
+            <p style={{ opacity:0.85, fontSize:15, lineHeight:1.8, margin:"0 0 32px" }}>
+              {t("Onigiri has nourished Japan for over a millennium. We're bringing that tradition to America — made fresh daily with premium ingredients, wrapped in authentic Ariake nori.",
+                 "おにぎりは千年以上にわたって日本を支えてきました。その伝統をアメリカへ — 有明海苔で包んだ、毎日新鮮な最高品質のおにぎりをお届けします。")}
+            </p>
+            <Link href="/our-story" style={{ ...btnPink, background:"#fff", color:"#6a8c9a" }}>
+              {t("Read Our Story →","私たちのストーリーを読む →")}
+            </Link>
           </div>
-        </form>
-        <div className="mt-12 text-center">
-          <button className="rounded-3xl bg-[#e96f94] px-10 py-5 text-xl font-black text-white shadow-md md:text-2xl">
-            Inquire about Partnership
-          </button>
-        </div>
-      </section>
-    </main>
+          <ImgBox src="/images/banner-landscape.jpg" alt="Landscape" style={{ borderRadius:20, height:280 }} />
+        </section>
+
+        {/* ── FLAVORS ── */}
+        <section style={{ padding:"80px 80px", background:"#fdf9f2" }}>
+          <h2 style={{ textAlign:"center", fontWeight:800, fontSize:13, letterSpacing:3, color:"#888", margin:"0 0 40px", textTransform:"uppercase" }}>
+            {t("OUR FLAVORS","フレーバー")}
+          </h2>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:16 }}>
+            {flavors.map((f) => (
+              <div key={f.name} style={{ background:"#fff", borderRadius:20, padding:"24px 20px", display:"flex", flexDirection:"column", alignItems:"center", gap:10, gridColumn:(f as any).wide?"span 3":undefined, boxShadow:"0 1px 8px rgba(0,0,0,0.06)" }}>
+                <ImgBox src={f.img} alt={f.name} style={{ width:88, height:88, borderRadius:14 }} />
+                <div style={{ fontWeight:800, fontSize:14, color:"#1a1a1a", textAlign:"center" }}>{f.name}</div>
+                <div style={{ display:"flex", gap:5, flexWrap:"wrap", justifyContent:"center" }}>
+                  {f.tags.map((tag) => <span key={tag} style={tagStyle(tag)}>{tag}</span>)}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign:"center", marginTop:36 }}>
+            <Link href="/products" style={btnPink}>{t("See All Products →","すべての商品を見る →")}</Link>
+          </div>
+        </section>
+
+        {/* ── FIND US ── */}
+        <section style={{ padding:"80px 80px" }}>
+          <div style={{ display:"flex", justifyContent:"center", marginBottom:32 }}>
+            <div style={{ border:"2px solid #1a1a1a", borderRadius:999, padding:"10px 36px", fontWeight:700, fontSize:17, color:"#1a1a1a" }}>
+              {t("Find Us Near You","近くの販売店")}
+            </div>
+          </div>
+          <div style={{ border:"2px solid #f5aaaa", borderRadius:20, overflow:"hidden", maxWidth:580, margin:"0 auto" }}>
+            <div style={{ display:"flex" }}>
+              <div style={{ flex:1, padding:13, textAlign:"center", background:"#f5aaaa", color:"#fff", fontWeight:700 }}>Seattle</div>
+              <div style={{ flex:1, padding:13, textAlign:"center", background:"#fdf5ef", color:"#bbb", fontWeight:700 }}>California</div>
+            </div>
+            <div style={{ padding:"28px 24px", minHeight:120, background:"#fff" }}>
+              <p style={{ color:"#aaa", fontSize:14, margin:0 }}>T&T Supermarket · PCC Community Markets · T-Mobile Park</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── INSTAGRAM ── */}
+        <section style={{ background:"#f07878", padding:"64px 80px", textAlign:"center", color:"#fff" }}>
+          <div style={{ fontWeight:700, fontSize:12, letterSpacing:3, marginBottom:8, opacity:0.85 }}>INSTAGRAM</div>
+          <h2 style={{ fontWeight:900, fontSize:42, margin:"0 0 8px" }}>{t("Follow Along !","フォローしてね！")}</h2>
+          <p style={{ fontSize:16, opacity:0.85, margin:"0 0 40px" }}>@onigirisen.jp</p>
+          <ImgBox src="/images/characters.png" alt="Onigiri Sen mascots" style={{ borderRadius:20, height:160, maxWidth:600, margin:"0 auto 32px" }} />
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(4, 1fr)", gap:12, maxWidth:560, margin:"0 auto 32px" }}>
+            {[1,2,3,4].map((i) => (
+              <ImgBox key={i} src={`/images/instagram-${i}.jpg`} alt={`Instagram post ${i}`} style={{ borderRadius:14, aspectRatio:"1", minHeight:120 }} />
+            ))}
+          </div>
+          <Link href="https://instagram.com/onigirisen.jp" target="_blank" style={{ display:"inline-block", border:"2px solid rgba(255,255,255,0.6)", color:"#fff", padding:"11px 28px", borderRadius:999, fontWeight:700, fontSize:14, textDecoration:"none" }}>
+            {t("View on Instagram","Instagramで見る")}
+          </Link>
+        </section>
+      </main>
+    </>
   );
 }
 
-function SectionHeader({ id, title }: SectionHeaderProps) {
-  return (
-    <div id={id} className="scroll-mt-24 bg-[#f7c4d5] px-5 py-12 text-center md:py-16">
-      <h2 className="text-4xl font-black tracking-tight md:text-5xl">{title}</h2>
-    </div>
-  );
-}
-
-function TechCard({ title, subtitle, image, body }: TechCardProps) {
-  return (
-    <article className="grid gap-6 rounded-[2rem] bg-white p-6 shadow-sm md:grid-cols-[0.9fr_1.1fr] md:p-8">
-      <img src={image} alt={title} className="aspect-[4/3] w-full rounded-2xl border border-[#112138] object-cover" />
-      <div>
-        <h3 className="text-2xl font-black">{title}</h3>
-        <p className="mt-1 text-sm font-black">{subtitle}</p>
-        <p className="mt-5 leading-7">{body}</p>
-        <button className="mt-6 rounded-xl bg-[#e96f94] px-5 py-3 font-black text-white">Learn More</button>
-      </div>
-    </article>
-  );
-}
-
-function Input({ label, type = "text" }: InputProps) {
-  return (
-    <input
-      type={type}
-      placeholder={label}
-      className="border-b border-[#112138]/40 bg-transparent py-3 text-xl outline-none placeholder:text-black/35"
-    />
-  );
-}
+const btnPink: React.CSSProperties = { display:"inline-block", background:"#e8847a", color:"#fff", padding:"13px 28px", borderRadius:999, fontFamily:"Nunito, sans-serif", fontWeight:700, fontSize:15, textDecoration:"none" };
+const btnOutline: React.CSSProperties = { display:"inline-block", background:"transparent", color:"#e8847a", border:"2px solid #e8847a", padding:"11px 28px", borderRadius:999, fontFamily:"Nunito, sans-serif", fontWeight:700, fontSize:15, textDecoration:"none" };

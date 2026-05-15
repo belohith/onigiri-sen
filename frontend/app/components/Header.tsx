@@ -1,0 +1,234 @@
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useLang } from "../context/LangContext";
+
+export default function Header() {
+  const pathname = usePathname();
+  const { lang, setLang } = useLang();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // Close menu on route change
+  useEffect(() => setMenuOpen(false), [pathname]);
+
+  const navLinks = [
+    { href: "/products",  en: "Products",  ja: "商品" },
+    { href: "/our-story", en: "Our Story", ja: "私たちについて" },
+    { href: "/wholesale", en: "Wholesale", ja: "卸売" },
+    { href: "/contact",   en: "Contact",   ja: "お問い合わせ" },
+  ];
+
+  const LangToggle = () => (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: "#ffffff",
+        border: "1px solid #e8ddd4",
+        borderRadius: 18,
+        height: 56,
+        padding: "0 8px",
+        gap: 2,
+        flexShrink: 0,
+      }}
+    >
+      {(["en", "ja"] as const).map((l) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          style={{
+            fontFamily: "Nunito, sans-serif",
+            fontWeight: 700,
+            fontSize: 15,
+            border: "none",
+            borderRadius: 14,
+            padding: "0 20px",
+            height: 40,
+            cursor: "pointer",
+            background: lang === l ? "#e8847a" : "transparent",
+            color: lang === l ? "#fff" : "#5a3020",
+            transition: "all 0.2s",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {l === "en" ? (
+            <span>EN <span style={{ opacity: lang === l ? 0.85 : 0.6, fontWeight: 400, fontSize: 13 }}>· 英語</span></span>
+          ) : (
+            <span>JP <span style={{ opacity: lang === l ? 0.85 : 0.6, fontWeight: 400, fontSize: 13 }}>· 日本語</span></span>
+          )}
+        </button>
+      ))}
+    </div>
+  );
+
+  return (
+    <>
+      <header
+        style={{
+          display: "flex",
+          alignItems: "center",
+          padding: "0 40px",
+          height: 72,
+          position: "sticky",
+          top: 0,
+          zIndex: 100,
+          gap: 16,
+        }}
+      >
+        {/* Logo */}
+        <Link
+          href="/"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            textDecoration: "none",
+            marginRight: "auto",
+            flexShrink: 0,
+          }}
+        >
+          {/*
+            Replace the div below with:
+            <Image src="/images/logo.png" alt="Onigiri Sen" width={40} height={40} />
+          */}
+          <div style={{ width: 40, height: 40, borderRadius: "50%", background: "#f5d0c8", flexShrink: 0 }} />
+          <span style={{ fontFamily: "Nunito, sans-serif", fontWeight: 800, fontSize: 20, color: "#5a3020" }}>
+            {lang === "en" ? "Onigiri Sen" : "おにぎり千"}
+          </span>
+        </Link>
+
+        {/* Desktop nav */}
+        {!isMobile && (
+          <>
+            <nav
+              style={{
+                display: "flex",
+                alignItems: "center",
+                backgroundColor: "#ffffff",
+                border: "1px solid #e8ddd4",
+                borderRadius: 18,
+                height: 56,
+                padding: "0 8px",
+                flexShrink: 0,
+              }}
+            >
+              {navLinks.map(({ href, en, ja }) => {
+                const label = lang === "en" ? en : ja;
+                const isActive = pathname === href;
+                
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    style={{
+                      fontFamily: "Nunito, sans-serif",
+                      fontWeight: 700,
+                      fontSize: 15,
+                      color: isActive ? "#e07070" : "#5a3020",
+                      textDecoration: "none",
+                      padding: "0 36px",
+                      height: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      borderRadius: 14,
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {label}
+                  </Link>
+                );
+              })}
+            </nav>
+            <LangToggle />
+          </>
+        )}
+
+        {/* Mobile: lang toggle + hamburger */}
+        {isMobile && (
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <LangToggle />
+            <button
+              onClick={() => setMenuOpen((o) => !o)}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: 8,
+                display: "flex",
+                flexDirection: "column",
+                gap: 5,
+                flexShrink: 0,
+              }}
+              aria-label="Menu"
+            >
+              {/* Hamburger / X icon */}
+              {menuOpen ? (
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <line x1="3" y1="3" x2="19" y2="19" stroke="#555" strokeWidth="2.2" strokeLinecap="round" />
+                  <line x1="19" y1="3" x2="3" y2="19" stroke="#555" strokeWidth="2.2" strokeLinecap="round" />
+                </svg>
+              ) : (
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <line x1="2" y1="6"  x2="20" y2="6"  stroke="#555" strokeWidth="2.2" strokeLinecap="round" />
+                  <line x1="2" y1="11" x2="20" y2="11" stroke="#555" strokeWidth="2.2" strokeLinecap="round" />
+                  <line x1="2" y1="16" x2="20" y2="16" stroke="#555" strokeWidth="2.2" strokeLinecap="round" />
+                </svg>
+              )}
+            </button>
+          </div>
+        )}
+      </header>
+
+      {/* Mobile dropdown menu */}
+      {isMobile && menuOpen && (
+        <div
+          style={{
+            position: "fixed",
+            top: 72,
+            left: 0,
+            right: 0,
+            background: "#fff",
+            borderBottom: "1px solid #f0e8df",
+            zIndex: 99,
+            padding: "12px 24px 20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 4,
+            boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
+          }}
+        >
+          {navLinks.map(({ href, en, ja }) => {
+            const label = lang === "en" ? en : ja;
+            const isActive = pathname === href;
+            return (
+              <Link
+                key={href}
+                href={href}
+                style={{
+                  fontFamily: "Nunito, sans-serif",
+                  fontWeight: 700,
+                  fontSize: 17,
+                  color: isActive ? "#e07070" : "#333",
+                  textDecoration: "none",
+                  padding: "12px 4px",
+                  borderBottom: "1px solid #f5efe8",
+                }}
+              >
+                {label}
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </>
+  );
+}

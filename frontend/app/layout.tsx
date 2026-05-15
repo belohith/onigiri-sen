@@ -1,34 +1,30 @@
 import type { Metadata } from "next";
-import { Fredoka, Nunito } from "next/font/google";
+import { Nunito } from "next/font/google";
+import { LangProvider } from "./context/LangContext";
 import "./globals.css";
 
-const fredoka = Fredoka({
-  variable: "--font-fredoka",
-  subsets: ["latin"],
-});
-
 const nunito = Nunito({
-  variable: "--font-nunito",
   subsets: ["latin"],
+  weight: ["400", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
   title: "Onigiri Sen",
-  description: "Official Website of Onigiri Sen",
+  description: "Japan's Tradition. Scaled for America.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html
-      lang="en"
-      className={`${fredoka.variable} ${nunito.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        {children}
+    <html lang="en">
+      <body
+        className={nunito.className}
+        style={{ margin: 0, padding: 0}}
+      >
+        <LangProvider>{children}</LangProvider>
       </body>
     </html>
   );

@@ -1,39 +1,30 @@
 @import "tailwindcss";
-@import "leaflet/dist/leaflet.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cream: #fff8f4;
+  --yellow: #fff0c7;
+  --pink: #f5a7b8;
+  --coral: #ee777b;
+  --brown: #7b4b22;
+  --soft-brown: #b79d86;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --font-heading: var(--font-fredoka);
+  --font-body: var(--font-nunito);
+}
 
-  --font-sans: var(--font-fredoka);
-  --font-mono: var(--font-nunito);
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  margin: 0;
+  background: var(--cream);
+  color: var(--brown);
   font-family: var(--font-body), sans-serif;
-}
-
-@keyframes slide {
-  0%, 28% {
-    transform: translateX(0%);
-  }
-
-  33%, 61% {
-    transform: translateX(-100%);
-  }
-
-  66%, 94% {
-    transform: translateX(-200%);
-  }
-
-  100% {
-    transform: translateX(0%);
-  }
 }

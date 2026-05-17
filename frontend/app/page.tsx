@@ -62,9 +62,9 @@ export default function HomePage() {
             }}>
               {[...Array(2)].map((_, pass) =>
                 [
-                  "/images/hero-1.jpg",
-                  "/images/hero-2.jpg",
-                  "/images/hero-3.jpg",
+                  "/images/hero-7.jpg",
+                  "/images/hero-8.jpg",
+                  "/images/hero-9.jpg",
                   "/images/hero-4.jpg",
                   "/images/hero-5.jpg",
                 ].map((src, i) => (

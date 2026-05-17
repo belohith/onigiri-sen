@@ -22,6 +22,11 @@ html {
   100% { transform: translateX(-50%); }
 }
 
+@keyframes hero-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 body {
   margin: 0;
   background: var(--cream);

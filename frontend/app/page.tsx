@@ -1,200 +1,269 @@
 "use client";
 import Header from "./components/Header";
+import OurFlavors from "./components/OurFlavors";
+import FindUsNearYou from "./components/Findusnearyou";
+import TrustedBy from "./components/TrustedBy";
 import Link from "next/link";
 import { useLang } from "./context/LangContext";
-
-const tagStyle = (type: string): React.CSSProperties => ({
-  fontSize: 11, fontWeight: 700, borderRadius: 999, padding: "2px 10px",
-  background: type==="GF"?"#d4edda":type==="Vegan"?"#2d6a4f":type==="Organic"?"#fff3cd":"#f0f0f0",
-  color: type==="GF"?"#2d6a4f":type==="Vegan"?"#fff":type==="Organic"?"#856404":"#555",
-});
-
-/*
-  IMAGE PLACEHOLDERS
-  Replace each <div style={imgBox(...)}> with:
-    <Image src="/images/FILENAME.jpg" alt="..." fill style={{objectFit:"cover"}} />
-  wrapped in a <div style={{position:"relative", ...dimensions}}>
-
-  Images needed:
-    /images/hero-left-tall.jpg   — hero left tall photo
-    /images/hero-top-right.jpg   — hero top-right photo
-    /images/hero-bottom-right.jpg — hero bottom-right photo
-    /images/why-ingredients.jpg  — integrity in ingredients
-    /images/why-healthy.jpg      — healthy & satisfying
-    /images/why-fresh.jpg        — made fresh daily
-    /images/why-scale.jpg        — consistency & scalability
-    /images/banner-landscape.jpg — teal banner right side
-    /images/flavor-spicy-tuna.jpg
-    /images/flavor-salmon.jpg
-    /images/flavor-ume.jpg
-    /images/flavor-shrimp.jpg
-    /images/flavor-tuna.jpg
-    /images/flavor-pork.jpg
-    /images/instagram-1.jpg ... instagram-4.jpg
-    /images/characters.png       — mascot group illustration
-*/
-
-function ImgBox({ src, alt, style }: { src: string; alt: string; style: React.CSSProperties }) {
-  return (
-    <div style={{ background: "#d8ccc0", overflow: "hidden", ...style }}>
-      {/* Replace this div with: <Image src={src} alt={alt} fill style={{objectFit:"cover"}} /> */}
-      {/* (wrap in position:relative container) */}
-    </div>
-  );
-}
 
 export default function HomePage() {
   const { t } = useLang();
 
   const whyItems = [
-    { img: "/images/why-ingredients.jpg", n: "01",
-      title: t("Integrity in Ingredients","素材へのこだわり"),
-      body: t("We source only the highest quality ingredients, maintaining a supply chain rooted in transparency and trust. Every item on our menu meets strict quality standards.",
-              "最高品質の素材のみを使用し、透明性と信頼に基づくサプライチェーンを維持しています。") },
-    { img: "/images/why-healthy.jpg", n: "02",
-      title: t("Healthy & Satisfying","健康的で満足感のある食事"),
-      body: t("Onigiri provides a balanced nutritional profile — a wholesome, satisfying food that nourishes without the heaviness of many other options.",
-              "おにぎりはバランスの取れた栄養プロファイルを提供し、他の多くの選択肢の重さなしに栄養を与える、健全で満足のいく食べ物です。") },
-    { img: "/images/why-fresh.jpg", n: "03",
-      title: t("Made Fresh Daily","毎日新鮮に製造"),
-      body: t("Made Daily, Savored the Same Day. In our kitchen, we commit to freshness with every single onigiri produced using only the finest ingredients.",
-              "毎日製造し、その日のうちにお召し上がりください。私たちのキッチンでは、最高の素材のみを使用して製造するすべてのおにぎりに新鮮さを約束します。") },
-    { img: "/images/why-scale.jpg", n: "04",
-      title: t("Consistency & Scalability","一貫性とスケーラビリティ"),
-      body: t("Powered by Japanese Technology. Our state-of-the-art machines provide consistent quality from a single onigiri to stadium scale.",
-              "日本の技術で動く最先端の機械が、1個のおにぎりからスタジアム規模まで一貫した品質を提供します。") },
-  ];
-
-  const flavors = [
-    { img: "/images/flavor-spicy-tuna.jpg", name: t("Spicy Tuna Mayo","スパイシーツナマヨ"), tags: ["GF","Organic"] },
-    { img: "/images/flavor-salmon.jpg",     name: t("Salmon","サーモン"),                    tags: ["GF","Organic"] },
-    { img: "/images/flavor-ume.jpg",        name: t("Umeboshi (Ume)","梅干し（梅）"),         tags: ["GF","Vegan","Organic"] },
-    { img: "/images/flavor-shrimp.jpg",     name: t("Shrimp Mayo","えびマヨ"),               tags: ["GF"] },
-    { img: "/images/flavor-tuna.jpg",       name: t("Tuna","ツナ"),                          tags: ["GF","Organic"] },
-    { img: "/images/flavor-pork.jpg",       name: t("Braised Pork in Ginger Vinegar","生姜酢豚"), tags: ["GF"], wide: true },
-  ];
+  {
+    n:"01", img:"/images/why-ingredients.png", mascot:"/images/char-stm.png",
+    title: t("Integrity in Ingredients","素材へのこだわり"),
+    body: t("Sourced with Care. From the premium nori of Ariake Bay to the finest ume of Kishu, we source only the highest quality ingredients, including organic elements. We pour our passion for quality into every single onigiri we deliver.",
+            "有明海産の上質な海苔から紀州の最高の梅まで、オーガニック素材を含む最高品質の食材のみを使用しています。"),
+  },
+  {
+    n:"02", img:"/images/why-healthy.png", mascot:"/images/char-pp.png",
+    title: t("Healthy & Satisfying","健康的で満足感のある食事"),
+    body: t("Energy for Your Day. The natural umami of perfectly cooked rice paired with high-quality proteins like salmon and spicy tuna. We provide a deeply satisfying meal that fuels your busy modern lifestyle with lasting energy.",
+            "完璧に炊かれたお米の旨味と高品質なタンパク質。忙しい現代のライフスタイルを持続的なエネルギーで支えます。"),
+  },
+  {
+    n:"03", img:"/images/why-fresh.png", mascot:"/images/char-bc.png",
+    title: t("Made Fresh Daily","毎日新鮮に製造"),
+    body: t("Made Daily, Ready to Grab. Prepared fresh every single day. Whether you are between meetings or on the move, enjoy an authentic, high-quality meal anytime, anywhere without compromise.",
+            "毎日新鮮に製造。会議の合間でも移動中でも、妥協なく本格的な高品質の食事をいつでもどこでも楽しめます。"),
+  },
+  {
+    n:"04", img:"/images/why-scale.png", mascot:"/images/char-s.png",
+    title: t("Consistency & Scalability","一貫性とスケーラビリティ"),
+    body: t("Powered by Japanese Technology. Our onigiri features the signature fluffy texture of hand-pressed rice, achieved through FUJISEIKI — the same world-leading technology trusted by Japan's top convenience chains.",
+            "日本技術で動く最先端の機械が、日本のトップコンビニチェーンが信頼するFUJISEIKI技術で手握りのふっくら食感を実現します。"),
+  },
+];
 
   return (
     <>
       <Header />
-      <main style={{ fontFamily: "Nunito, sans-serif", background: "#fff" }}>
+      <main style={{ fontFamily:"DM Sans, sans-serif", background:"#fff" }}>
 
         {/* ── HERO ── */}
-        <section style={{ background:"#fdf5ef", display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:460, marginTop:48, overflow:"hidden" }}>
-          <div style={{ display:"grid", gridTemplateColumns:"1.4fr 1fr", gridTemplateRows:"1fr 1fr", gap:4, minHeight:460 }}>
-            <ImgBox src="/images/hero-left-tall.jpg" alt="Onigiri" style={{ gridRow:"1 / 3" }} />
-            <ImgBox src="/images/hero-top-right.jpg" alt="Onigiri package" style={{}} />
-            <ImgBox src="/images/hero-bottom-right.jpg" alt="Store" style={{}} />
+        <section style={{ background:"#fdf5ef", marginTop:48 }}>
+
+          {/* Rolling photo strip — 3 visible at once, seamless */}
+          {/* One set: 5×480 + 4×16 = 2464px. Two sets = 4944px. Scroll by -2464px */}
+          <div style={{ overflow:"hidden", height:500 }}>
+            <style>{`
+              @keyframes hero-scroll {
+                0%   { transform: translateX(0); }
+                100% { transform: translateX(-2464px); }
+              }
+            `}</style>
+            <div style={{
+              display:"flex",
+              gap:16,
+              height:"100%",
+              width:"4944px",
+              animation:"hero-scroll 18s linear infinite",
+            }}>
+              {[...Array(2)].map((_, pass) =>
+                [
+                  "/images/hero-1.jpg",
+                  "/images/hero-2.jpg",
+                  "/images/hero-3.jpg",
+                  "/images/hero-4.jpg",
+                  "/images/hero-5.jpg",
+                ].map((src, i) => (
+                  <div
+                    key={`${pass}-${i}`}
+                    style={{
+                      width:480,
+                      height:"100%",
+                      borderRadius:"20px 20px 0 0",
+                      overflow:"hidden",
+                      flexShrink:0,
+                      background:"#c8bfb5",
+                    }}
+                  >
+                    <img src={src} alt="" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
+                  </div>
+                ))
+              )}
+            </div>
           </div>
-          <div style={{ display:"flex", flexDirection:"column", justifyContent:"center", padding:"60px 56px" }}>
-            <h1 style={{ fontWeight:900, fontSize:40, color:"#1a1a1a", lineHeight:1.2, margin:"0 0 16px" }}>
-              {t("Japan's Tradition.\nScaled for America.","日本の伝統を\nアメリカへ。")}
-            </h1>
-            <p style={{ color:"#888", fontSize:15, lineHeight:1.7, margin:"0 0 32px", maxWidth:360 }}>
-              {t("Crafted with 1,000-year-old recipes — made fresh daily with the finest Japanese ingredients, ready for your everyday life.",
-                 "1,000年の歴史あるレシピで作られた、最高の日本の食材を使った毎日新鮮なおにぎりをお届けします。")}
-            </p>
-            <div style={{ display:"flex", gap:12, flexWrap:"wrap" }}>
-              <Link href="/products" style={btnPink}>{t("See Our Products","商品を見る")}</Link>
-              <Link href="/wholesale" style={btnOutline}>{t("Partner With Us","パートナーになる")}</Link>
+
+          {/* Cream section with mascots + CTA */}
+          <div style={{ background:"#fdefc8" }}>
+            <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ display:"block", width:"100%", height:60, marginTop:-1 }}>
+              <path d="M0,0 L0,30 C120,60 240,0 360,30 C480,60 600,0 720,30 C840,60 960,0 1080,30 C1200,60 1320,0 1440,30 L1440,0 Z" fill="#fdf5ef" />
+            </svg>
+            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", padding:"20px 48px 80px", position:"relative" as const }}>
+              {/* Left: scattered mascots */}
+              <div style={{ position:"relative" as const, minHeight:260 }}>
+                <img src="/images/char-pp.png" alt="" style={{ position:"absolute", bottom:0,  left:60,  height:100, objectFit:"contain" as const }} />
+                <img src="/images/char-s.png"    alt="" style={{ position:"absolute", bottom:0,  left:180, height:110, objectFit:"contain" as const }} />
+                <img src="/images/char-bc.png"    alt="" style={{ position:"absolute", bottom:20, left:320, height:120, objectFit:"contain" as const }} />
+                {/* <img src="/images/char-stm.png"     alt="" style={{ position:"absolute", top:20,    right:0,  height:100, objectFit:"contain" as const }} /> */}
+              </div>
+              {/* Right: heading + CTA */}
+              <div style={{ display:"flex", flexDirection:"column" as const, justifyContent:"center", paddingLeft:40 }}>
+                <h1 style={{ fontWeight:900, fontSize:44, color:"#6f471c", lineHeight:1.2, margin:"0 0 16px" }}>
+                  {t("Japan's Tradition.\nScaled for America.","日本の伝統を\nアメリカへ。")}
+                </h1>
+                <p style={{ color:"#8a6a4a", fontSize:15, lineHeight:1.7, margin:"0 0 32px", maxWidth:380 }}>
+                  {t(
+                    "Fresh, healthy, and portable — Japan's favorite everyday meal, now made for America.",
+                    "新鮮で健康的、持ち運びやすい——日本人の日常食を、アメリカへ。"
+                  )}
+                </p>
+                <div style={{ display:"flex", gap:14, flexWrap:"wrap" as const }}>
+                  <Link href="/products" style={{ background:"#e8847a", color:"#fff", padding:"16px 36px", borderRadius:999, fontWeight:700, fontSize:15, textDecoration:"none" }}>
+                    {t("Find Us Near You","近くの販売店")}
+                  </Link>
+                  <Link href="/wholesale" style={{ background:"#fff", color:"#2a2a2a", padding:"16px 36px", borderRadius:999, fontWeight:700, fontSize:15, textDecoration:"none", boxShadow:"0 2px 8px rgba(0,0,0,0.08)" }}>
+                    {t("Partner With Us","パートナーになる")}
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ── WHY ONIGIRI SEN ── */}
-        <section style={{ padding:"80px 80px" }}>
-          <h2 style={{ textAlign:"center", fontWeight:800, fontSize:30, color:"#1a1a1a", margin:"0 0 48px" }}>
-            {t("Why Onigiri Sen","なぜおにぎり千？")}
-          </h2>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:20 }}>
-            {whyItems.map((item) => (
-              <div key={item.n} style={{ background:"#fdf5ef", borderRadius:20, padding:"28px", display:"grid", gridTemplateColumns:"auto 1fr", gap:"0 20px" }}>
-                <div style={{ fontWeight:900, fontSize:42, color:"#f5d0c4", lineHeight:1, gridColumn:1, gridRow:"1 / 3", alignSelf:"start", minWidth:56 }}>{item.n}</div>
-                <h3 style={{ fontWeight:800, fontSize:17, color:"#1a1a1a", margin:0, alignSelf:"end" }}>{item.title}</h3>
-                <p style={{ color:"#888", fontSize:14, lineHeight:1.7, margin:"8px 0 0" }}>{item.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* ── TRUSTED BY ── */}
+        <TrustedBy />
 
-        {/* ── BANNER ── */}
-        <section style={{ background:"#6a8c9a", padding:"80px", color:"#fff", display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, alignItems:"center" }}>
-          <div>
-            <span style={{ background:"#e8a87a", borderRadius:999, padding:"5px 16px", fontSize:11, fontWeight:700, letterSpacing:1, display:"inline-block", marginBottom:20 }}>
-              {t("WHAT IS ONIGIRI SEN","おにぎり千とは")}
+{/* ── WHY ONIGIRI SEN ── */}
+<section style={{ padding:"80px 80px 100px", background:"#fff9f5", position:"relative" as const }}>
+  <h2 style={{ textAlign:"center", fontWeight:800, fontSize:30, color:"#6f471c", margin:"0 0 56px" }}>
+    {t("Why Onigiri Sen","なぜおにぎり千？")}
+  </h2>
+  <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:32, alignItems:"start" }}>
+    {whyItems.map((item, idx) => (
+      <div
+        key={item.n}
+        style={{
+          position:"relative" as const,
+          marginTop: idx % 2 === 1 ? 80 : 0,
+        }}
+      >
+        {/* Card with dashed pink border */}
+        <div style={{
+          background:"#fff",
+          borderRadius:24,
+          border:"2px dashed #f5aaaa",
+          overflow:"hidden",
+          paddingBottom:24,
+        }}>
+          {/* Photo with number overlay */}
+          <div style={{ position:"relative" as const, height:240, overflow:"hidden" }}>
+            <img
+              src={item.img}
+              alt={item.title}
+              style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}
+            />
+            <div style={{
+              position:"absolute", bottom:8, left:16,
+              fontWeight:900, fontSize:64, lineHeight:1,
+              color:"#f5a0a0", opacity:0.9,
+            }}>
+              {item.n}
+            </div>
+          </div>
+          {/* Title + body */}
+          <div style={{ padding:"20px 28px 4px", textAlign:"center" as const }}>
+            <h3 style={{ fontWeight:800, fontSize:18, color:"#6f471c", margin:"0 0 12px", fontStyle:"italic" }}>
+              {item.title}
+            </h3>
+            <p style={{ color:"#8a6a4a", fontSize:13, lineHeight:1.8, margin:0 }}>
+              {item.body}
+            </p>
+          </div>
+        </div>
+        {/* Mascot — bottom-right outside card */}
+        <img
+          src={item.mascot}
+          alt=""
+          style={{
+            position:"absolute", bottom:-40, right:-20,
+            height:90, objectFit:"contain" as const,
+            zIndex:2,
+          }}
+        />
+      </div>
+    ))}
+  </div>
+</section>
+
+        {/* ── WHAT IS ONIGIRI SEN BANNER ── */}
+        <section style={{ position:"relative", overflow:"hidden", color:"#fff", minHeight:360 }}>
+          <img
+            src="/images/hero-what.png"
+            alt=""
+            style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover" }}
+          />
+          <div style={{ position:"absolute", inset:0, background:"rgba(40,60,70,0.5)" }} />
+          <div style={{ position:"relative", zIndex:1, padding:"80px 80px" }}>
+            <span style={{ background:"#ffefc8", color:"#6f471c", borderRadius:999, padding:"15px 16px", fontSize:11, fontWeight:700, letterSpacing:1, display:"inline-block", marginBottom:20 }}>
+              {t("WHAT IS ONIGIRI SEN?","おにぎり千とは?")}
             </span>
-            <h2 style={{ fontWeight:900, fontSize:38, lineHeight:1.2, margin:"0 0 20px" }}>
+            <h2 style={{ fontWeight:900, fontSize:38, lineHeight:1.2, margin:"0 0 20px", maxWidth:560 }}>
               {t("A 1,000-Year Tradition for\nthe Next 1,000 Years","1,000年の伝統を\n次の1,000年へ")}
             </h2>
-            <p style={{ opacity:0.85, fontSize:15, lineHeight:1.8, margin:"0 0 32px" }}>
-              {t("Onigiri has nourished Japan for over a millennium. We're bringing that tradition to America — made fresh daily with premium ingredients, wrapped in authentic Ariake nori.",
-                 "おにぎりは千年以上にわたって日本を支えてきました。その伝統をアメリカへ — 有明海苔で包んだ、毎日新鮮な最高品質のおにぎりをお届けします。")}
+            <p style={{ opacity:0.9, fontSize:15, lineHeight:1.8, margin:"0 0 32px", maxWidth:500 }}>
+              {t(
+                "Onigiri has nourished Japan for over a millennium. We're bringing that tradition to America — made fresh daily with premium ingredients, wrapped in authentic Ariake nori.",
+                "おにぎりは千年以上にわたって日本を支えてきました。その伝統をアメリカへ — 有明海苔で包んだ、毎日新鮮な最高品質のおにぎりをお届けします。"
+              )}
             </p>
-            <Link href="/our-story" style={{ ...btnPink, background:"#fff", color:"#6a8c9a" }}>
+            <Link
+              href="/our-story"
+              style={{ display:"inline-block", background:"#fff", color:"#4a6a7a", padding:"13px 28px", borderRadius:999, fontWeight:700, fontSize:15, textDecoration:"none" }}
+            >
               {t("Read Our Story →","私たちのストーリーを読む →")}
             </Link>
           </div>
-          <ImgBox src="/images/banner-landscape.jpg" alt="Landscape" style={{ borderRadius:20, height:280 }} />
         </section>
 
-        {/* ── FLAVORS ── */}
-        <section style={{ padding:"80px 80px", background:"#fdf9f2" }}>
-          <h2 style={{ textAlign:"center", fontWeight:800, fontSize:13, letterSpacing:3, color:"#888", margin:"0 0 40px", textTransform:"uppercase" }}>
-            {t("OUR FLAVORS","フレーバー")}
-          </h2>
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:16 }}>
-            {flavors.map((f) => (
-              <div key={f.name} style={{ background:"#fff", borderRadius:20, padding:"24px 20px", display:"flex", flexDirection:"column", alignItems:"center", gap:10, gridColumn:(f as any).wide?"span 3":undefined, boxShadow:"0 1px 8px rgba(0,0,0,0.06)" }}>
-                <ImgBox src={f.img} alt={f.name} style={{ width:88, height:88, borderRadius:14 }} />
-                <div style={{ fontWeight:800, fontSize:14, color:"#1a1a1a", textAlign:"center" }}>{f.name}</div>
-                <div style={{ display:"flex", gap:5, flexWrap:"wrap", justifyContent:"center" }}>
-                  {f.tags.map((tag) => <span key={tag} style={tagStyle(tag)}>{tag}</span>)}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div style={{ textAlign:"center", marginTop:36 }}>
-            <Link href="/products" style={btnPink}>{t("See All Products →","すべての商品を見る →")}</Link>
-          </div>
-        </section>
+        {/* ── OUR FLAVORS ── */}
+        <OurFlavors />
+        <div style={{ textAlign:"center", padding:"0 0 64px", background:"#fff9f5" }}>
+          <Link
+            href="/products"
+            style={{ display:"inline-block", background:"#e8847a", color:"#fff", padding:"13px 28px", borderRadius:999, fontWeight:700, fontSize:15, textDecoration:"none" }}
+          >
+            {t("See All Products →","すべての商品を見る →")}
+          </Link>
+        </div>
 
         {/* ── FIND US ── */}
-        <section style={{ padding:"80px 80px" }}>
-          <div style={{ display:"flex", justifyContent:"center", marginBottom:32 }}>
-            <div style={{ border:"2px solid #1a1a1a", borderRadius:999, padding:"10px 36px", fontWeight:700, fontSize:17, color:"#1a1a1a" }}>
-              {t("Find Us Near You","近くの販売店")}
-            </div>
-          </div>
-          <div style={{ border:"2px solid #f5aaaa", borderRadius:20, overflow:"hidden", maxWidth:580, margin:"0 auto" }}>
-            <div style={{ display:"flex" }}>
-              <div style={{ flex:1, padding:13, textAlign:"center", background:"#f5aaaa", color:"#fff", fontWeight:700 }}>Seattle</div>
-              <div style={{ flex:1, padding:13, textAlign:"center", background:"#fdf5ef", color:"#bbb", fontWeight:700 }}>California</div>
-            </div>
-            <div style={{ padding:"28px 24px", minHeight:120, background:"#fff" }}>
-              <p style={{ color:"#aaa", fontSize:14, margin:0 }}>T&T Supermarket · PCC Community Markets · T-Mobile Park</p>
-            </div>
-          </div>
-        </section>
+        <FindUsNearYou />
 
         {/* ── INSTAGRAM ── */}
         <section style={{ background:"#f07878", padding:"64px 80px", textAlign:"center", color:"#fff" }}>
           <div style={{ fontWeight:700, fontSize:12, letterSpacing:3, marginBottom:8, opacity:0.85 }}>INSTAGRAM</div>
-          <h2 style={{ fontWeight:900, fontSize:42, margin:"0 0 8px" }}>{t("Follow Along !","フォローしてね！")}</h2>
-          <p style={{ fontSize:16, opacity:0.85, margin:"0 0 40px" }}>@onigirisen.jp</p>
-          <ImgBox src="/images/characters.png" alt="Onigiri Sen mascots" style={{ borderRadius:20, height:160, maxWidth:600, margin:"0 auto 32px" }} />
+          <h2 style={{ fontWeight:900, fontSize:42, margin:"0 0 8px" }}>
+            {t("Follow Along !","フォローしてね！")}
+          </h2>
+          <p style={{ fontSize:16, opacity:0.85, margin:"0 0 32px" }}>@onigirisen.jp</p>
+          <img
+            src="/images/char-ty.png"
+            alt=""
+            style={{ height:160, objectFit:"contain" as const, display:"block", margin:"0 auto 32px" }}
+          />
           <div style={{ display:"grid", gridTemplateColumns:"repeat(4, 1fr)", gap:12, maxWidth:560, margin:"0 auto 32px" }}>
-            {[1,2,3,4].map((i) => (
-              <ImgBox key={i} src={`/images/instagram-${i}.jpg`} alt={`Instagram post ${i}`} style={{ borderRadius:14, aspectRatio:"1", minHeight:120 }} />
+            {[1,2,3,4,5,6,7,8].map((i) => (
+              <img
+                key={i}
+                src={`/images/partners/roll-${i}.png`}
+                alt=""
+                style={{ borderRadius:14, aspectRatio:"1", width:"100%", objectFit:"cover" as const }}
+              />
             ))}
           </div>
-          <Link href="https://instagram.com/onigirisen.jp" target="_blank" style={{ display:"inline-block", border:"2px solid rgba(255,255,255,0.6)", color:"#fff", padding:"11px 28px", borderRadius:999, fontWeight:700, fontSize:14, textDecoration:"none" }}>
+          <Link
+            href="https://instagram.com/onigirisen.jp"
+            target="_blank"
+            style={{ display:"inline-block", border:"2px solid rgba(255,255,255,0.6)", color:"#fff", padding:"11px 28px", borderRadius:999, fontWeight:700, fontSize:14, textDecoration:"none" }}
+          >
             {t("View on Instagram","Instagramで見る")}
           </Link>
         </section>
+
       </main>
     </>
   );
 }
-
-const btnPink: React.CSSProperties = { display:"inline-block", background:"#e8847a", color:"#fff", padding:"13px 28px", borderRadius:999, fontFamily:"Nunito, sans-serif", fontWeight:700, fontSize:15, textDecoration:"none" };
-const btnOutline: React.CSSProperties = { display:"inline-block", background:"transparent", color:"#e8847a", border:"2px solid #e8847a", padding:"11px 28px", borderRadius:999, fontFamily:"Nunito, sans-serif", fontWeight:700, fontSize:15, textDecoration:"none" };

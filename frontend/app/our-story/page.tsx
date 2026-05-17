@@ -24,17 +24,17 @@ function TimelineCarousel() {
   return (
     <div style={{ position:"relative", borderRadius:20, overflow:"hidden", height:400, background:"#c8bfb5" }}>
       <img
-  src={images[current]}
-  alt={`Timeline ${current + 1}`}
-  style={{
-    width:"100%",
-    height:"100%",
-    objectFit:"cover",
-    display:"block",
-    transition:"opacity 0.3s",
-    objectPosition: current === 1 ? "center center" : "center top",
-  }}
-/>
+        src={images[current]}
+        alt={`Timeline ${current + 1}`}
+        style={{
+          width:"100%",
+          height:"100%",
+          objectFit:"cover",
+          display:"block",
+          transition:"opacity 0.3s",
+          objectPosition: current === 1 ? "center center" : "center top",
+        }}
+      />
       <button onClick={prev} style={{ position:"absolute", left:12, top:"50%", transform:"translateY(-50%)", background:"rgba(255,255,255,0.8)", border:"none", borderRadius:"50%", width:40, height:40, cursor:"pointer", fontSize:22, fontWeight:700, display:"flex", alignItems:"center", justifyContent:"center", color:"#6f471c" }}>
         ‹
       </button>
@@ -146,7 +146,6 @@ export default function OurStoryPage() {
 
         {/* ── TIMELINE ── */}
         <section style={{ padding:"72px 80px 80px", background:"#ffefc8" }}>
-          {/* Label pill — centered */}
           <div style={{ display:"flex", justifyContent:"center", marginBottom:48 }}>
             <div style={{ display:"inline-flex", alignItems:"center", gap:10, background:"#ed7e80", borderRadius:999, padding:"8px 20px" }}>
               <span style={{ fontWeight:700, color:"#fff", fontSize:14 }}>
@@ -190,8 +189,6 @@ export default function OurStoryPage() {
                 </div>
               ))}
             </div>
-
-            {/* Right: carousel */}
             <TimelineCarousel />
           </div>
         </section>
@@ -217,7 +214,9 @@ export default function OurStoryPage() {
                 sub:t("Japan's Standard: Near 100% Share","日本の標準：約100%のシェア"),
                 body:t("The world's #1 manufacturer, boasting an approximately 100% share of hand-wrapped onigiri machines in Japanese convenience stores. Their technology balances the airy texture of hand-pressed onigiri with millimeter-level precision. Regardless of production volume, they deliver consistent, uncompromising, world-class quality for every order.",
                        "不二精機の成型機と、AIHOの業務用IH炊飯システムを組み合わせ、手握りの繊細な食感を精密な科学の力で再現しています。"),
-                linkEn:"FUJISEIKI →", linkJa:"不二精機 →",
+                linkEn:"FUJISEIKI →",
+                linkJa:"不二精機 →",
+                href:"https://www.fujiseiki.co.jp",
               },
               {
                 src:"/images/aiho.png",
@@ -225,7 +224,9 @@ export default function OurStoryPage() {
                 sub:t("Engineered for the Perfect Grain","完璧な一粒のために設計"),
                 body:t("Great onigiri starts with perfect rice. AIHO's professional-grade IH pressure cooking system — trusted by Japan's largest rice producers — extracts the natural sweetness and ideal stickiness of every grain. Tender, fragrant, and delicious even when cold.",
                        "美味しいおにぎりは完璧なお米から始まります。AIHOの業務用IH圧力炊飯システムは、日本最大の米生産者に信頼されており、各粒の理想的な甘みと粘り気を引き出します。"),
-                linkEn:"AIHO →", linkJa:"アイホ →",
+                linkEn:"AIHO →",
+                linkJa:"アイホ →",
+                href:"https://www.aiho.co.jp",
               },
             ].map((item) => (
               <div key={item.brand} style={{ background:"#faf6f0", borderRadius:20, overflow:"hidden" }}>
@@ -233,10 +234,17 @@ export default function OurStoryPage() {
                   <img src={item.src} alt={item.brand} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
                 </div>
                 <div style={{ padding:28 }}>
-                  <div style={{ fontWeight:900, fontSize:16, color:"#6f471c", whiteSpace:"pre-line" as const, marginBottom:6 }}>{item.brand}</div>
+                  <div style={{ fontWeight:900, fontSize:16, color:"#6f471c", whiteSpace:"pre-line" as const, marginBottom:6 }}>
+                    {item.brand}
+                  </div>
                   <div style={{ fontWeight:600, color:"#6f471c", fontSize:12, marginBottom:12 }}>{item.sub}</div>
                   <p style={{ color:"#6f471c", fontSize:13, lineHeight:1.75, margin:"0 0 14px" }}>{item.body}</p>
-                  <a href="#" style={{ color:"#e07070", fontWeight:700, fontSize:13, textDecoration:"none" }}>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color:"#e07070", fontWeight:700, fontSize:13, textDecoration:"none" }}
+                  >
                     {lang === "ja" ? item.linkJa : item.linkEn}
                   </a>
                 </div>

@@ -1,5 +1,7 @@
 "use client";
 import Header from "../components/Header";
+import OurFlavors from "../components/OurFlavors";
+import FindUsNearYou from "../components/Findusnearyou";
 import { useLang } from "../context/LangContext";
 import { useState } from "react";
 
@@ -210,38 +212,8 @@ export default function ProductsPage() {
           </p>
         </section>
 
-        {/* ── CREAM FLAVORS ZONE ── */}
-        <section style={{ background:"#fff9f5" }}>
-          {/* Top scallop */}
-          <svg viewBox="0 0 1440 52" preserveAspectRatio="none"
-            style={{ display:"block", width:"100%", height:52, marginBottom:-1 }}>
-            <path
-              d="M0,26 C80,52 160,0 240,26 C320,52 400,0 480,26 C560,52 640,0 720,26 C800,52 880,0 960,26 C1040,52 1120,0 1200,26 C1280,52 1360,0 1440,26 L1440,52 L0,52 Z"
-              fill="#ffefc8"
-            />
-          </svg>
+        <OurFlavors />
 
-          <div style={{ background:"#ffefc8", padding:"28px 48px 52px" }}>
-            {/* Header inside cream zone */}
-            <h2 style={{ textAlign:"center", fontWeight:900, fontSize:25, letterSpacing:3, color:"#6f471c", margin:"0 0 20px", textTransform:"uppercase" as const }}>
-              {t("OUR FLAVORS","フレーバー")}
-            </h2>
-
-            {/* 3-col grid */}
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:14, maxWidth:800, margin:"0 auto" }}>
-              {flavors.map((f) => <FlavorCard key={f.nameEn} f={f} t={t} lang={lang} />)}
-            </div>
-          </div>
-
-          {/* Bottom scallop */}
-          <svg viewBox="0 0 1440 52" preserveAspectRatio="none"
-            style={{ display:"block", width:"100%", height:52, marginTop:-1 }}>
-            <path
-              d="M0,26 C80,0 160,52 240,26 C320,0 400,52 480,26 C560,0 640,52 720,26 C800,0 880,52 960,26 C1040,0 1120,52 1200,26 C1280,0 1360,52 1440,26 L1440,0 L0,0 Z"
-              fill="#ffefc8"
-            />
-          </svg>
-        </section>
 
         {/* ── SELECTED INGREDIENTS ── CHANGED: larger circles with border, yellow card overlap ── */}
         <section style={{ padding:"80px 80px 100px", background:"#fff9f5" }}>
@@ -308,44 +280,7 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        {/* ── FIND US NEAR YOU ── */}
-        <section style={{ padding:"64px 80px 100px", background:"#fdf8f4", position:"relative" as const }}>
-          <div style={{ display:"flex", justifyContent:"center", marginBottom:28 }}>
-            <div style={{ border:"2px solid #2a2a2a", borderRadius:999, padding:"10px 36px", fontWeight:700, fontSize:16, color:"#1a1a1a" }}>
-              {t("Find Us Near You","近くの販売店")}
-            </div>
-          </div>
-
-          <div style={{ border:"2px solid #ed7e80", borderRadius:20, overflow:"hidden", maxWidth:520, margin:"0 auto" }}>
-            <div style={{ display:"flex" }}>
-              {(["seattle","california"] as const).map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  style={{
-                    flex:1, padding:"12px", textAlign:"center" as const,
-                    background: activeTab===tab ? "#ed7e80" : "#f4adb9",
-                    color: "#fff",
-                    fontWeight:700, fontSize:14, border:"none", cursor:"pointer",
-                    fontFamily:"DM Sans, sans-serif", transition:"background 0.2s",
-                  }}
-                >
-                  {tab==="seattle" ? "Seattle" : "California"}
-                </button>
-              ))}
-            </div>
-            <div style={{ background:"#fff", minHeight:180, padding:"16px 22px 24px" }}>
-              {stores.map((store, i) => (
-                <div key={store} style={{ padding:"9px 0", borderBottom:i<stores.length-1?"1px solid #f5ede8":"none", fontSize:13, fontWeight:600, color:"#5a3020", display:"flex", alignItems:"center", gap:10 }}>
-                  <span style={{ width:6, height:6, borderRadius:"50%", background:"#f5aaaa", flexShrink:0, display:"inline-block" }} />
-                  {store}
-                </div>
-              ))}
-            </div>
-          </div>
-
-        <img src="/images/char-search.png" alt="" width={400} height={400} style={{objectFit:"contain", position:"absolute", bottom:0, left:30}} />        </section>
-
+        <FindUsNearYou />  
       </main>
     </>
   );

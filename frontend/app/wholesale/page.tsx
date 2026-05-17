@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Header from "../components/Header";
+import TrustedBy from "../components/TrustedBy";
 import Link from "next/link";
 import { useLang } from "../context/LangContext";
 
@@ -39,26 +40,9 @@ export default function WholesalePage() {
         </section>
 
         <section style={{ background:"#ffefc8", padding:"44px 0 0" }}>
-  <div style={{ textAlign:"center", fontWeight:700, letterSpacing:2, color:"#6f471c", fontSize:25, marginBottom:28 }}>
-    {t("TRUSTED BY","取引先")}
-  </div>
+  
 
-  {/* Logo grid */}
-  <div style={{ display:"grid", gridTemplateColumns:"repeat(6, 1fr)", gap:14, maxWidth:860, margin:"0 auto 48px", padding:"0 80px" }}>
-    {[
-      { src:"/images/logo-tt.png",    alt:"T&T Supermarket" },
-      { src:"/images/logo-pcc.png",   alt:"PCC Community Markets" },
-      { src:"/images/logo-tmobile.png", alt:"T-Mobile Park" },
-      { src:"/images/logo-tc.jpeg", alt:"Town & County Market" },
-      { src:"/images/logo-km.webp", alt:"Kitchen Market" },
-      { src:"/images/logo-ack.png", alt:"Artisan Community Kitchen" },
-    
-    ].map((p) => (
-      <div key={p.alt} style={{ background:"#fff", border:"1.5px solid #e8ddc8", borderRadius:16, padding:"16px 20px", display:"flex", alignItems:"center", justifyContent:"center", height:100 }}>
-        <img src={p.src} alt={p.alt} style={{ maxHeight:80, maxWidth:"100%", objectFit:"contain" as const }} />
-      </div>
-    ))}
-  </div>
+  <TrustedBy />
 
   {/* Continuous scroll strip */}
   {/* Images needed: /images/partners/roll-1.jpg through roll-8.jpg */}

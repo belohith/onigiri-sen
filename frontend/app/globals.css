@@ -9,11 +9,6 @@
   --soft-brown: #b79d86;
 }
 
-@theme inline {
-  --font-heading: var(--font-fredoka);
-  --font-body: var(--font-nunito);
-}
-
 * {
   box-sizing: border-box;
 }
@@ -22,9 +17,14 @@ html {
   scroll-behavior: smooth;
 }
 
+@keyframes scroll-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 body {
   margin: 0;
   background: var(--cream);
   color: var(--brown);
-  font-family: var(--font-body), sans-serif;
+  font-family: "DM Sans", sans-serif;
 }

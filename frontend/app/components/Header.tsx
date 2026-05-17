@@ -46,7 +46,7 @@ export default function Header() {
           key={l}
           onClick={() => setLang(l)}
           style={{
-            fontFamily: "Nunito, sans-serif",
+            fontFamily: "DM Sans, sans-serif",
             fontWeight: 700,
             fontSize: 15,
             border: "none",
@@ -96,14 +96,9 @@ export default function Header() {
             flexShrink: 0,
           }}
         >
-          {/*
-            Replace the div below with:
-            <Image src="/images/logo.png" alt="Onigiri Sen" width={40} height={40} />
-          */}
-          <div style={{ width: 40, height: 40, borderRadius: "50%", background: "#f5d0c8", flexShrink: 0 }} />
-          <span style={{ fontFamily: "Nunito, sans-serif", fontWeight: 800, fontSize: 20, color: "#5a3020" }}>
-            {lang === "en" ? "Onigiri Sen" : "おにぎり千"}
-          </span>
+          <img src="/images/logo.png" alt="Onigiri Sen" width={240} height={60} />
+          
+          
         </Link>
 
         {/* Desktop nav */}
@@ -130,7 +125,7 @@ export default function Header() {
                     key={href}
                     href={href}
                     style={{
-                      fontFamily: "Nunito, sans-serif",
+                      fontFamily: "DM Sans, sans-serif",
                       fontWeight: 700,
                       fontSize: 15,
                       color: isActive ? "#e07070" : "#5a3020",

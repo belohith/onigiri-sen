@@ -140,7 +140,6 @@ export default function HomePage() {
           marginTop: idx % 2 === 1 ? 80 : 0,
         }}
       >
-        {/* Card with dashed pink border */}
         <div style={{
           background:"#fff",
           borderRadius:24,

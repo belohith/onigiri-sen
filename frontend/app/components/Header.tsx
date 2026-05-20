@@ -93,7 +93,11 @@ export default function Header() {
             gap: 10,
             textDecoration: "none",
             marginRight: "auto",
-            flexShrink: 0,
+            flexShrink: 0,backgroundColor: "#ffffff",
+                border: "1px solid #e8ddd4",
+                borderRadius: 18,
+                height: 56,
+                padding: "0 8px",
           }}
         >
           <img src="/images/logo.png" alt="Onigiri Sen" width={240} height={60} />

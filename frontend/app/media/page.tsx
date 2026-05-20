@@ -1,6 +1,7 @@
 "use client";
 import Header from "../components/Header";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useLang } from "../context/LangContext";
 
 type MediaItem = {
@@ -15,6 +16,16 @@ type MediaItem = {
 };
 
 const media: MediaItem[] = [
+  {
+    category: "online",
+    outlet: "Jungle City",
+    titleEn: "Mother's Day Gift Guide and Seattle Picnic Guide",
+    titleJa: "母の日ギフトガイドとシアトルピクニックガイド",
+    descEn: "Jungle City's Mother's Day and Seattle picnic feature includes Onigiri Sen as a recommended pick for outdoor dining and gifting in the Seattle area.",
+    descJa: "Jungle Cityの母の日・シアトルピクニック特集で、シアトルエリアのアウトドアダイニングとギフトの一つとしておにぎり千が紹介されました。",
+    date: "4 May 2026",
+    href: "https://www.junglecity.com/enjoy/gifts-for-mothers-day/#index_id20",
+  },
   {
     category: "tv",
     outlet: "KING 5 News",
@@ -35,6 +46,36 @@ const media: MediaItem[] = [
     date: "30 March 2026",
     href: "https://www.junglecity.com/eat/eat-more/onigiri-sen-rina-oike/",
   },
+  {
+    category: "print",
+    outlet: "Lookout Landing",
+    titleEn: "What to Eat at T-Mobile Park in 2026",
+    titleJa: "2026年、Tモバイルパークで食べるべきもの",
+    descEn: "Lookout Landing's guide to the best ballpark food at T-Mobile Park features Onigiri Sen as a must-try option for the 2026 Mariners season.",
+    descJa: "Lookout Landingの2026年マリナーズシーズンのTモバイルパーク必食ガイドにおにぎり千が掲載されました。",
+    date: "25 March 2026",
+    href: "https://www.lookoutlanding.com/t-mobile-park/140695/what-to-eat-at-t-mobile-park-in-2026",
+  },
+  {
+    category: "online",
+    outlet: "Seattle Weekly",
+    titleEn: "2026 Mariners Menu Preview: Best Food at T-Mobile Park",
+    titleJa: "2026年マリナーズメニュープレビュー：Tモバイルパークのベストフード",
+    descEn: "Seattle Weekly's preview of the 2026 Mariners season menu spotlights Onigiri Sen among the top new food offerings at T-Mobile Park.",
+    descJa: "Seattle Weeklyの2026年マリナーズシーズンメニュープレビューで、Tモバイルパークの新メニューの一つとしておにぎり千が紹介されました。",
+    date: "18 March 2026",
+    href: "https://www.seattleweekly.com/2026/03/18/2026-mariners-menu-preview-best-food-at-t-mobile-park/",
+  },
+  {
+    category: "online",
+    outlet: "Soy Source",
+    titleEn: "Japanese Soul Food Onigiri is Taking Over Seattle!",
+    titleJa: "日本のソウルフード、おにぎりがシアトルを席巻！",
+    descEn: "Japanese-language publication Soy Source covers the rise of Onigiri Sen and how traditional Japanese onigiri is resonating with Seattle's food culture.",
+    descJa: "日本語メディアのSoy Sourceが、おにぎり千の台頭と日本の伝統的なおにぎりがシアトルの食文化に響いている様子を取り上げました。",
+    date: "26 March 2025",
+    href: "https://soysource.net/food/feature1-03282025/",
+  },
 ];
 
 const categoryLabel: Record<MediaItem["category"], { en: string; ja: string; color: string; bg: string }> = {
@@ -44,7 +85,6 @@ const categoryLabel: Record<MediaItem["category"], { en: string; ja: string; col
   online:  { en: "Online",     ja: "オンライン",    color: "#7a2020", bg: "#fde8e8" },
 };
 
-// External link SVG icon
 function ExternalIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink:0 }}>
@@ -54,8 +94,20 @@ function ExternalIcon() {
   );
 }
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return isMobile;
+}
+
 export default function MediaPage() {
   const { t, lang } = useLang();
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -63,14 +115,14 @@ export default function MediaPage() {
       <main style={{ fontFamily:"DM Sans, sans-serif", background:"#fff9f5" }}>
 
         {/* ── HERO ── */}
-        <section style={{ padding:"72px 80px 48px", textAlign:"center" }}>
+        <section style={{ padding: isMobile ? "56px 24px 36px" : "72px 80px 48px", textAlign:"center" }}>
           <div style={{ display:"inline-flex", alignItems:"center", gap:8, background:"#ed7e80", borderRadius:999, padding:"6px 20px", fontSize:11, fontWeight:700, letterSpacing:2, color:"#fff", marginBottom:20, textTransform:"uppercase" as const }}>
             {t("PRESS & MEDIA","プレス・メディア")}
           </div>
-          <h1 style={{ fontWeight:900, fontSize:36, color:"#6f471c", margin:"0 0 16px", lineHeight:1.2 }}>
+          <h1 style={{ fontWeight:900, fontSize: isMobile ? 26 : 36, color:"#6f471c", margin:"0 0 16px", lineHeight:1.2 }}>
             {t("Onigiri Sen in the News","おにぎり千のメディア掲載")}
           </h1>
-          <p style={{ color:"#8a6a4a", fontSize:15, maxWidth:520, margin:"0 auto 0", lineHeight:1.8 }}>
+          <p style={{ color:"#8a6a4a", fontSize: isMobile ? 14 : 15, maxWidth:520, margin:"0 auto", lineHeight:1.8 }}>
             {t(
               "From local TV features to national food publications — follow our journey as we bring Japan's favorite everyday meal to America.",
               "地元テレビの特集から全国の食メディアまで——日本の日常食をアメリカへ届ける私たちの歩みをご覧ください。"
@@ -79,9 +131,19 @@ export default function MediaPage() {
         </section>
 
         {/* ── PRESS ENQUIRY BANNER ── */}
-        <section style={{ margin:"0 80px 56px", background:"#ffefc8", borderRadius:20, padding:"28px 40px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:24, flexWrap:"wrap" as const }}>
+        <section style={{
+          margin: isMobile ? "0 16px 36px" : "0 80px 56px",
+          background:"#ffefc8",
+          borderRadius:20,
+          padding: isMobile ? "24px 20px" : "28px 40px",
+          display:"flex",
+          flexDirection: isMobile ? "column" : "row" as const,
+          alignItems: isMobile ? "flex-start" : "center",
+          justifyContent:"space-between",
+          gap:16,
+        }}>
           <div>
-            <div style={{ fontWeight:800, fontSize:17, color:"#6f471c", marginBottom:6 }}>
+            <div style={{ fontWeight:800, fontSize: isMobile ? 15 : 17, color:"#6f471c", marginBottom:6 }}>
               {t("Press Enquiries","報道関係のお問い合わせ")}
             </div>
             <p style={{ color:"#8a6a4a", fontSize:14, margin:0 }}>
@@ -97,8 +159,8 @@ export default function MediaPage() {
         </section>
 
         {/* ── MEDIA LIST ── */}
-        <section style={{ padding:"0 80px 100px" }}>
-          <div style={{ display:"flex", flexDirection:"column" as const, gap:16 }}>
+        <section style={{ padding: isMobile ? "0 16px 64px" : "0 80px 100px" }}>
+          <div style={{ display:"flex", flexDirection:"column" as const, gap:12 }}>
             {media.map((item) => {
               const cat = categoryLabel[item.category];
               return (
@@ -113,10 +175,10 @@ export default function MediaPage() {
                     style={{
                       background:"#fff",
                       borderRadius:20,
-                      padding:"28px 32px",
+                      padding: isMobile ? "20px 16px" : "28px 32px",
                       display:"grid",
-                      gridTemplateColumns:"auto 1fr auto",
-                      gap:"0 28px",
+                      gridTemplateColumns: isMobile ? "1fr" : "auto 1fr auto",
+                      gap: isMobile ? "12px 0" : "0 28px",
                       alignItems:"center",
                       border:"1.5px solid #f0e4d4",
                       cursor:"pointer",
@@ -131,18 +193,29 @@ export default function MediaPage() {
                       (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
                     }}
                   >
-                    {/* Left: outlet + date */}
-                    <div style={{ textAlign:"center" as const, minWidth:100 }}>
-                      <div style={{ fontWeight:800, fontSize:14, color:"#6f471c", marginBottom:6, lineHeight:1.3 }}>{item.outlet}</div>
-                      <div style={{ fontSize:11, color:"#bbb", fontWeight:500 }}>{item.date}</div>
-                      <div style={{ display:"inline-block", marginTop:8, background:cat.bg, color:cat.color, fontSize:10, fontWeight:700, borderRadius:999, padding:"3px 10px" }}>
-                        {lang === "ja" ? cat.ja : cat.en}
+                    {/* On mobile: outlet + category pill + date in a row */}
+                    {isMobile ? (
+                      <div style={{ display:"flex", alignItems:"center", gap:10, flexWrap:"wrap" as const }}>
+                        <div style={{ fontWeight:800, fontSize:13, color:"#6f471c" }}>{item.outlet}</div>
+                        <div style={{ background:cat.bg, color:cat.color, fontSize:10, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>
+                          {lang === "ja" ? cat.ja : cat.en}
+                        </div>
+                        <div style={{ fontSize:11, color:"#bbb", fontWeight:500 }}>{item.date}</div>
                       </div>
-                    </div>
+                    ) : (
+                      /* Desktop: outlet column */
+                      <div style={{ textAlign:"center" as const, minWidth:100 }}>
+                        <div style={{ fontWeight:800, fontSize:14, color:"#6f471c", marginBottom:6, lineHeight:1.3 }}>{item.outlet}</div>
+                        <div style={{ fontSize:11, color:"#bbb", fontWeight:500 }}>{item.date}</div>
+                        <div style={{ display:"inline-block", marginTop:8, background:cat.bg, color:cat.color, fontSize:10, fontWeight:700, borderRadius:999, padding:"3px 10px" }}>
+                          {lang === "ja" ? cat.ja : cat.en}
+                        </div>
+                      </div>
+                    )}
 
-                    {/* Center: title + desc */}
+                    {/* Title + desc */}
                     <div>
-                      <div style={{ fontWeight:800, fontSize:16, color:"#2a2a2a", marginBottom:8, lineHeight:1.4 }}>
+                      <div style={{ fontWeight:800, fontSize: isMobile ? 14 : 16, color:"#2a2a2a", marginBottom:6, lineHeight:1.4 }}>
                         {lang === "ja" ? item.titleJa : item.titleEn}
                       </div>
                       <p style={{ color:"#8a6a4a", fontSize:13, lineHeight:1.75, margin:0 }}>
@@ -150,8 +223,8 @@ export default function MediaPage() {
                       </p>
                     </div>
 
-                    {/* Right: arrow */}
-                    <div style={{ color:"#ed7e80", display:"flex", alignItems:"center" }}>
+                    {/* Arrow — always shown */}
+                    <div style={{ color:"#ed7e80", display:"flex", alignItems: isMobile ? "flex-end" : "center", justifyContent: isMobile ? "flex-end" : "center" }}>
                       <ExternalIcon />
                     </div>
                   </div>

@@ -3,193 +3,57 @@ import Header from "../components/Header";
 import OurFlavors from "../components/OurFlavors";
 import FindUsNearYou from "../components/Findusnearyou";
 import { useLang } from "../context/LangContext";
-import { useState } from "react";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 
-/*
-  Images needed in /public/images/:
-    flavor-spicy-tuna.jpg, flavor-salmon.jpg, flavor-butter-corn.jpg,
-    flavor-shrimp.jpg, flavor-ume.jpg, flavor-smoked-salmon.jpg
-    mascot-bear.png, mascot-brown-bear.png, mascot-corn.png,
-    mascot-shrimp.png, mascot-umeboshi.png, mascot-salmon.png
-    ingredient-rice.jpg, ingredient-nori.jpg, ingredient-dietary.jpg
-    mascot-searching.png
-*/
-
-/* Circular dietary badge */
-const badgeStyle = (type: string): React.CSSProperties => ({
-  width:44, height:44, borderRadius:"50%",
-  display:"inline-flex", alignItems:"center", justifyContent:"center",
-  fontSize:8, fontWeight:800, textAlign:"center" as const, lineHeight:1.2,
-  flexShrink:0,
-  background:
-    type==="GF"?"#d4edda":type==="Vegan"?"#2d6a4f":
-    type==="Vegetarian"?"#c8e6c9":type==="Organic"?"#fff3cd":"#f0f0f0",
-  color:
-    type==="GF"?"#2d6a4f":type==="Vegan"?"#fff":
-    type==="Vegetarian"?"#1b5e20":type==="Organic"?"#856404":"#555",
-  border:
-    type==="GF"?"2px solid #a8d5b5":type==="Vegan"?"2px solid #1a4a30":
-    type==="Vegetarian"?"2px solid #88c898":type==="Organic"?"2px solid #d4b84a":"2px solid #ddd",
-});
-
-const badgeLabel: Record<string,string> = {
-  GF:"GlutenFree", Vegan:"Vegan", Vegetarian:"Vegetarian", Organic:"Organic",
-};
-
-function FlavorCard({ f, t, lang }: { f: any; t:(en:string,ja:string)=>string; lang:string }) {
-  return (
-    <div style={{ position:"relative", paddingTop:60 }}>
-      {/* Mascot — large circle top-left, white bg, shadow */}
-      <div
-        style={{
-          position:"absolute", top:0, left:8, zIndex:3,
-          width:120, height:120, borderRadius:"50%",
-          background:"#fff", boxShadow:"0 2px 10px rgba(0,0,0,0.10)",
-          display:"flex", alignItems:"center", justifyContent:"center",
-          overflow:"hidden",
-        }}
-      >
-        <img src={f.mascot} alt="" width={100} height={100} style={{objectFit:"contain"}} />
-      </div>
-
-      {/* Card */}
-      <div
-        style={{
-          background:"#fff", borderRadius:20,
-          boxShadow:"0 2px 16px rgba(0,0,0,0.08)",
-          overflow:"hidden", position:"relative",
-        }}
-      >
-        {/* Product image */}
-        <div
-          style={{
-            display:"flex", alignItems:"center", justifyContent:"center",
-            padding:"24px 20px 12px", minHeight:220, position:"relative",
-            background:"#fff",
-          }}
-        >
-          {f.comingSoon
-            ? <div style={{ width:"100%", height:200, background:"#e8e0d8", borderRadius:12 }} />
-            : <img src={f.img} alt={f.nameEn} width={180} height={200} style={{objectFit:"contain"}} />
-          }
-
-          {f.comingSoon && (
-            <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"flex-end", justifyContent:"center", paddingBottom:18 }}>
-              <span style={{ background:"#7a6050", color:"#fff", fontSize:11, fontWeight:700, borderRadius:999, padding:"7px 20px", textAlign:"center" as const }}>
-                {t("Coming Soon — PCC and T-mobile Exclusive","近日公開 — PCC・Tモバイル限定")}
-              </span>
-            </div>
-          )}
-        </div>
-
-        {/* Name + badges + allergens */}
-        <div style={{ padding:"10px 18px 20px" }}>
-          <div style={{ fontWeight:800, fontSize:17, color:"#1a1a1a", marginBottom:12, lineHeight:1.3 }}>
-            {lang === "ja" ? f.nameJa : f.nameEn}
-          </div>
-          {!f.comingSoon && f.tags.length > 0 && (
-            <div style={{ display:"flex", gap:8, marginBottom:10 }}>
-              {f.tags.map((tag:string) => (
-                <div key={tag} style={badgeStyle(tag)}>
-                  {badgeLabel[tag]||tag}
-                </div>
-              ))}
-            </div>
-          )}
-          {(f.allergensEn || f.allergensJa) && (
-            <div style={{ fontSize:11, color:"#aaa", fontWeight:500 }}>
-              {lang === "ja" ? `含む：${f.allergensJa}` : `Contains: ${f.allergensEn}`}
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return isMobile;
 }
-
-const seattleStores = [
-  "T&T Supermarket – Bellevue",
-  "T&T Supermarket – Richmond",
-  "PCC Community Markets – Edmonds",
-  "PCC Community Markets – Fremont",
-  "PCC Community Markets – Green Lake",
-  "T-Mobile Park",
-];
-const californiaStores = ["Coming soon — San Francisco"];
 
 export default function ProductsPage() {
   const { t, lang } = useLang();
-  const [activeTab, setActiveTab] = useState<"seattle"|"california">("seattle");
-
-  const flavors = [
-    {
-      img:"/images/flavors/spicy-tuna-mayo.png", mascot:"/images/char-stm.png",
-      nameEn:"Spicy Tuna Mayo", nameJa:"スパイシーツナマヨ",
-      tags:["GF","Organic"], allergensEn:"Fish · Egg · Sesame", allergensJa:"魚・卵・ごま",
-    },
-    {
-      img:"/images/flavors/salmon.png", mascot:"/images/char-s.png",
-      nameEn:"Salmon", nameJa:"鮭",
-      tags:["GF","Organic"], allergensEn:"Fish", allergensJa:"魚",
-    },
-    {
-      img:"/images/flavors/butter-corn.png", mascot:"/images/char-bc.png",
-      nameEn:"Butter Corn", nameJa:"バターコーン",
-      tags:["GF","Vegetarian"], allergensEn:"Dairy", allergensJa:"乳製品",
-    },
-    {
-      img:"/images/flavors/shrimp-mayo.png", mascot:"/images/char-sm.png",
-      nameEn:"Shrimp Mayo", nameJa:"海老マヨ",
-      tags:["GF"], allergensEn:"Shellfish · Dairy · Egg", allergensJa:"甲殻類・乳製品・卵",
-    },
-    {
-      img:"/images/flavors/pickled-plum.png", mascot:"/images/char-pp.png",
-      nameEn:"Ume", nameJa:"梅",
-      tags:["GF","Vegan","Organic","Vegetarian"], allergensEn:"Fish · Egg · Sesame", allergensJa:"魚・卵・ごま",
-    },
-    {
-      img:"/images/flavor-smoked-salmon.jpg", mascot:"/images/char-sscc.png",
-      nameEn:"Smoked Salmon Cream Cheese", nameJa:"スモークサーモンクリームチーズ",
-      tags:["GF"], comingSoon:true,
-    },
-  ];
+  const isMobile = useIsMobile();
 
   const ingredients = [
     {
       src:"/images/ingredient-rice.png",
-      title:t("The Power of a Single Grain.","一粒のお米の力。"),
+      title:t("The Power of a Single Grain.","命を支える、一粒の力。"),
       body:t(
         "Selected medium-grain rice, IH pressure-cooked for a light, fluffy, and satisfying texture in every bite.",
-        "選ばれた中粒米をIH圧力炊飯で、軽くふっくらとした食感に仕上げます。"
+        "厳選されたお米をIH圧力炊きし、一口ごとに軽やかでふっくらとした、口の中でほどける食感を実現しています。"
       ),
     },
     {
       src:"/images/ingredient-nori.png",
-      title:t("Authentic Ariake Bay Nori","本物の有明海苔"),
+      title:t("Authentic Ariake Bay Nori","香り豊かな、有明海産の高級海苔"),
       body:t(
         "Harvested from Japan's finest waters, our nori is chosen for its superior crispness and deep, umami flavor.",
-        "日本の最高の海域から収穫された海苔は、その優れたパリパリ感と深い旨味で選ばれています。"
+        "日本最高峰の漁場として知られる有明海で育まれた海苔を厳選。その特筆すべきパリパリ感と深い旨みが、おにぎりの味を引き立てます。"
       ),
     },
     {
       src:"/images/ingredient-dietary.png",
-      title:t("Dietary Friendly Options","食事制限対応"),
+      title:t("Dietary Friendly Options","多様なライフスタイルへの対応"),
       body:t(
         "We believe in inclusive eating. Discover our selection of Organic, Vegan, and Vegetarian choices tailored for your lifestyle.",
-        "すべての人のための食事を信じています。オーガニック、ヴィーガン、ベジタリアンの選択肢をご覧ください。"
+        "私たちは「食の多様性」を大切にしています。オーガニック、ヴィーガン、ベジタリアン、グルテンフリーなど、お客様のライフスタイルに寄り添う選択肢をご用意しています。"
       ),
     },
   ];
 
-  // ── CHANGED: dietary colors matched to screenshot ──
   const dietary = [
-    { label:t("Gluten-Free (GF)","グルテンフリー（GF）"), lc:"#fff",    lb:"#8faa3a", ic:"#5a8a20", items:t("Salmon · Spicy Tuna Mayo · Ume","サーモン・スパイシーツナマヨ・梅") },
-    { label:t("Vegan","ヴィーガン"),                       lc:"#fff",    lb:"#2d6a4f", ic:"#2d6a4f", items:t("Ume","梅") },
-    { label:t("Vegetarian","ベジタリアン"),                 lc:"#fff",    lb:"#5aaa3a", ic:"#3a8a20", items:t("Ume · Butter Corn","梅・バターコーン") },
-    { label:t("Organic","オーガニック"),                    lc:"#fff",    lb:"#d4a017", ic:"#b88000", items:t("Salmon · Spicy Tuna Mayo · Ume","サーモン・スパイシーツナマヨ・梅") },
+    { label:t("Gluten-Free (GF)","グルテンフリー (GF)"), lc:"#fff", lb:"#8faa3a", ic:"#5a8a20", items:t("Salmon · Spicy Tuna Mayo · Ume","鮭 ・ スパイシーツナマヨ ・ 梅") },
+    { label:t("Vegan","ヴィーガン"),                       lc:"#fff", lb:"#2d6a4f", ic:"#2d6a4f", items:t("Ume","梅") },
+    { label:t("Vegetarian","ベジタリアン"),                 lc:"#fff", lb:"#5aaa3a", ic:"#3a8a20", items:t("Ume · Butter Corn","梅 ・ バターコーン") },
+    { label:t("Organic","オーガニック"),                    lc:"#fff", lb:"#d4a017", ic:"#b88000", items:t("Salmon · Spicy Tuna Mayo · Ume","鮭 ・ スパイシーツナマヨ ・ 梅") },
   ];
-
-  const stores = activeTab === "seattle" ? seattleStores : californiaStores;
 
   return (
     <>
@@ -197,61 +61,42 @@ export default function ProductsPage() {
       <main style={{ fontFamily:"DM Sans, sans-serif", background:"#fff" }}>
 
         {/* ── HERO ── */}
-        <section style={{ background:"#fff9f5", textAlign:"center", padding:"72px 80px 0" }}>
-          <h1 style={{ fontWeight:800, fontSize:30, color:"#6f471c", margin:"0 0 16px" }}>
-            {t("Products","商品")}
+        <section style={{ background:"#fff9f5", textAlign:"center", padding: isMobile ? "56px 24px 0" : "72px 80px 0" }}>
+          <h1 style={{ fontWeight:800, fontSize: isMobile ? 24 : 30, color:"#6f471c", margin:"0 0 12px" }}>
+            {t("Products","商品一覧")}
           </h1>
-          <p style={{ fontWeight:500, fontSize:15, color:"#6f471c", margin:"0 0 16px" }}>
-            {t("Simple. Authentic. Delicious.","シンプル。本格的。美味しい。")}
+          <p style={{ fontWeight:500, fontSize: isMobile ? 14 : 15, color:"#6f471c", margin:"0 0 12px" }}>
+            {t("Simple. Authentic. Delicious.","シンプルに、本物を。本当においしいおにぎりを。")}
           </p>
           <p style={{ fontWeight:200, color:"#6f471c", fontSize:13, maxWidth:500, margin:"0 auto", lineHeight:1.7 }}>
             {t(
               "Each Onigiri Sen rice ball is made with premium rice, wrapped in Ariake nori, and filled with carefully sourced ingredients. Pure craftsmanship in every bite.",
-              "おにぎり千の各おにぎりは、上質なお米で作られ、有明海苔で包まれ、厳選した食材が詰まっています。"
+              "厳選されたプレミアム米、パリッと香る有明海苔、そして丁寧に選び抜いた具材。一口ごとに、Onigiri Sen のこだわりが広がります。"
             )}
           </p>
         </section>
 
+        {/* ── FLAVORS ── */}
         <OurFlavors />
 
-
-        {/* ── SELECTED INGREDIENTS ── CHANGED: larger circles with border, yellow card overlap ── */}
-        <section style={{ padding:"80px 80px 100px", background:"#fff9f5" }}>
-          <h2 style={{ textAlign:"center", fontWeight:800, fontSize:32, color:"#6f3a14", letterSpacing:0.2, margin:"0 0 64px", lineHeight:1.2 }}>
-            {t("Selected Ingredients, Inclusive Choices","厳選素材、すべての人に")}
+        {/* ── SELECTED INGREDIENTS ── */}
+        <section style={{ padding: isMobile ? "48px 20px 64px" : "80px 80px 100px", background:"#fff9f5" }}>
+          <h2 style={{ textAlign:"center", fontWeight:800, fontSize: isMobile ? 22 : 32, color:"#6f3a14", letterSpacing:0.2, margin:"0 0 40px", lineHeight:1.2 }}>
+            {t("Selected Ingredients, Inclusive Choices","厳選された食材、多様な選択肢")}
           </h2>
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:24, maxWidth:860, margin:"0 auto" }}>
+          <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: isMobile ? 32 : 24, maxWidth:860, margin:"0 auto" }}>
             {ingredients.map((item) => (
-              <div key={item.title} style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
-                {/* Large circle photo — with border */}
-                <div
-                  style={{
-                    width:190, height:190, borderRadius:"50%",
-                    overflow:"hidden", background:"#ffefc8",
-                    flexShrink:0, position:"relative", zIndex:1,
-                    boxShadow:"0 0 0 1px #ffefc8",
-                  }}
-                >
-                  <img src={item.src} alt={item.title} width={190} height={190} style={{objectFit:"cover"}} />
+              <div key={item.title} style={{ display:"flex", flexDirection:"column" as const, alignItems:"center", gap:0 }}>
+                {/* Circle photo */}
+                <div style={{ width: isMobile ? 150 : 190, height: isMobile ? 150 : 190, borderRadius:"50%", overflow:"hidden", background:"#ffefc8", flexShrink:0, position:"relative" as const, zIndex:1 }}>
+                  <img src={item.src} alt={item.title} width={190} height={190} style={{ objectFit:"cover", width:"100%", height:"100%" }} />
                 </div>
-
-                {/* Yellow card overlaps circle from below */}
-                <div
-                  style={{
-                    background:"#ffefc8",
-                    borderRadius:24,
-                    padding:"52px 24px 36px",
-                    marginTop:-48,
-                    width:"100%",
-                    height:"200px",
-                    boxSizing:"border-box" as const,
-                    textAlign:"center",
-                  }}
-                >
-                  <div style={{ fontWeight:800, fontSize:14, color:"#6f471c", marginBottom:10, lineHeight:1.4 }}>
+                {/* Yellow card */}
+                <div style={{ background:"#ffefc8", borderRadius:24, padding: isMobile ? "44px 20px 28px" : "52px 24px 36px", marginTop:-48, width:"100%", minHeight: isMobile ? 160 : 200, boxSizing:"border-box" as const, textAlign:"center" as const }}>
+                  <div style={{ fontWeight:800, fontSize: isMobile ? 13 : 14, color:"#6f471c", marginBottom:8, lineHeight:1.4 }}>
                     {item.title}
                   </div>
-                  <p style={{ color:"#6f471c", fontSize:13, lineHeight:1.75, margin:0 }}>
+                  <p style={{ color:"#6f471c", fontSize: isMobile ? 12 : 13, lineHeight:1.75, margin:0 }}>
                     {item.body}
                   </p>
                 </div>
@@ -260,19 +105,28 @@ export default function ProductsPage() {
           </div>
         </section>
 
-
-        {/* ── DIETARY INFORMATION ── CHANGED: colors match screenshot ── */}
-        <section style={{ background:"#ed7e80", padding:"72px 80px 80px" }}>
-          <h2 style={{ textAlign:"center", fontWeight:800, fontSize:28, letterSpacing:4, color:"#fff", margin:"0 0 48px", textTransform:"uppercase" as const }}>
-            {t("DIETARY INFORMATION","食事情報")}
+        {/* ── DIETARY INFORMATION ── */}
+        <section style={{ background:"#ed7e80", padding: isMobile ? "48px 20px" : "72px 80px 80px" }}>
+          <h2 style={{ textAlign:"center", fontWeight:800, fontSize: isMobile ? 20 : 28, letterSpacing: isMobile ? 2 : 4, color:"#fff", margin:"0 0 32px", textTransform:"uppercase" as const }}>
+            {t("DIETARY INFORMATION","食事制限・アレルゲン情報")}
           </h2>
           <div style={{ background:"#fff", borderRadius:20, maxWidth:680, margin:"0 auto", padding:"8px 0" }}>
             {dietary.map((d, i) => (
-              <div key={d.label} style={{ display:"flex", alignItems:"center", gap:28, padding:"20px 32px", borderBottom:i<dietary.length-1?"1.5px dashed #e4dcd4":"none" }}>
-                <span style={{ background:d.lb, color:d.lc, fontSize:14, fontWeight:700, borderRadius:10, padding:"8px 20px", whiteSpace:"nowrap" as const, flexShrink:0, minWidth:150, textAlign:"center" as const }}>
+              <div
+                key={d.label}
+                style={{
+                  display:"flex",
+                  flexDirection: isMobile ? "column" as const : "row" as const,
+                  alignItems: isMobile ? "flex-start" : "center",
+                  gap: isMobile ? 8 : 28,
+                  padding: isMobile ? "16px 20px" : "20px 32px",
+                  borderBottom: i < dietary.length-1 ? "1.5px dashed #e4dcd4" : "none",
+                }}
+              >
+                <span style={{ background:d.lb, color:d.lc, fontSize: isMobile ? 12 : 14, fontWeight:700, borderRadius:10, padding: isMobile ? "6px 14px" : "8px 20px", whiteSpace:"nowrap" as const, flexShrink:0, minWidth: isMobile ? 0 : 150, textAlign:"center" as const }}>
                   {d.label}
                 </span>
-                <span style={{ color:d.ic, fontSize:17, fontWeight:700 }}>
+                <span style={{ color:d.ic, fontSize: isMobile ? 14 : 17, fontWeight:700 }}>
                   {d.items}
                 </span>
               </div>
@@ -280,7 +134,30 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        <FindUsNearYou />  
+        {/* ── FIND US ── */}
+        <FindUsNearYou />
+
+        {/* ── CTA ── */}
+        <div style={{ textAlign:"center", padding: isMobile ? "40px 20px 40px" : "48px 0 16px", background:"#fff9f5" }}>
+          <p style={{ color:"#6f471c", fontSize: isMobile ? 14 : 16, fontWeight:600, margin:"0 0 20px", lineHeight:1.7 }}>
+            {t("Taste the tradition for yourself.","伝統の味を、ぜひご自身でお確かめください。")}
+          </p>
+          <div style={{ display:"flex", gap:12, justifyContent:"center", flexWrap:"wrap" as const }}>
+            <Link
+              href="/products"
+              style={{ display:"inline-block", background:"#ed7e80", color:"#fff", padding: isMobile ? "13px 28px" : "16px 48px", borderRadius:999, fontWeight:800, fontSize: isMobile ? 14 : 16, textDecoration:"none", boxShadow:"0 4px 20px rgba(237,126,128,0.35)" }}
+            >
+              {t("Explore Our Flavors →","私たちのストーリー →")}
+            </Link>
+            <Link
+              href="/wholesale"
+              style={{ display:"inline-block", background:"#fff", color:"#6f471c", padding: isMobile ? "13px 28px" : "16px 48px", borderRadius:999, fontWeight:800, fontSize: isMobile ? 14 : 16, textDecoration:"none", border:"2px solid #e8d8b8", boxShadow:"0 4px 20px rgba(0,0,0,0.06)" }}
+            >
+              {t("Partner With Us →","パートナーシップについて →")}
+            </Link>
+          </div>
+        </div>
+
       </main>
     </>
   );

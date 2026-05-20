@@ -7,7 +7,7 @@ const partners = [
   { src:"/images/logo-pcc.png",     alt:"PCC Community Markets" },
   { src:"/images/logo-tmobile.png", alt:"T-Mobile Park" },
   { src:"/images/logo-tc.jpeg",     alt:"Town & County Market" },
-  { src:"/images/logo-akc.png",     alt:"Kitchen Market" },
+  { src:"/images/logo-ack.png",     alt:"Artisan Community Kitchen" },
   { src:"/images/logo-ls.png",      alt:"Lakeside School" },
 ];
 

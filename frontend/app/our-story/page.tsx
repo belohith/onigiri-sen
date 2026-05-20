@@ -141,10 +141,10 @@ export default function OurStoryPage() {
                   </div>
                 </div>
                 <div style={{ display:"flex", gap:40, flexWrap:"wrap" as const, marginTop:80, paddingLeft:80 }}>
-                  <a href="#" style={{ display:"inline-block", borderRadius:999, border:"3px solid #ef7f88", background:"#fff", padding:"18px 48px", fontSize:14, fontWeight:900, color:"#ef7f88", textDecoration:"none" }}>
+                  <a href="https://www.king5.com/video/entertainment/television/programs/new-day-northwest/onigiri-sen-goes-viral-for-japanese-grab-and-go-snack-new-day-nw/281-70888a26-d765-4dc6-8aac-8bb6f97d982a" style={{ display:"inline-block", borderRadius:999, border:"3px solid #ef7f88", background:"#fff", padding:"18px 48px", fontSize:14, fontWeight:900, color:"#ef7f88", textDecoration:"none" }}>
                     {t("Watch the KING 5 Feature →","KING 5 特集を見る →")}
                   </a>
-                  <a href="#" style={{ display:"inline-block", borderRadius:999, border:"3px solid #6f4725", background:"#fff8f4", padding:"18px 48px", fontSize:14, fontWeight:900, color:"#6f4725", textDecoration:"none" }}>
+                  <a href="https://www.junglecity.com/eat/eat-more/onigiri-sen-rina-oike/" style={{ display:"inline-block", borderRadius:999, border:"3px solid #6f4725", background:"#fff8f4", padding:"18px 48px", fontSize:14, fontWeight:900, color:"#6f4725", textDecoration:"none" }}>
                     {t("Read the Jungle City Interview →","Jungle Cityインタビューを読む →")}
                   </a>
                 </div>

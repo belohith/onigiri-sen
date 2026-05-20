@@ -114,8 +114,8 @@ export default function WholesalePage() {
               {
                 icon:"/images/icon-robot.png",
                 title:t("World-Class\nJapanese Technology","世界が認める日本の技術"),
-                body:t("FUJISEIKI forming machines and AIHO IH rice-cooking systems reproduce the delicate texture of hand-pressed onigiri.",
-                       "不二精機の成形機とAIHOのIH炊飯システムで、手握りの繊細な食感を再現します。"),
+                body:t("We utilize forming machines from FUJISEIKI—trusted by all major Japanese convenience chains—alongside high-spec cooking systems from AIHO, the professionals in large-scale rice preparation. Together, we reproduce the delicate texture of hand-pressed onigiri through the power of precision science.",
+                       "日本の大手コンビニチェーンから絶大な信頼を寄せる不二精機の成形機と、大規模炊飯のプロフェッショナルであるAIHOの独自システムを導入しています。職人が手で握ったような繊細な食感を、科学の力で再現しました。"),
               },
               {
                 icon:"/images/icon-shield.png",

@@ -246,8 +246,8 @@ export default function OurStoryPage() {
                 src:"/images/aiho.png",
                 brand:t("AIHO — The Gold Standard\nof Rice Cooking","AIHO — 炊飯の\nゴールドスタンダード"),
                 sub:t("Engineered for the Perfect Grain","完璧な一粒のために設計"),
-                body:t("Great onigiri starts with perfect rice. AIHO's professional-grade IH pressure cooking system — trusted by Japan's largest rice producers — extracts the natural sweetness and ideal stickiness of every grain. Tender, fragrant, and delicious even when cold.",
-                       "美味しいおにぎりは完璧なお米から始まります。AIHOの業務用IH圧力炊飯システムは、日本最大の米生産者に信頼されており、各粒の理想的な甘みと粘り気を引き出します。"),
+                body:t("Great onigiri starts with perfect rice.Powered by AIHO’s high-spec cooking system—with proprietary electric heaters and specialized kettles trusted by Japan’s top producers—we extract the natural sweetness and ideal stickiness of every grain. Tender, fragrant, and delicious even when cold. ",
+                       "おにぎりの命であるお米を、最高の状態で炊き上げる。日本の大規模炊飯をリードするAIHO独自の電気ヒーターと炊飯釜を採用したハイスペック炊飯機を導入し、お米本来の甘みと理想的な粘りを極限まで引き出しました。冷めても美味しい、本物のクオリティをお約束します。"),
                 linkEn:"AIHO →", linkJa:"アイホ →", href:"https://www.aiho.co.jp",
               },
             ].map((item) => (

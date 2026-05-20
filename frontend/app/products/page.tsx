@@ -26,8 +26,8 @@ export default function ProductsPage() {
       src:"/images/ingredient-rice.png",
       title:t("The Power of a Single Grain.","命を支える、一粒の力。"),
       body:t(
-        "Selected medium-grain rice, IH pressure-cooked for a light, fluffy, and satisfying texture in every bite.",
-        "厳選されたお米をIH圧力炊きし、一口ごとに軽やかでふっくらとした、口の中でほどける食感を実現しています。"
+        "Our carefully selected rice is prepared using Japan’s leading state-of-the-art cooking technology. This ensures a light, fluffy texture that gently melts in your mouth with every single bite.",
+        "厳選されたお米を、日本最先端の炊飯システムで炊き上げ。一口ごとに軽やかでふっくらとした、口の中でほどける食感を実現しています。"
       ),
     },
     {

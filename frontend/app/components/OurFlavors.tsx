@@ -24,7 +24,7 @@ const badgeLabel: Record<string, string> = {
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
+    const check = () => setIsMobile(window.innerWidth < 1024);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
@@ -41,7 +41,7 @@ const flavors: Flavor[] = [
   { img:"/images/flavors/spicy-tuna-mayo.png", mascot:"/images/char-stm.png", nameEn:"Spicy Tuna Mayo",            nameJa:"スパイシーツナマヨ",          tags:["GF","Organic"],                  allergensEn:"Fish · Egg · Sesame",      allergensJa:"魚・卵・ごま" },
   { img:"/images/flavors/salmon.png",          mascot:"/images/char-s.png",   nameEn:"Salmon",                     nameJa:"鮭",                          tags:["GF","Organic"],                  allergensEn:"Fish",                     allergensJa:"魚" },
   { img:"/images/flavors/butter-corn.png",     mascot:"/images/char-bc.png",  nameEn:"Butter Corn",                nameJa:"バターコーン",                 tags:["GF","Vegetarian"],               allergensEn:"Dairy",                    allergensJa:"乳製品" },
-  { img:"/images/flavors/shrimp-mayo.png",     mascot:"/images/char-sm.png",  nameEn:"Shrimp Mayo",                nameJa:"海老マヨ",                    tags:["GF"],                            allergensEn:"Shellfish · Dairy · Egg",  allergensJa:"甲殻類・乳製品・卵" },
+  { img:"/images/flavors/shrimp-mayo.png",     mascot:"/images/char-sm.png",  nameEn:"Shrimp Mayo",                nameJa:"海老マヨ",                    tags:[],                                allergensEn:"Shellfish · Dairy · Egg",  allergensJa:"甲殻類・乳製品・卵" },
   { img:"/images/flavors/pickled-plum.png",    mascot:"/images/char-pp.png",  nameEn:"Pickled Plum (Ume)",         nameJa:"梅",                          tags:["GF","Vegan","Organic","Vegetarian"], allergensEn:"Pickled Plum",          allergensJa:"漬けた梅" },
   { img:"/images/char-founder.png",            mascot:"/images/char-sscc.png",nameEn:"Smoked Salmon Cream Cheese", nameJa:"スモークサーモンクリームチーズ", tags:["GF"], comingSoon:true },
 ];
@@ -84,8 +84,8 @@ function FlavorCard({ f, lang, t, isMobile }: { f: Flavor; lang: string; t: (en:
             {lang === "ja" ? f.nameJa : f.nameEn}
           </div>
 
-          {!f.comingSoon && f.tags.length > 0 && (
-            <div style={{ display:"flex", gap: isMobile ? 4 : 8, marginBottom: isMobile ? 6 : 10, flexWrap:"wrap" as const }}>
+          {!f.comingSoon && (
+            <div style={{ display:"flex", gap: isMobile ? 4 : 8, marginBottom: isMobile ? 6 : 10, flexWrap:"wrap" as const, minHeight: isMobile ? 34 : 44 }}>
               {f.tags.map((tag) => (
                 <div key={tag} style={{ ...badgeStyle(tag), width: isMobile ? 34 : 44, height: isMobile ? 34 : 44, fontSize: isMobile ? 7 : 8 }}>
                   {badgeLabel[tag] || tag}
@@ -95,8 +95,10 @@ function FlavorCard({ f, lang, t, isMobile }: { f: Flavor; lang: string; t: (en:
           )}
 
           {f.comingSoon && (
-            <div style={{ display:"inline-block", background:"#7a6050", color:"#fff", fontSize: isMobile ? 9 : 10, fontWeight:700, borderRadius:999, padding: isMobile ? "4px 10px" : "5px 14px", marginBottom:8 }}>
-              {t("Coming Soon — PCC & T-Mobile Exclusive","近日公開 — PCC・Tモバイル限定")}
+            <div style={{ minHeight: isMobile ? 34 : 44, marginBottom: isMobile ? 6 : 10, display:"flex", alignItems:"center" }}>
+              <div style={{ display:"inline-block", background:"#7a6050", color:"#fff", fontSize: isMobile ? 9 : 10, fontWeight:700, borderRadius:999, padding: isMobile ? "4px 10px" : "5px 14px" }}>
+                {t("Coming Soon — PCC & T-Mobile Exclusive","近日公開 — PCC・Tモバイル限定")}
+              </div>
             </div>
           )}
 

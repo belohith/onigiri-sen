@@ -1,22 +1,30 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useLang } from "../context/LangContext";
+
+// Use useLayoutEffect on client, useEffect on server (avoids SSR warning)
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export default function Header() {
   const pathname = usePathname();
   const { lang, setLang } = useLang();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  // Start with true so SSR renders hamburger — avoids flash of desktop nav on mobile
+  const [isMobile, setIsMobile] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
+    setMounted(true);
     const check = () => setIsMobile(window.innerWidth < 1024);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  // Close menu on route change
   useEffect(() => setMenuOpen(false), [pathname]);
 
   const navLinks = [
@@ -26,37 +34,24 @@ export default function Header() {
     { href: "/contact",   en: "Contact",   ja: "お問い合わせ" },
   ];
 
-  const LangToggle = () => (
-    <div style={{ display:"flex", alignItems:"center", backgroundColor:"#ffffff", border:"1px solid #e8ddd4", borderRadius:18, height:56, padding:"0 8px", gap:2, flexShrink:0 }}>
-      {(["en", "ja"] as const).map((l) => (
-        <button
-          key={l}
-          onClick={() => setLang(l)}
-          style={{ fontFamily:"DM Sans, sans-serif", fontWeight:700, fontSize:15, border:"none", borderRadius:14, padding:"0 20px", height:40, cursor:"pointer", background:lang===l?"#e8847a":"transparent", color:lang===l?"#fff":"#5a3020", transition:"all 0.2s", whiteSpace:"nowrap" }}
-        >
-          {l === "en"
-            ? <span>EN <span style={{ opacity:lang===l?0.85:0.6, fontWeight:400, fontSize:13 }}>· 英語</span></span>
-            : <span>JP <span style={{ opacity:lang===l?0.85:0.6, fontWeight:400, fontSize:13 }}>· 日本語</span></span>
-          }
-        </button>
-      ))}
-    </div>
-  );
+  // Don't render nav until mounted to avoid hydration mismatch
+  const showDesktop = mounted && !isMobile;
+  const showMobile  = mounted && isMobile;
 
   return (
     <>
-      <header style={{ display:"flex", alignItems:"center", padding:"0 40px", height:72, position:"sticky", top:0, zIndex:100, gap:16 }}>
+      <header style={{ display:"flex", alignItems:"center", padding:"0 24px", height:72, position:"sticky", top:0, zIndex:100, gap:16, background:"transparent" }}>
 
         {/* Logo */}
         <Link
           href="/"
-          style={{ display:"flex", alignItems:"center", gap:10, textDecoration:"none", marginRight:"auto", flexShrink:0, backgroundColor:"#ffffff", border:"1px solid #e8ddd4", borderRadius:18, height:56, padding:"0 8px" }}
+          style={{ display:"flex", alignItems:"center", textDecoration:"none", marginRight:"auto", flexShrink:0, backgroundColor:"#ffffff", border:"1px solid #e8ddd4", borderRadius:18, height:56, padding:"0 8px" }}
         >
-          <img src="/images/logo.png" alt="Onigiri Sen" width={240} height={60} />
+          <img src="/images/logo.png" alt="Onigiri Sen" width={240} height={60} style={{ display:"block" }} />
         </Link>
 
         {/* Desktop: nav + lang toggle */}
-        {!isMobile && (
+        {showDesktop && (
           <>
             <nav style={{ display:"flex", alignItems:"center", backgroundColor:"#ffffff", border:"1px solid #e8ddd4", borderRadius:18, height:56, padding:"0 8px", flexShrink:0 }}>
               {navLinks.map(({ href, en, ja }) => {
@@ -72,12 +67,26 @@ export default function Header() {
                 );
               })}
             </nav>
-            <LangToggle />
+            {/* Desktop lang toggle */}
+            <div style={{ display:"flex", alignItems:"center", backgroundColor:"#ffffff", border:"1px solid #e8ddd4", borderRadius:18, height:56, padding:"0 8px", gap:2, flexShrink:0 }}>
+              {(["en", "ja"] as const).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  style={{ fontFamily:"DM Sans, sans-serif", fontWeight:700, fontSize:15, border:"none", borderRadius:14, padding:"0 20px", height:40, cursor:"pointer", background:lang===l?"#e8847a":"transparent", color:lang===l?"#fff":"#5a3020", transition:"all 0.2s", whiteSpace:"nowrap" }}
+                >
+                  {l === "en"
+                    ? <span>EN <span style={{ opacity:lang===l?0.85:0.6, fontWeight:400, fontSize:13 }}>· 英語</span></span>
+                    : <span>JP <span style={{ opacity:lang===l?0.85:0.6, fontWeight:400, fontSize:13 }}>· 日本語</span></span>
+                  }
+                </button>
+              ))}
+            </div>
           </>
         )}
 
         {/* Mobile/tablet: hamburger only */}
-        {isMobile && (
+        {showMobile && (
           <button
             onClick={() => setMenuOpen((o) => !o)}
             style={{ background:"#fff", border:"1px solid #e8ddd4", borderRadius:14, cursor:"pointer", padding:"0 14px", display:"flex", alignItems:"center", justifyContent:"center", height:56, flexShrink:0 }}
@@ -99,11 +108,10 @@ export default function Header() {
         )}
       </header>
 
-      {/* Mobile/tablet dropdown — nav links + language toggle */}
-      {isMobile && menuOpen && (
+      {/* Mobile/tablet dropdown */}
+      {showMobile && menuOpen && (
         <div style={{ position:"fixed", top:72, left:0, right:0, background:"#fff", borderBottom:"1px solid #f0e8df", zIndex:99, padding:"16px 24px 24px", display:"flex", flexDirection:"column" as const, gap:4, boxShadow:"0 8px 24px rgba(0,0,0,0.08)" }}>
 
-          {/* Nav links */}
           {navLinks.map(({ href, en, ja }) => {
             const isActive = pathname === href;
             return (
@@ -126,7 +134,7 @@ export default function Header() {
               {(["en", "ja"] as const).map((l) => (
                 <button
                   key={l}
-                  onClick={() => setLang(l)}
+                  onClick={() => { setLang(l); setMenuOpen(false); }}
                   style={{ fontFamily:"DM Sans, sans-serif", fontWeight:700, fontSize:14, border:`2px solid ${lang===l?"#e8847a":"#e8ddd4"}`, borderRadius:12, padding:"10px 24px", cursor:"pointer", background:lang===l?"#e8847a":"#fff", color:lang===l?"#fff":"#5a3020", transition:"all 0.2s" }}
                 >
                   {l === "en" ? "EN · 英語" : "JP · 日本語"}

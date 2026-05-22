@@ -96,8 +96,8 @@ export default function OurStoryPage() {
                   </h2>
                   <p style={{ fontSize:14, fontWeight:600, fontStyle:"italic", lineHeight:1.9, color:"#fff", margin:0 }}>
                     {t(
-                      `Growing up in Japan, Rina Oike always had onigiri by her side—it was a simple, everyday comfort that nourished both body and soul. However, when she moved to the U.S. alone for her studies, she was struck by a harsh reality: while fast food was everywhere, convenient, delicious, and healthy options were remarkably scarce. "I want to provide a meal that is quick, tasty, and truly good for you." Driven by this vision, her journey in Seattle began to resonate with a growing community of partners and customers. Today, we are blending a 1,000-year tradition with cutting-edge technology to root Japanese onigiri into America as a new cultural pillar.`,
-                      "日本で育った及川里奈は、常におにぎりを傍らに置いていました。しかし、留学のために一人でアメリカへ渡ったとき、ファストフードが溢れる中で、便利で美味しく健康的な選択肢がほとんどないという厳しい現実に直面しました。「手軽で美味しく、本当に体にいい食事を提供したい。」この思いから、シアトルのキッチンで始まった事業は、多くのパートナーや顧客の支持を集めています。今日、1,000年の伝統と最先端の技術を融合させ、日本のおにぎりをアメリカの新しい文化の柱として育てています。"
+                      `Growing up in Japan, Rina Oike always had onigiri by her side—it was a simple, everyday comfort that nourished both body and soul. However, when she moved to the U.S. alone for her studies, she was struck by a harsh reality: while fast food was everywhere, convenient, delicious, and healthy options were remarkably scarce.\n"I want to provide a meal that is quick, tasty, and truly good for you." Driven by this vision, her journey in Seattle began to resonate with a growing community of partners and customers. Today, we are blending a 1,000-year tradition with cutting-edge technology to root Japanese onigiri into America as a new cultural pillar.`,
+                      "日本で育った尾池里奈にとって、おにぎりは常に身近にあり、心と体を整えてくれる「当たり前の存在」でした。しかし、単身アメリカへ留学した彼女が直面したのは、ファストフードが溢れる一方で、手軽に美味しく健康的に食べられる選択肢が極端に少ない現実でした。\n「手軽で、美味しく、体に良いものを届けたい」。その想いから始まったシアトルでの挑戦は、今や多くの仲間と顧客の共感を生み、新しい食の習慣として広がり始めています。私たちは、1,000年の伝統と最新の技術を掛け合わせ、日本のおにぎりをアメリカの新しいカルチャーとして根付かせていきます。"
                     )}
                   </p>
                 </div>
@@ -132,8 +132,8 @@ export default function OurStoryPage() {
                   </h2>
                   <p style={{ fontSize:16, fontWeight:600, fontStyle:"italic", lineHeight:2.05, letterSpacing:"0.02em", color:"#fff", margin:0, maxWidth:760 }}>
                     {t(
-                      `Growing up in Japan, Rina Oike always had onigiri by her side—it was a simple, everyday comfort that nourished both body and soul. However, when she moved to the U.S. alone for her studies, she was struck by a harsh reality: while fast food was everywhere, convenient, delicious, and healthy options were remarkably scarce. "I want to provide a meal that is quick, tasty, and truly good for you." Driven by this vision, her journey in Seattle began to resonate with a growing community of partners and customers. Today, we are blending a 1,000-year tradition with cutting-edge technology to root Japanese onigiri into America as a new cultural pillar.`,
-                      "日本で育った及川里奈は、常におにぎりを傍らに置いていました。しかし、留学のために一人でアメリカへ渡ったとき、ファストフードが溢れる中で、便利で美味しく健康的な選択肢がほとんどないという厳しい現実に直面しました。「手軽で美味しく、本当に体にいい食事を提供したい。」この思いから、シアトルのキッチンで始まった事業は、多くのパートナーや顧客の支持を集めています。今日、1,000年の伝統と最先端の技術を融合させ、日本のおにぎりをアメリカの新しい文化の柱として育てています。"
+                      `Growing up in Japan, Rina Oike always had onigiri by her side—it was a simple, everyday comfort that nourished both body and soul. However, when she moved to the U.S. alone for her studies, she was struck by a harsh reality: while fast food was everywhere, convenient, delicious, and healthy options were remarkably scarce.\n"I want to provide a meal that is quick, tasty, and truly good for you." Driven by this vision, her journey in Seattle began to resonate with a growing community of partners and customers. Today, we are blending a 1,000-year tradition with cutting-edge technology to root Japanese onigiri into America as a new cultural pillar.`,
+                      "日本で育った尾池里奈にとって、おにぎりは常に身近にあり、心と体を整えてくれる「当たり前の存在」でした。しかし、単身アメリカへ留学した彼女が直面したのは、ファストフードが溢れる一方で、手軽に美味しく健康的に食べられる選択肢が極端に少ない現実でした。\n「手軽で、美味しく、体に良いものを届けたい」。その想いから始まったシアトルでの挑戦は、今や多くの仲間と顧客の共感を生み、新しい食の習慣として広がり始めています。私たちは、1,000年の伝統と最新の技術を掛け合わせ、日本のおにぎりをアメリカの新しいカルチャーとして根付かせていきます。"
                     )}
                   </p>
                 </div>
@@ -169,13 +169,13 @@ export default function OurStoryPage() {
           <img src="/images/story-1000y.png" alt="" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover" }} />
           <div style={{ position:"relative", zIndex:1, textAlign:"center", padding: isMobile ? "56px 24px" : "80px 120px" }}>
             <h2 style={{ fontWeight:700, fontSize: isMobile ? 28 : 48, lineHeight:1.2, margin:"0 0 24px", fontFamily:crimson.style.fontFamily }}>
-              {t("A 1,000-Year Tradition for the Next 1,000 Years","1,000年の伝統を次の1,000年へ")}
+              {t("A 1,000-Year Tradition for the Next 1,000 Years","千年の伝統を、次の千年へ。")}
             </h2>
             <div style={{ border:"1px solid rgba(255,255,255,0.45)", borderRadius:12, padding: isMobile ? "16px 20px" : "24px 36px", maxWidth:560, margin:"0 auto" }}>
               <p style={{ opacity:0.9, fontSize: isMobile ? 15 : 18, lineHeight:1.9, margin:0, fontFamily:crimson.style.fontFamily }}>
                 {t(
                   "The name Onigiri Sen — Sen (千) meaning one thousand — carries a simple but powerful wish: to take a tradition that has lasted 1,000 years, and keep it for 1,000 more. Starting with Seattle. Expanding across America.",
-                  "おにぎり千という名前——千は1,000を意味します——は、1,000年続いた伝統をさらに1,000年続けるというシンプルで力強い願いを込めています。シアトルからアメリカ全土へ。"
+                  "Onigiri Senの「千（Sen）」には、千年の歴史という意味が込められています。私たちのミッションは、これまで千年続いてきた伝統を、次の千年の未来へと繋いでいくこと。シアトルからはじまる私たちの挑戦は、このおにぎりという食文化をアメリカ全土へと広げていきます。"
                 )}
               </p>
             </div>
@@ -187,7 +187,7 @@ export default function OurStoryPage() {
           <div style={{ display:"flex", justifyContent:"center", marginBottom:40 }}>
             <div style={{ display:"inline-flex", alignItems:"center", gap:10, background:"#ed7e80", borderRadius:999, padding:"8px 20px" }}>
               <span style={{ fontWeight:700, color:"#fff", fontSize:14 }}>
-                {t("A Journey Started in 2025","2025年に始まった旅")}
+                {t("A Journey Started in 2025","2025年。私たちの歩み。")}
               </span>
             </div>
           </div>
@@ -196,21 +196,21 @@ export default function OurStoryPage() {
               {[
                 {
                   date:"2025 Jan", dotColor:"#ed7e80",
-                  title:t("The 75sqft Foundation","75平方フィートの出発点"),
+                  title:t("The 75sqft Foundation","わずか75平方フィートからの出発"),
                   body:t("It all started as a dream within a tiny 75sqft kitchen. Our journey began at T&T Supermarket, the very first partner to believe in our mission to bring authentic onigiri to America.",
-                         "すべては75平方フィートの小さなキッチンでの夢から始まりました。T&Tスーパーマーケットが最初のパートナーとなりました。"),
+                         "たった75平方フィート（約7平米）の小さなキッチンと、一つの想いからすべては始まりました。アメリカに本物のおにぎりを届けるという私たちのミッションを、最初に信じてくれたパートナー「T&Tスーパーマーケット」から、この挑戦の旅が始まりました。"),
                 },
                 {
                   date:"2025 Late", dotColor:"#ed7e80",
-                  title:t("Building Trust & Scale","信頼とスケールの構築"),
+                  title:t("Building Trust & Scale","築き上げた信頼と、シアトルでの成長"),
                   body:t("Integrity earned partnerships. By expanding to PCC Community Markets, we successfully established our presence and quality in the Seattle organic food market.",
-                         "誠実さがパートナーシップを生みました。PCCコミュニティマーケットへの展開により、シアトルのオーガニック食品市場での地位を確立しました。"),
+                         "誠実なものづくりや姿勢が、新たなパートナーシップにつながりました。品質やサステナビリティへの厳格な審査基準で知られる「PCCコミュニティ マーケット」への導入を果たし、シアトルのオーガニックフード市場において、Onigiri Senの存在感と確かな信頼を確立しました。"),
                 },
                 {
                   date:"2026", dotColor:"#ed7e80",
-                  title:t("Scaling the Vision","ビジョンの拡大"),
+                  title:t("Scaling the Vision","さらに大きな舞台へ"),
                   body:t("The momentum continues. This year, we expand to T-Mobile Park stadium and take our next big leap into San Francisco. California is next.",
-                         "勢いは続きます。今年はTモバイルパーク球場に展開し、サンフランシスコへの大きな一歩を踏み出します。カリフォルニアが次の目標です。"),
+                         "今年は大舞台であるT-Mobileパーク（球場）での取り扱いがスタート。そしてこの6月には、サンフランシスコへの進出へ。アメリカ中に新しい食文化を届けるため、次の一歩を踏み出します。"),
                 },
               ].map((item, i) => (
                 <div key={item.date} style={{ display:"grid", gridTemplateColumns:"64px 20px 1fr", gap:"0 12px", marginBottom:i<2?36:0 }}>
@@ -237,28 +237,28 @@ export default function OurStoryPage() {
               {t("TECHNOLOGY","テクノロジー")}
             </div>
             <h2 style={{ fontWeight:800, fontSize: isMobile ? 22 : 28, color:"#6f471c", margin:"0 0 10px" }}>
-              {t("Powered by Global Food-Tech","グローバルフードテクで動く")}
+              {t("Powered by Global Food-Tech","世界が誇る、日本の炊飯・成形技術。")}
             </h2>
             <p style={{ color:"#6f471c", fontSize:14, margin:0 }}>
-              {t("The Secret Behind Every Perfect Onigiri Bite","すべての完璧なおにぎりの秘密")}
+              {t("The Secret Behind Every Perfect Onigiri Bite","一口ごとに感動がある、美味しさの秘密。")}
             </p>
           </div>
           <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap:24 }}>
             {[
               {
                 src:"/images/fuji.png",
-                brand:t("FUJISEIKI — World's #1\nOnigiri Machine Manufacturer","FUJISEIKI — 世界シェアNo.1\nおにぎり成型機メーカー"),
-                sub:t("Japan's Standard: Near 100% Share","日本の標準：約100%のシェア"),
+                brand:t("FUJISEIKI — World's #1\nOnigiri Machine Manufacturer","不二精機（FUJISEIKI）— 世界No.1おにぎり機械メーカー"),
+                sub:t("Japan's Standard: Near 100% Share","国内シェアほぼ100％、信頼のおにぎり成形技術"),
                 body:t("The world's #1 manufacturer, boasting an approximately 100% share of hand-wrapped onigiri machines in Japanese convenience stores. Their technology balances the airy texture of hand-pressed onigiri with millimeter-level precision. Regardless of production volume, they deliver consistent, uncompromising, world-class quality for every order.",
-                       "不二精機の成型機と、AIHOの業務用IH炊飯システムを組み合わせ、手握りの繊細な食感を精密な科学の力で再現しています。"),
+                       "世界最高峰の成形技術を、アメリカへ。日本国内のコンビニにおける「手巻きおにぎりマシン」のシェアは約100%を誇る世界No.1メーカー。職人の手結びのようなふっくら感とミリ単位の正確さを両立。生産量に左右されることなく、あらゆるオーダーに対して常に均一で、妥協のない世界水準のクオリティをお届けします。"),
                 linkEn:"FUJISEIKI →", linkJa:"不二精機 →", href:"https://www.fujiseiki.co.jp",
               },
               {
                 src:"/images/aiho.png",
-                brand:t("AIHO — The Gold Standard\nof Rice Cooking","AIHO — 炊飯の\nゴールドスタンダード"),
-                sub:t("Engineered for the Perfect Grain","完璧な一粒のために設計"),
+                brand:t("AIHO — The Gold Standard\nof Rice Cooking","AIHO— プロの米炊きのゴールドスタンダード"),
+                sub:t("Engineered for the Perfect Grain","すべての米粒に、完璧を。"),
                 body:t("Great onigiri starts with perfect rice. AIHO's professional-grade IH pressure cooking system — trusted by Japan's largest rice producers — extracts the natural sweetness and ideal stickiness of every grain. Tender, fragrant, and delicious even when cold.",
-                       "美味しいおにぎりは完璧なお米から始まります。AIHOの業務用IH圧力炊飯システムは、日本最大の米生産者に信頼されており、各粒の理想的な甘みと粘り気を引き出します。"),
+                       "おにぎりの命であるお米を、最高の状態で炊き上げる。日本の大規模炊飯をリードするAIHO独自の電気ヒーターと炊飯釜を採用したハイスペック炊飯機を導入し、お米本来の甘みと理想的な粘りを極限まで引き出しました。冷めても美味しいお米をお約束します。"),
                 linkEn:"AIHO →", linkJa:"アイホ →", href:"https://www.aiho.co.jp",
               },
             ].map((item) => (
@@ -283,31 +283,31 @@ export default function OurStoryPage() {
         <section style={{ padding: isMobile ? "0 20px 60px" : "0 80px 80px", background:"#ffefc8" }}>
           <div style={{ textAlign:"center", padding: isMobile ? "48px 0 32px" : "64px 0 48px" }}>
             <div style={{ display:"inline-flex", alignItems:"center", gap:8, background:"#ED7E80", borderRadius:999, padding:"7px 20px", fontSize:11, fontWeight:700, letterSpacing:1.5, color:"#fff", marginBottom:20, textTransform:"uppercase" as const }}>
-              {t("INGREDIENTS","素材")}
+              {t("INGREDIENTS","食材")}
             </div>
             <h2 style={{ fontWeight:800, fontSize: isMobile ? 20 : 28, color:"#6f471c", margin:0 }}>
-              {t("Ingredients — The Perfect Union of Japan and America","素材——日本最高のものを使って")}
+              {t("Ingredients — The Perfect Union of Japan and America","日米の最高峰が交わる、こだわりの結晶")}
             </h2>
           </div>
           <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: isMobile ? 16 : 24 }}>
             {[
               {
                 src:"/images/ingredient-nori-field.png",
-                label:t("ARIAKE NORI (Premium Seaweed)","有明海苔（プレミアム海苔）"),
+                label:t("ARIAKE NORI (Premium Seaweed)","最高峰の漁場から 有明海産の高級海苔"),
                 body:t("Sourced from the Ariake Sea in Kyushu, this is Japan's most prized seaweed. Its delicate aroma and crisp snap elevate the overall quality and sophistication of our onigiri.",
-                       "九州の有明海から収穫された、日本で最も珍重される海苔です。繊細な香りとパリパリとした食感が、おにぎりの品質と洗練さを高めます。"),
+                       "日本最高峰の漁場である有明海で育まれた海苔を厳選。海の豊かな香りと、パリッとした心地よい食感が、おにぎり全体の美味しさを一段と引き上げます。"),
               },
               {
                 src:"/images/ingredient-ume-orchard.png",
-                label:t("KISHU UME (Organic Pickled Plum)","紀州梅（オーガニック梅干し）"),
+                label:t("KISHU UME (Organic Pickled Plum)","大地の恵みをそのままに オーガニック紀州梅"),
                 body:t("We use the 'Gold Standard' of Japanese plums—exceedingly rare, certified organic ume from Wakayama. Through personal visits to the orchards, we have witnessed firsthand the deep commitment to sustainable, chemical-free farming. Each fruit is hand-selected for its exquisite balance, specifically chosen to elevate the natural sweetness of our rice.",
-                       "日本の梅のゴールドスタンダード——極めて希少な、認定オーガニックの紀州和歌山梅。農園への直接訪問を通じて、厳格な基準を満たす梅のみを選定しています。"),
+                       "和歌山県産の最高品質なオーガニック認証梅を使用。私たちは実際に現地農園を訪れ、農薬や肥料に頼らない持続可能な農法への真摯なこだわりを直接確かめてきました。日本の梅の「ゴールドスタンダード」とも言えるその味わいは、お米本来の甘みを最大限に引き立てます。 "),
               },
               {
                 src:"/images/ingredient-rice-field.png",
-                label:t("TENKEI RICE (California Super Premium)","天麗米（カリフォルニアスーパープレミアム）"),
+                label:t("TENKEI RICE (California Super Premium)","カリフォルニアの恵み 特選米「天恵（Tenkei）"),
                 body:t("Our canvas is Tenkei, a super-premium grain grown in the fertile soils of California. After rigorous testing with our AIHO system, we selected this specific grain for its unparalleled ability to achieve the perfect balance of sweetness and texture. By combining American-grown freshness with Japanese precision, we have crafted the ultimate bite.",
-                       "「天麗米」はカリフォルニアの肥沃な土壌で育てられたスーパープレミアム米です。日本の最高品種を広く探し、甘みと食感の完璧なバランスを実現するこの品種を選びました。"),
+                       "私たちの「キャンバス」は、カリフォルニア産最高級米「天恵」です。 AIHOのシステムで数多の銘柄をテストし、最も理想的な甘みと食感を引き出せる一粒を厳選しました。 日本の炊飯技術を掛け合わせることで、驚くほどふっくらとした、甘み溢れる「アメリカ生まれの最高の一粒」に仕上げています。"),
               },
             ].map((item) => (
               <div key={item.label} style={{ background:"#fff", borderRadius:16, overflow:"hidden" }}>
@@ -324,15 +324,12 @@ export default function OurStoryPage() {
 
           {/* CTA */}
           <div style={{ textAlign:"center", marginTop: isMobile ? 48 : 64, padding: isMobile ? "32px 0 8px" : "48px 0 16px" }}>
-            <p style={{ color:"#6f471c", fontSize: isMobile ? 14 : 16, fontWeight:600, margin:"0 0 20px", lineHeight:1.7 }}>
-              {t("Taste the tradition for yourself.","伝統の味を、ぜひご自身でお確かめください。")}
-            </p>
             <div style={{ display:"flex", gap:12, justifyContent:"center", flexWrap:"wrap" as const }}>
               <Link href="/products" style={{ display:"inline-block", background:"#ed7e80", color:"#fff", padding: isMobile ? "13px 28px" : "16px 48px", borderRadius:999, fontWeight:800, fontSize: isMobile ? 14 : 16, textDecoration:"none", boxShadow:"0 4px 20px rgba(237,126,128,0.35)" }}>
-                {t("Explore Our Flavors →","フレーバーを見る →")}
+                {t("Explore Our Flavors →","商品一覧を見る →")}
               </Link>
               <Link href="/wholesale" style={{ display:"inline-block", background:"#fff", color:"#6f471c", padding: isMobile ? "13px 28px" : "16px 48px", borderRadius:999, fontWeight:800, fontSize: isMobile ? 14 : 16, textDecoration:"none", border:"2px solid #e8d8b8", boxShadow:"0 4px 20px rgba(0,0,0,0.06)" }}>
-                {t("Partner With Us →","パートナーになる →")}
+                {t("Partner With Us →","パートナーシップについて →")}
               </Link>
             </div>
           </div>

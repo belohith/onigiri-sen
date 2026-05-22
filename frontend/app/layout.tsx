@@ -25,8 +25,10 @@ export default function RootLayout({
         className={dmSans.className}
         style={{ margin: 0, padding: 0, overflowX: "hidden", width: "100%" }}
       >
-        <LangProvider>{children}</LangProvider>
-        <Footer />
+        <LangProvider>{children}
+          <Footer />
+        </LangProvider>
+        
       </body>
     </html>
   );

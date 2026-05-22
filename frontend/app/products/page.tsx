@@ -4,17 +4,22 @@ import OurFlavors from "../components/OurFlavors";
 import FindUsNearYou from "../components/Findusnearyou";
 import { useLang } from "../context/LangContext";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
+
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  useIsomorphicLayoutEffect(() => {
+    setMounted(true);
+    const check = () => setIsMobile(window.innerWidth < 1024);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
-  return isMobile;
+  return mounted ? isMobile : true;
 }
 
 export default function ProductsPage() {
@@ -26,7 +31,7 @@ export default function ProductsPage() {
       src:"/images/ingredient-rice.png",
       title:t("The Power of a Single Grain.","命を支える、一粒の力。"),
       body:t(
-        "Our carefully selected rice is prepared using Japan’s leading state-of-the-art cooking technology. This ensures a light, fluffy texture that gently melts in your mouth with every single bite.",
+        "Our carefully selected rice is prepared using Japan's leading state-of-the-art cooking technology. This ensures a light, fluffy texture that gently melts in your mouth with every single bite.",
         "厳選されたお米を、日本最先端の炊飯システムで炊き上げ。一口ごとに軽やかでふっくらとした、口の中でほどける食感を実現しています。"
       ),
     },
@@ -84,19 +89,38 @@ export default function ProductsPage() {
           <h2 style={{ textAlign:"center", fontWeight:800, fontSize: isMobile ? 22 : 32, color:"#6f3a14", letterSpacing:0.2, margin:"0 0 40px", lineHeight:1.2 }}>
             {t("Selected Ingredients, Inclusive Choices","厳選された食材、多様な選択肢")}
           </h2>
-          <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: isMobile ? 32 : 24, maxWidth:860, margin:"0 auto" }}>
+          <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: isMobile ? 48 : 32, maxWidth:900, margin:"0 auto" }}>
             {ingredients.map((item) => (
               <div key={item.title} style={{ display:"flex", flexDirection:"column" as const, alignItems:"center", gap:0 }}>
-                {/* Circle photo */}
-                <div style={{ width: isMobile ? 150 : 190, height: isMobile ? 150 : 190, borderRadius:"50%", overflow:"hidden", background:"#ffefc8", flexShrink:0, position:"relative" as const, zIndex:1 }}>
+                {/* Circle photo — sits above card, no overlap into text */}
+                <div style={{
+                  width: isMobile ? 150 : 190,
+                  height: isMobile ? 150 : 190,
+                  borderRadius:"50%", overflow:"hidden",
+                  background:"#ffefc8", flexShrink:0,
+                  position:"relative" as const, zIndex:1,
+                  boxShadow:"0 4px 16px rgba(0,0,0,0.08)",
+                  marginBottom: isMobile ? 0 : 0,
+                }}>
                   <img src={item.src} alt={item.title} width={190} height={190} style={{ objectFit:"cover", width:"100%", height:"100%" }} />
                 </div>
-                {/* Yellow card */}
-                <div style={{ background:"#ffefc8", borderRadius:24, padding: isMobile ? "44px 20px 28px" : "52px 24px 36px", marginTop:-48, width:"100%", minHeight: isMobile ? 160 : 200, boxSizing:"border-box" as const, textAlign:"center" as const }}>
-                  <div style={{ fontWeight:800, fontSize: isMobile ? 13 : 14, color:"#6f471c", marginBottom:8, lineHeight:1.4 }}>
+                {/* Yellow card:
+                    Mobile: no negative margin, image sits cleanly above card
+                    Desktop: small negative margin for the visual overlap effect, min-height keeps all equal */}
+                <div style={{
+                  background:"#ffefc8",
+                  borderRadius:24,
+                  padding: isMobile ? "28px 24px 32px" : "48px 28px 40px",
+                  marginTop: isMobile ? 0 : -20,
+                  width:"100%",
+                  minHeight: isMobile ? undefined : 260,
+                  boxSizing:"border-box" as const,
+                  textAlign:"center" as const,
+                }}>
+                  <div style={{ fontWeight:800, fontSize:14, color:"#6f471c", marginBottom:12, lineHeight:1.4 }}>
                     {item.title}
                   </div>
-                  <p style={{ color:"#6f471c", fontSize: isMobile ? 12 : 13, lineHeight:1.75, margin:0 }}>
+                  <p style={{ color:"#6f471c", fontSize:13, lineHeight:1.85, margin:0 }}>
                     {item.body}
                   </p>
                 </div>
@@ -138,16 +162,16 @@ export default function ProductsPage() {
         <FindUsNearYou />
 
         {/* ── CTA ── */}
-        <div style={{ textAlign:"center", padding: isMobile ? "40px 20px 40px" : "48px 0 16px", background:"#fff9f5" }}>
+        <div style={{ textAlign:"center", padding: isMobile ? "40px 20px 64px" : "48px 0 64px", background:"#fff9f5" }}>
           <p style={{ color:"#6f471c", fontSize: isMobile ? 14 : 16, fontWeight:600, margin:"0 0 20px", lineHeight:1.7 }}>
             {t("Taste the tradition for yourself.","伝統の味を、ぜひご自身でお確かめください。")}
           </p>
           <div style={{ display:"flex", gap:12, justifyContent:"center", flexWrap:"wrap" as const }}>
             <Link
-              href="/products"
+              href="/our-story"
               style={{ display:"inline-block", background:"#ed7e80", color:"#fff", padding: isMobile ? "13px 28px" : "16px 48px", borderRadius:999, fontWeight:800, fontSize: isMobile ? 14 : 16, textDecoration:"none", boxShadow:"0 4px 20px rgba(237,126,128,0.35)" }}
             >
-              {t("Explore Our Flavors →","私たちのストーリー →")}
+              {t("Read Our Story →","私たちのストーリーを読む →")}
             </Link>
             <Link
               href="/wholesale"

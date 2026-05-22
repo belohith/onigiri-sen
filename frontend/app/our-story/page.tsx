@@ -2,20 +2,25 @@
 import { Crimson_Text } from "next/font/google";
 import Header from "../components/Header";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useLang } from "../context/LangContext";
 
 const crimson = Crimson_Text({ subsets:["latin"], weight:["400","600","700"], style:["normal","italic"] });
 
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
+  const [isMobile, setIsMobile] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  useIsomorphicLayoutEffect(() => {
+    setMounted(true);
     const check = () => setIsMobile(window.innerWidth < 1024);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
-  return isMobile;
+  return mounted ? isMobile : true;
 }
 
 function TimelineCarousel() {
@@ -29,13 +34,13 @@ function TimelineCarousel() {
   const next = () => setCurrent((c) => (c + 1) % images.length);
 
   return (
-    <div style={{ position:"relative", borderRadius:20, overflow:"hidden", height:300, background:"#c8bfb5" }}>
-      <img
-        src={images[current]}
-        alt={`Timeline ${current + 1}`}
-        style={{ width:"100%", height:"100%", objectFit:"cover", display:"block", transition:"opacity 0.3s", objectPosition: current === 1 ? "center center" : "center top" }}
-      />
-      <button onClick={prev} style={{ position:"absolute", left:12, top:"50%", transform:"translateY(-50%)", background:"rgba(255,255,255,0.8)", border:"none", borderRadius:"50%", width:40, height:40, cursor:"pointer", fontSize:22, fontWeight:700, display:"flex", alignItems:"center", justifyContent:"center", color:"#6f471c" }}>‹</button>
+    <div style={{ position:"relative", borderRadius:20, overflow:"hidden", background:"#c8bfb5" }}>
+  <img
+    src={images[current]}
+    alt={`Timeline ${current + 1}`}
+    style={{ width:"100%", height:"auto", display:"block", transition:"opacity 0.3s" }}
+  />
+<button onClick={prev} style={{ position:"absolute", left:12, top:"50%", transform:"translateY(-50%)", background:"rgba(255,255,255,0.8)", border:"none", borderRadius:"50%", width:40, height:40, cursor:"pointer", fontSize:22, fontWeight:700, display:"flex", alignItems:"center", justifyContent:"center", color:"#6f471c" }}>‹</button>
       <button onClick={next} style={{ position:"absolute", right:12, top:"50%", transform:"translateY(-50%)", background:"rgba(255,255,255,0.8)", border:"none", borderRadius:"50%", width:40, height:40, cursor:"pointer", fontSize:22, fontWeight:700, display:"flex", alignItems:"center", justifyContent:"center", color:"#6f471c" }}>›</button>
       <div style={{ position:"absolute", bottom:14, left:"50%", transform:"translateX(-50%)", display:"flex", gap:8 }}>
         {images.map((_, i) => (
@@ -84,7 +89,6 @@ export default function OurStoryPage() {
         <section style={{ background:"#fff8f4", padding: isMobile ? "32px 20px" : "48px", margin:"48px 0", overflow:"hidden" }}>
           <div style={{ position:"relative", maxWidth:1500, margin:"0 auto" }}>
             {isMobile ? (
-              /* Mobile: stacked layout */
               <>
                 <div style={{ background:"#f3a8b6", borderRadius:20, padding:"32px 24px", marginBottom:24 }}>
                   <h2 style={{ fontWeight:900, fontSize:26, color:"#fff", margin:"0 0 20px" }}>
@@ -97,25 +101,30 @@ export default function OurStoryPage() {
                     )}
                   </p>
                 </div>
-                {/* Founder photo */}
-                <div style={{ borderRadius:20, overflow:"hidden", position:"relative", marginBottom:24, height:480 }}>
-                  <img src="/images/rina-oike.webp" alt="" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block", objectPosition:"center 10%" }} />
-                  <div style={{ position:"absolute", bottom:0, left:0, right:0, background:"linear-gradient(transparent, rgba(0,0,0,0.5))", padding:"16px 20px" }}>
-                    <div style={{ fontWeight:900, fontSize:22, color:"#fff" }}>RINA OIKE</div>
-                    <div style={{ fontSize:13, color:"rgba(255,255,255,0.9)" }}>{t("Founder & CEO, Onigiri Sen","創業者 & CEO、おにぎり千")}</div>
+
+                {/* Founder photo — fixed height, no reflow on language change */}
+                <div style={{ borderRadius:20, overflow:"hidden", position:"relative", marginBottom:24, height:480, flexShrink:0 }}>
+                  <img src="/images/rina-oike.webp" alt="Rina Oike" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", objectPosition:"center 10%" }} />
+                  <div style={{ position:"absolute", bottom:0, left:0, right:0, background:"linear-gradient(transparent, rgba(0,0,0,0.55))", padding:"16px 20px" }}>
+                    <div style={{ fontWeight:900, fontSize:22, color:"#fff" }}>
+                      {t("RINA OIKE","及川 里奈")}
+                    </div>
+                    <div style={{ fontSize:13, color:"rgba(255,255,255,0.9)" }}>
+                      {t("Founder & CEO, Onigiri Sen","創業者 & CEO、おにぎり千")}
+                    </div>
                   </div>
                 </div>
+
                 <div style={{ display:"flex", gap:12, flexWrap:"wrap" as const }}>
-                  <a href="#" style={{ display:"inline-block", borderRadius:999, border:"2px solid #ef7f88", background:"#fff", padding:"12px 20px", fontSize:13, fontWeight:900, color:"#ef7f88", textDecoration:"none" }}>
+                  <a href="https://www.king5.com/video/entertainment/television/programs/new-day-northwest/onigiri-sen-goes-viral-for-japanese-grab-and-go-snack-new-day-nw/281-70888a26-d765-4dc6-8aac-8bb6f97d982a" target="_blank" rel="noopener noreferrer" style={{ display:"inline-block", borderRadius:999, border:"2px solid #ef7f88", background:"#fff", padding:"12px 20px", fontSize:13, fontWeight:900, color:"#ef7f88", textDecoration:"none" }}>
                     {t("Watch the KING 5 Feature →","KING 5 特集を見る →")}
                   </a>
-                  <a href="#" style={{ display:"inline-block", borderRadius:999, border:"2px solid #6f4725", background:"#fff8f4", padding:"12px 20px", fontSize:13, fontWeight:900, color:"#6f4725", textDecoration:"none" }}>
+                  <a href="https://www.junglecity.com/eat/eat-more/onigiri-sen-rina-oike/" target="_blank" rel="noopener noreferrer" style={{ display:"inline-block", borderRadius:999, border:"2px solid #6f4725", background:"#fff8f4", padding:"12px 20px", fontSize:13, fontWeight:900, color:"#6f4725", textDecoration:"none" }}>
                     {t("Read the Jungle City Interview →","Jungle Cityインタビューを読む →")}
                   </a>
                 </div>
               </>
             ) : (
-              /* Desktop: original overlapping layout */
               <>
                 <div style={{ background:"#f3a8b6", width:"72%", padding:"52px 200px 52px 80px", position:"relative", zIndex:10 }}>
                   <h2 style={{ fontWeight:900, fontSize:40, color:"#fff", margin:"0 0 32px" }}>
@@ -134,17 +143,19 @@ export default function OurStoryPage() {
                   </div>
                   <img src="/images/char-founder.png" alt="" style={{ position:"absolute", left:"-6rem", top:"55%", transform:"translateY(-50%)", height:160, objectFit:"contain" as const, zIndex:3 }} />
                   <div style={{ position:"relative", zIndex:1 }}>
-                    <div style={{ fontWeight:900, fontSize:44, color:"#fff", letterSpacing:"0.05em", lineHeight:1.1 }}>RINA OIKE</div>
+                    <div style={{ fontWeight:900, fontSize:44, color:"#fff", letterSpacing:"0.05em", lineHeight:1.1 }}>
+                      {t("RINA OIKE","及川 里奈")}
+                    </div>
                     <div style={{ fontWeight:700, fontSize:18, color:"rgba(255,255,255,0.9)", marginBottom:30, padding:5 }}>
                       {t("Founder & CEO, Onigiri Sen","創業者 & CEO、おにぎり千")}
                     </div>
                   </div>
                 </div>
                 <div style={{ display:"flex", gap:40, flexWrap:"wrap" as const, marginTop:80, paddingLeft:80 }}>
-                  <a href="https://www.king5.com/video/entertainment/television/programs/new-day-northwest/onigiri-sen-goes-viral-for-japanese-grab-and-go-snack-new-day-nw/281-70888a26-d765-4dc6-8aac-8bb6f97d982a" style={{ display:"inline-block", borderRadius:999, border:"3px solid #ef7f88", background:"#fff", padding:"18px 48px", fontSize:14, fontWeight:900, color:"#ef7f88", textDecoration:"none" }}>
+                  <a href="https://www.king5.com/video/entertainment/television/programs/new-day-northwest/onigiri-sen-goes-viral-for-japanese-grab-and-go-snack-new-day-nw/281-70888a26-d765-4dc6-8aac-8bb6f97d982a" target="_blank" rel="noopener noreferrer" style={{ display:"inline-block", borderRadius:999, border:"3px solid #ef7f88", background:"#fff", padding:"18px 48px", fontSize:14, fontWeight:900, color:"#ef7f88", textDecoration:"none" }}>
                     {t("Watch the KING 5 Feature →","KING 5 特集を見る →")}
                   </a>
-                  <a href="https://www.junglecity.com/eat/eat-more/onigiri-sen-rina-oike/" style={{ display:"inline-block", borderRadius:999, border:"3px solid #6f4725", background:"#fff8f4", padding:"18px 48px", fontSize:14, fontWeight:900, color:"#6f4725", textDecoration:"none" }}>
+                  <a href="https://www.junglecity.com/eat/eat-more/onigiri-sen-rina-oike/" target="_blank" rel="noopener noreferrer" style={{ display:"inline-block", borderRadius:999, border:"3px solid #6f4725", background:"#fff8f4", padding:"18px 48px", fontSize:14, fontWeight:900, color:"#6f4725", textDecoration:"none" }}>
                     {t("Read the Jungle City Interview →","Jungle Cityインタビューを読む →")}
                   </a>
                 </div>
@@ -246,8 +257,8 @@ export default function OurStoryPage() {
                 src:"/images/aiho.png",
                 brand:t("AIHO — The Gold Standard\nof Rice Cooking","AIHO — 炊飯の\nゴールドスタンダード"),
                 sub:t("Engineered for the Perfect Grain","完璧な一粒のために設計"),
-                body:t("Great onigiri starts with perfect rice.Powered by AIHO’s high-spec cooking system—with proprietary electric heaters and specialized kettles trusted by Japan’s top producers—we extract the natural sweetness and ideal stickiness of every grain. Tender, fragrant, and delicious even when cold. ",
-                       "おにぎりの命であるお米を、最高の状態で炊き上げる。日本の大規模炊飯をリードするAIHO独自の電気ヒーターと炊飯釜を採用したハイスペック炊飯機を導入し、お米本来の甘みと理想的な粘りを極限まで引き出しました。冷めても美味しい、本物のクオリティをお約束します。"),
+                body:t("Great onigiri starts with perfect rice. AIHO's professional-grade IH pressure cooking system — trusted by Japan's largest rice producers — extracts the natural sweetness and ideal stickiness of every grain. Tender, fragrant, and delicious even when cold.",
+                       "美味しいおにぎりは完璧なお米から始まります。AIHOの業務用IH圧力炊飯システムは、日本最大の米生産者に信頼されており、各粒の理想的な甘みと粘り気を引き出します。"),
                 linkEn:"AIHO →", linkJa:"アイホ →", href:"https://www.aiho.co.jp",
               },
             ].map((item) => (

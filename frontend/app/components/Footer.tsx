@@ -19,9 +19,9 @@ export default function Footer() {
   const isMobile = useIsMobile();
 
   const navLinks = [
-    { href: "/products",  en: "Products",  ja: "商品" },
-    { href: "/our-story", en: "Our Story", ja: "私たちについて" },
-    { href: "/wholesale", en: "Wholesale", ja: "卸売" },
+    { href: "/products",  en: "Products",  ja: "商品一覧" },
+    { href: "/our-story", en: "Our Story", ja: "私たちのストーリー" },
+    { href: "/wholesale", en: "Wholesale", ja: "パートナーシップ" },
     { href: "/media",     en: "Media",     ja: "メディア" },
     { href: "/contact",   en: "Contact",   ja: "お問い合わせ" },
   ];
@@ -47,7 +47,7 @@ export default function Footer() {
           <p style={{ color:"rgba(255,255,255,0.6)", fontSize:14, lineHeight:1.8, margin:"0 0 20px", maxWidth:300 }}>
             {t(
               "Japan's 1,000-year-old tradition, brought to your everyday life. Made fresh daily with the finest ingredients.",
-              "日本の1,000年の伝統を、あなたの日常へ。最高の食材で毎日新鮮に製造しています。"
+              "日本の1,000年の伝統を、あなたの日常へ。厳選された最高峰の食材を使い、毎日健康でおいしいおにぎりをお届けしています。"
             )}
           </p>
           <div style={{ display:"flex", flexDirection:"column" as const, gap:8 }}>
@@ -93,7 +93,7 @@ export default function Footer() {
                   {t("Privacy Policy","プライバシーポリシー")}
                 </a>
                 <Link href="/wholesale" style={{ color:"rgba(255,255,255,0.75)", fontSize:14, textDecoration:"none", fontWeight:500 }}>
-                  {t("Wholesale Inquiry","卸売のお問い合わせ")}
+                  {t("Wholesale Inquiry","パートナーシップのお問い合わせ")}
                 </Link>
               </div>
             </div>

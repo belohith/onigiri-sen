@@ -42,7 +42,7 @@ const flavors: Flavor[] = [
   { img:"/images/flavors/salmon.png",          mascot:"/images/char-s.png",   nameEn:"Salmon",                     nameJa:"鮭",                          tags:["GF","Organic"],                  allergensEn:"Fish",                     allergensJa:"魚" },
   { img:"/images/flavors/butter-corn.png",     mascot:"/images/char-bc.png",  nameEn:"Butter Corn",                nameJa:"バターコーン",                 tags:["GF","Vegetarian"],               allergensEn:"Dairy",                    allergensJa:"乳製品" },
   { img:"/images/flavors/shrimp-mayo.png",     mascot:"/images/char-sm.png",  nameEn:"Shrimp Mayo",                nameJa:"海老マヨ",                    tags:[],                                allergensEn:"Shellfish · Dairy · Egg",  allergensJa:"甲殻類・乳製品・卵" },
-  { img:"/images/flavors/pickled-plum.png",    mascot:"/images/char-pp.png",  nameEn:"Pickled Plum (Ume)",         nameJa:"梅",                          tags:["GF","Vegan","Organic","Vegetarian"], allergensEn:"Pickled Plum",          allergensJa:"漬けた梅" },
+  { img:"/images/flavors/pickled-plum.png",    mascot:"/images/char-pp.png",  nameEn:"Pickled Plum (Ume)",         nameJa:"梅",                          tags:["GF","Vegan","Organic","Vegetarian"], allergensEn:"",                      allergensJa:"" },
   { img:"/images/char-founder.png",            mascot:"/images/char-sscc.png",nameEn:"Smoked Salmon Cream Cheese", nameJa:"スモークサーモンクリームチーズ", tags:["GF"], comingSoon:true },
 ];
 
@@ -102,9 +102,9 @@ function FlavorCard({ f, lang, t, isMobile }: { f: Flavor; lang: string; t: (en:
             </div>
           )}
 
-          {!f.comingSoon && (f.allergensEn || f.allergensJa) && (
-            <div style={{ fontSize: isMobile ? 10 : 11, color:"#aaa", fontWeight:500 }}>
-              {lang === "ja" ? `含む：${f.allergensJa}` : `Contains: ${f.allergensEn}`}
+          {!f.comingSoon && (
+            <div style={{ fontSize: isMobile ? 10 : 11, color:"#aaa", fontWeight:500, minHeight: isMobile ? 14 : 16 }}>
+              {(f.allergensEn || f.allergensJa) ? (lang === "ja" ? `含む：${f.allergensJa}` : `Contains: ${f.allergensEn}`) : ""}
             </div>
           )}
         </div>

@@ -20,13 +20,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body
         className={dmSans.className}
-        style={{ margin: 0, padding: 0 }}
+        style={{ margin: 0, padding: 0, overflowX: "hidden", width: "100%" }}
       >
-        <LangProvider>{children}
-      <Footer /></LangProvider>
+        <LangProvider>{children}</LangProvider>
+        <Footer />
       </body>
     </html>
   );

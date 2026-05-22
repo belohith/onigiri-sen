@@ -14,7 +14,7 @@ const partners = [
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
+    const check = () => setIsMobile(window.innerWidth < 1024);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
@@ -64,27 +64,34 @@ export default function TrustedBy() {
         ))}
       </div>
 
-      {/* Continuous scroll strip */}
+      {/* Continuous scroll strip — 2 identical sets, scrolls by -50% for seamless loop */}
       <div style={{ overflow:"hidden", width:"100%" }}>
         <div
           style={{
             display:"flex",
             gap:0,
-            animation:"scroll-left 60s linear infinite",
+            animation:"scroll-left 40s linear infinite",
             width:"max-content",
+            willChange:"transform",
           }}
         >
-          {[...Array(2)].map((_, pass) =>
-            [1,2,3,4,5,6,7,8].map((i) => (
-              <div key={`${pass}-${i}`} style={{ width: isMobile ? 180 : 280, height: isMobile ? 120 : 180, flexShrink:0, overflow:"hidden" }}>
+          {[0, 1].map((pass) => (
+            <div key={pass} style={{ display:"flex", gap:0, flexShrink:0 }}>
+              {[1,2,3,4,5,6,7,8].map((i) => (
                 <img
+                  key={i}
                   src={`/images/partners/roll-${i}.png`}
                   alt=""
-                  style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}
+                  style={{
+                    height: isMobile ? 120 : 180,
+                    width:"auto",
+                    display:"block",
+                    flexShrink:0,
+                  }}
                 />
-              </div>
-            ))
-          )}
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </section>

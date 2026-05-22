@@ -108,8 +108,8 @@ export default function WholesalePage() {
               {
                 icon:"/images/icon-stadium.png",
                 title:t("Stadium-Grade Scalability","スタジアム規模の安定供給"),
-                body:t("Whether for a single order or large-scale supply, every onigiri meets the same world-class standard.",
-                       "規模にかかわらず、すべてのおにぎりが同じ厳格な基準を満たします。"),
+                body:t("Whether for a single order or large-scale supply, every onigiri meets the same world-class standard. We supply major stadiums, supermarket chains, and airports without ever compromising on quality.  ",
+                       "規模にかかわらず、すべてのおにぎりが同じ厳格な基準を満たします。主要スタジアムやスーパーマーケットチェーン、空港などへの大規模供給においても、一貫した、妥協のない品質を保証します。"),
               },
               {
                 icon:"/images/icon-robot.png",
@@ -120,14 +120,14 @@ export default function WholesalePage() {
               {
                 icon:"/images/icon-shield.png",
                 title:t("Rigorous Hygiene &\nSafety Protocols","徹底した衛生管理と安全基準"),
-                body:t("Automated processes minimize human contact, ensuring safety standards that far exceed traditional manufacturing.",
-                       "製造工程を自動化し、従来の製造手法を遥かに凌駕する安全基準を確立しました。"),
+                body:t("Our automated processes minimize human contact, ensuring safety standards that far exceed traditional manufacturing methods. By maintaining cleanroom production and rigorous food safety protocols throughout all operations, we deliver ultimate peace of mind to our partners.",
+                       "製造工程を徹底的に自動化することで、人の手による接触を最小限に抑制。従来の製造手法を遥かに凌駕する安全ベンチマークを確立しました。高度なクリーンルーム環境と厳格な食品安全プロトコル（Food Safety Protocols）により、確かな安心を担保します。"),
               },
               {
                 icon:"/images/icon-leaf.png",
                 title:t("Flexible Customization","柔軟なカスタマイズ"),
-                body:t("Vegan, Gluten-Free, Organic, and custom flavors available. Strategic pricing tiers tailored to your needs.",
-                       "ヴィーガン、グルテンフリー、オーガニック、カスタムフレーバーに対応。"),
+                body:t("Vegan, Gluten-Free, Organic, and custom flavors available. Strategic pricing tiers tailored to your retail environment and customer base. ",
+                       "ヴィーガン、グルテンフリー、オーガニック、そして独自のカスタムフレーバーにも対応。多様なニーズを持つパートナー企業様に柔軟な戦略を提案します。"),
               },
             ].map((b) => (
               <div

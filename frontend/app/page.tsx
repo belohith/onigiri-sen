@@ -63,7 +63,7 @@ export default function HomePage() {
       n:"01", img:"/images/why-ingredients.png", mascot:"/images/char-stm.png",
       title: t("Integrity in Ingredients","素材へのこだわり"),
       body: t("Sourced with Care. From the premium nori of Ariake Bay to the finest ume of Kishu, we source only the highest quality ingredients, including organic elements. We pour our passion for quality into every single onigiri we deliver.",
-              "日本最高峰の漁場が育んだ有明海産の海苔から、和歌山産・1％以下の希少なオーガニック紀州梅にいたるまで、、本当に安心・安全な食材だけを厳選。品質への妥協なき情熱を、その一つひとつに込めて届けます。"),
+              "日本最高峰の漁場が育んだ有明海産の海苔から、和歌山産・1％以下の希少なオーガニック紀州梅にいたるまで、本当に安心・安全な食材だけを厳選。品質への妥協なき情熱を、その一つひとつに込めて届けます。"),
     },
     {
       n:"02", img:"/images/why-healthy.png", mascot:"/images/char-pp.png",
@@ -181,7 +181,7 @@ export default function HomePage() {
           </div>
           <div style={{ textAlign:"center", marginTop:64 }}>
             <Link href="/wholesale" style={{ display:"inline-block", background:"#ed7e80", color:"#fff", padding: isMobile ? "14px 32px" : "16px 48px", borderRadius:999, fontWeight:800, fontSize: isMobile ? 14 : 16, textDecoration:"none", boxShadow:"0 4px 20px rgba(111,71,28,0.25)" }}>
-              {t("Partner With Us →","パートナーシップについて → →")}
+              {t("Partner With Us →","パートナーシップについて →")}
             </Link>
           </div>
         </section>

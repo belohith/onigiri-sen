@@ -6,6 +6,7 @@ import { useLang } from "../context/LangContext";
 
 type MediaItem = {
   category: "tv" | "print" | "podcast" | "online";
+  articleLang: "en" | "ja" | "both";
   outlet: string;
   titleEn: string;
   titleJa: string;
@@ -18,6 +19,7 @@ type MediaItem = {
 const media: MediaItem[] = [
   {
     category: "online",
+    articleLang: "ja",
     outlet: "Jungle City",
     titleEn: "Mother's Day Gift Guide and Seattle Picnic Guide",
     titleJa: "母の日ギフトガイドとシアトルピクニックガイド",
@@ -28,6 +30,7 @@ const media: MediaItem[] = [
   },
   {
     category: "tv",
+    articleLang: "en",
     outlet: "KING 5 News",
     titleEn: "Onigiri Sen goes viral for Japanese grab-and-go snack - New Day NW",
     titleJa: "シアトルのスタートアップが日本のおにぎりを太平洋岸北西部へ",
@@ -38,6 +41,7 @@ const media: MediaItem[] = [
   },
   {
     category: "online",
+    articleLang: "both",
     outlet: "Jungle City",
     titleEn: "Rina Oike on Building a Japanese Food Brand in America",
     titleJa: "及川里奈 — アメリカで日本の食ブランドを築く",
@@ -47,7 +51,8 @@ const media: MediaItem[] = [
     href: "https://www.junglecity.com/eat/eat-more/onigiri-sen-rina-oike/",
   },
   {
-    category: "print",
+    category: "online",
+    articleLang: "en",
     outlet: "Lookout Landing",
     titleEn: "What to Eat at T-Mobile Park in 2026",
     titleJa: "2026年、Tモバイルパークで食べるべきもの",
@@ -58,6 +63,7 @@ const media: MediaItem[] = [
   },
   {
     category: "online",
+    articleLang: "en",
     outlet: "Seattle Weekly",
     titleEn: "2026 Mariners Menu Preview: Best Food at T-Mobile Park",
     titleJa: "2026年マリナーズメニュープレビュー：Tモバイルパークのベストフード",
@@ -68,6 +74,7 @@ const media: MediaItem[] = [
   },
   {
     category: "online",
+    articleLang: "ja",
     outlet: "Soy Source",
     titleEn: "Japanese Soul Food Onigiri is Taking Over Seattle!",
     titleJa: "日本のソウルフード、おにぎりがシアトルを席巻！",
@@ -77,6 +84,12 @@ const media: MediaItem[] = [
     href: "https://soysource.net/food/feature1-03282025/",
   },
 ];
+
+const langLabel: Record<"en"|"ja"|"both", { label: string; color: string; bg: string }> = {
+  en:   { label: "EN",    color: "#1a3a6a", bg: "#dce8ff" },
+  ja:   { label: "日本語", color: "#6a1a1a", bg: "#ffe8e8" },
+  both: { label: "EN/日本語", color: "#4a2a6a", bg: "#ede8ff" },
+};
 
 const categoryLabel: Record<MediaItem["category"], { en: string; ja: string; color: string; bg: string }> = {
   tv:      { en: "TV / Video", ja: "テレビ・動画",  color: "#7a4a00", bg: "#fde8b0" },
@@ -97,7 +110,7 @@ function ExternalIcon() {
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
+    const check = () => setIsMobile(window.innerWidth < 1024);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
@@ -120,7 +133,7 @@ export default function MediaPage() {
             {t("PRESS & MEDIA","プレス・メディア")}
           </div>
           <h1 style={{ fontWeight:900, fontSize: isMobile ? 26 : 36, color:"#6f471c", margin:"0 0 16px", lineHeight:1.2 }}>
-            {t("Onigiri Sen in the News","おにぎり千のメディア掲載")}
+            {t("Onigiri Sen in the News","Onigiri Sen のメディア掲載")}
           </h1>
           <p style={{ color:"#8a6a4a", fontSize: isMobile ? 14 : 15, maxWidth:520, margin:"0 auto", lineHeight:1.8 }}>
             {t(
@@ -201,6 +214,9 @@ export default function MediaPage() {
                           {lang === "ja" ? cat.ja : cat.en}
                         </div>
                         <div style={{ fontSize:11, color:"#bbb", fontWeight:500 }}>{item.date}</div>
+                        <div style={{ background:langLabel[item.articleLang].bg, color:langLabel[item.articleLang].color, fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>
+                          {langLabel[item.articleLang].label}
+                        </div>
                       </div>
                     ) : (
                       /* Desktop: outlet column */
@@ -209,6 +225,9 @@ export default function MediaPage() {
                         <div style={{ fontSize:11, color:"#bbb", fontWeight:500 }}>{item.date}</div>
                         <div style={{ display:"inline-block", marginTop:8, background:cat.bg, color:cat.color, fontSize:10, fontWeight:700, borderRadius:999, padding:"3px 10px" }}>
                           {lang === "ja" ? cat.ja : cat.en}
+                        </div>
+                        <div style={{ display:"inline-block", marginTop:6, background:langLabel[item.articleLang].bg, color:langLabel[item.articleLang].color, fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>
+                          {langLabel[item.articleLang].label}
                         </div>
                       </div>
                     )}

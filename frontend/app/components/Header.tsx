@@ -28,9 +28,9 @@ export default function Header() {
   useEffect(() => setMenuOpen(false), [pathname]);
 
   const navLinks = [
-    { href: "/products",  en: "Products",  ja: "商品" },
-    { href: "/our-story", en: "Our Story", ja: "私たちについて" },
-    { href: "/wholesale", en: "Wholesale", ja: "卸売" },
+    { href: "/products",  en: "Products",  ja: "商品一覧" },
+    { href: "/our-story", en: "Our Story", ja: "私たちのストーリー" },
+    { href: "/wholesale", en: "Wholesale", ja: "パートナーシップ" },
     { href: "/contact",   en: "Contact",   ja: "お問い合わせ" },
   ];
 

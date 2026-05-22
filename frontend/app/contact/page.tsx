@@ -51,10 +51,10 @@ export default function ContactPage() {
           <h1 style={{ fontWeight:800, fontSize: isMobile ? 28 : 38, color:"#6f471c", margin:"0 0 16px" }}>
             {t("Get in Touch","お問い合わせ")}
           </h1>
-          <p style={{ color:"#6f471c", fontSize: isMobile ? 14 : 16, maxWidth:500, margin:"0 auto" }}>
+          <p style={{ color:"#6f471c", fontSize: isMobile ? 14 : 16, maxWidth:700, margin:"0 auto" }}>
             {t(
               "Have a question, a business inquiry, or just want to say hello? We'd love to connect with you.",
-              "ご質問やビジネスに関するお問い合わせなど、お気軽にご連絡ください。"
+              "ご質問やビジネスに関するご相談など、どうぞお気軽にお問い合わせください。"
             )}
           </p>
         </section>
@@ -100,10 +100,10 @@ export default function ContactPage() {
 
             <div style={{ background:"#6f471c", borderRadius:18, padding:"22px 24px", marginTop:32, color:"#fff" }}>
               <p style={{ fontWeight:700, fontSize:15, margin:"0 0 10px", lineHeight:1.5 }}>
-                {t("Looking to carry Onigiri Sen in your store or venue?","おにぎり千をお店やベニューで取り扱いたいですか？")}
+                {t("Looking to carry Onigiri Sen in your store or venue?","Onigiri Sen のお取り扱いを希望ですか？")}
               </p>
               <Link href="/wholesale" style={{ color:"#e8a87a", fontWeight:700, fontSize:14, textDecoration:"none" }}>
-                → {t("Inquire About Wholesale Partnership","卸売パートナーシップについてお問い合わせ")}
+                → {t("Inquire About Wholesale Partnership","パートナーシップについて")}
               </Link>
             </div>
           </div>
@@ -207,7 +207,7 @@ export default function ContactPage() {
               </a>
               {" "}{t("and","と")}{" "}
               <a href="/onigiri-pp.pdf" target="_blank" rel="noopener noreferrer" style={{ color:"#e07070", textDecoration:"none" }}>
-                {t("Privacy Policy.","プライバシーポリシー。")}
+                {t("Privacy Policy.","プライバシーポリシー ")}
               </a>
               {t("","に同意したことになります。")}
             </p>

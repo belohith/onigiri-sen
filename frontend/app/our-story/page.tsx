@@ -126,8 +126,17 @@ export default function OurStoryPage() {
               </>
             ) : (
               <>
-                <div style={{ background:"#f3a8b6", width:"72%", padding:"52px 200px 52px 80px", position:"relative", zIndex:10 }}>
-                  <h2 style={{ fontWeight:900, fontSize:40, color:"#fff", margin:"0 0 32px" }}>
+                <div
+  style={{
+    background: "#f3a8b6",
+    width: lang === "ja" ? "66%" : "72%",
+    padding: lang === "ja"
+      ? "52px 240px 52px 80px"
+      : "52px 200px 52px 80px",
+    position: "relative",
+    zIndex: 10,
+  }}
+>  <h2 style={{ fontWeight:900, fontSize:40, color:"#fff", margin:"0 0 32px" }}>
                     {t("Founder's Story","創業者のストーリー")}
                   </h2>
                   <p style={{ fontSize:16, fontWeight:600, fontStyle:"italic", lineHeight:2.05, letterSpacing:"0.02em", color:"#fff", margin:0, maxWidth:760 }}>
@@ -137,8 +146,22 @@ export default function OurStoryPage() {
                     )}
                   </p>
                 </div>
-                <div style={{ position:"absolute", right:0, top:60, zIndex:20, width:520, height:660, overflow:"visible", display:"flex", flexDirection:"column" as const, justifyContent:"flex-end", padding:"40px 40px 48px" }}>
-                  <div style={{ position:"absolute", inset:0, overflow:"hidden" }}>
+                <div
+  style={{
+    position: "absolute",
+    right: 0,
+    top: 60,
+    zIndex: 20,
+    width: lang === "ja" ? 620 : 520,
+    height: 660,
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column" as const,
+    justifyContent: "flex-end",
+    padding: "40px 40px 48px",
+  }}
+>
+    <div style={{ position:"absolute", inset:0, overflow:"hidden" }}>
                     <img src="/images/rina-oike.webp" alt="" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", objectPosition:"center 10%" }} />
                   </div>
                   <img src="/images/char-founder.png" alt="" style={{ position:"absolute", left:"-6rem", top:"55%", transform:"translateY(-50%)", height:160, objectFit:"contain" as const, zIndex:3 }} />

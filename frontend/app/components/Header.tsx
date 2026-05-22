@@ -40,8 +40,23 @@ export default function Header() {
 
   return (
     <>
-      <header style={{ display:"flex", alignItems:"center", padding:"0 24px", height:72, position:"sticky", top:0, zIndex:100, gap:16, background:"transparent" }}>
-
+      <header
+  style={{
+    display: "flex",
+    alignItems: "center",
+    padding: "8px 24px",
+    height: 72,
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
+    gap: 16,
+    background: "rgba(255, 249, 245, 0.92)",
+    backdropFilter: "blur(12px)",
+    borderBottom: "1px solid rgba(232, 221, 212, 0.65)",
+  }}
+>
         {/* Logo */}
         <Link
           href="/"

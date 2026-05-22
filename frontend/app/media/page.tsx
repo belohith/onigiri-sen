@@ -18,71 +18,76 @@ type MediaItem = {
 
 const media: MediaItem[] = [
   {
-    category: "online",
-    articleLang: "ja",
-    outlet: "Jungle City",
-    titleEn: "Mother's Day Gift Guide and Seattle Picnic Guide",
-    titleJa: "母の日ギフトガイドとシアトルピクニックガイド",
-    descEn: "Jungle City's Mother's Day and Seattle picnic feature includes Onigiri Sen as a recommended pick for outdoor dining and gifting in the Seattle area.",
-    descJa: "Jungle Cityの母の日・シアトルピクニック特集で、シアトルエリアのアウトドアダイニングとギフトの一つとしておにぎり千が紹介されました。",
-    date: "4 May 2026",
-    href: "https://www.junglecity.com/enjoy/gifts-for-mothers-day/#index_id20",
-  },
-  {
-    category: "tv",
-    articleLang: "en",
-    outlet: "KING 5 News",
-    titleEn: "Onigiri Sen goes viral for Japanese grab-and-go snack - New Day NW",
-    titleJa: "シアトルのスタートアップが日本のおにぎりを太平洋岸北西部へ",
-    descEn: "KING 5 Evening feature on Onigiri Sen's journey from a 75sqft kitchen to PCC shelves across the Seattle area.",
-    descJa: "KING 5イブニングが、75平方フィートのキッチンからシアトル全域のPCC棚までのおにぎり千の歩みを特集。",
-    date: "27 April 2026",
-    href: "https://www.king5.com/video/entertainment/television/programs/new-day-northwest/onigiri-sen-goes-viral-for-japanese-grab-and-go-snack-new-day-nw/281-70888a26-d765-4dc6-8aac-8bb6f97d982a",
-  },
-  {
-    category: "online",
-    articleLang: "both",
-    outlet: "Jungle City",
-    titleEn: "Rina Oike on Building a Japanese Food Brand in America",
-    titleJa: "及川里奈 — アメリカで日本の食ブランドを築く",
-    descEn: "An in-depth interview with founder Rina Oike on culture, entrepreneurship, and why onigiri is the perfect American convenience food.",
-    descJa: "創業者・及川里奈が文化、起業家精神、そしておにぎりが最高のアメリカのコンビニエンスフードである理由を語る深掘りインタビュー。",
-    date: "30 March 2026",
-    href: "https://www.junglecity.com/eat/eat-more/onigiri-sen-rina-oike/",
-  },
-  {
-    category: "online",
-    articleLang: "en",
-    outlet: "Lookout Landing",
-    titleEn: "What to Eat at T-Mobile Park in 2026",
-    titleJa: "2026年、Tモバイルパークで食べるべきもの",
-    descEn: "Lookout Landing's guide to the best ballpark food at T-Mobile Park features Onigiri Sen as a must-try option for the 2026 Mariners season.",
-    descJa: "Lookout Landingの2026年マリナーズシーズンのTモバイルパーク必食ガイドにおにぎり千が掲載されました。",
-    date: "25 March 2026",
-    href: "https://www.lookoutlanding.com/t-mobile-park/140695/what-to-eat-at-t-mobile-park-in-2026",
-  },
-  {
-    category: "online",
-    articleLang: "en",
-    outlet: "Seattle Weekly",
-    titleEn: "2026 Mariners Menu Preview: Best Food at T-Mobile Park",
-    titleJa: "2026年マリナーズメニュープレビュー：Tモバイルパークのベストフード",
-    descEn: "Seattle Weekly's preview of the 2026 Mariners season menu spotlights Onigiri Sen among the top new food offerings at T-Mobile Park.",
-    descJa: "Seattle Weeklyの2026年マリナーズシーズンメニュープレビューで、Tモバイルパークの新メニューの一つとしておにぎり千が紹介されました。",
-    date: "18 March 2026",
-    href: "https://www.seattleweekly.com/2026/03/18/2026-mariners-menu-preview-best-food-at-t-mobile-park/",
-  },
-  {
-    category: "online",
-    articleLang: "ja",
-    outlet: "Soy Source",
-    titleEn: "Japanese Soul Food Onigiri is Taking Over Seattle!",
-    titleJa: "日本のソウルフード、おにぎりがシアトルを席巻！",
-    descEn: "Japanese-language publication Soy Source covers the rise of Onigiri Sen and how traditional Japanese onigiri is resonating with Seattle's food culture.",
-    descJa: "日本語メディアのSoy Sourceが、おにぎり千の台頭と日本の伝統的なおにぎりがシアトルの食文化に響いている様子を取り上げました。",
-    date: "26 March 2025",
-    href: "https://soysource.net/food/feature1-03282025/",
-  },
+  category: "online",
+  articleLang: "ja",
+  outlet: "Jungle City",
+  titleEn: "Mother's Day Gift Guide and Seattle Picnic Guide",
+  titleJa: "母の日ギフト＆シアトルピクニックガイド",
+  descEn: "Jungle City's Mother's Day and Seattle picnic feature includes Onigiri Sen as a recommended pick for outdoor dining and gifting in the Seattle area.",
+  descJa: "シアトルのギフトとピクニックを特集した「Jungle City」の特別企画にて、Onigiri Senがおすすめのピクニックアイテムとして紹介されました。",
+  date: "4 May 2026",
+  href: "https://www.junglecity.com/enjoy/gifts-for-mothers-day/#index_id20",
+},
+
+{
+  category: "tv",
+  articleLang: "en",
+  outlet: "KING 5 News",
+  titleEn: "Onigiri Sen goes viral for Japanese grab-and-go snack - New Day NW",
+  titleJa: "Onigiri Senが「日本のグラブ＆ゴー・スナック」としてバイラルに",
+  descEn: "KING 5 Evening feature on Onigiri Sen's journey from a 75sqft kitchen to PCC shelves across the Seattle area.",
+  descJa: "シアトルのテレビ局「KING 5 Evening」に尾池里奈が出演。シアトルで巻き起こるおにぎりブームとブランドの背景を紹介。",
+  date: "27 April 2026",
+  href: "https://www.king5.com/video/entertainment/television/programs/new-day-northwest/onigiri-sen-goes-viral-for-japanese-grab-and-go-snack-new-day-nw/281-70888a26-d765-4dc6-8aac-8bb6f97d982a",
+},
+
+{
+  category: "online",
+  articleLang: "both",
+  outlet: "Jungle City",
+  titleEn: "Rina Oike on Building a Japanese Food Brand in America",
+  titleJa: "「千年続くおにぎり文化をシアトルの日常に」— 尾池里奈インタビュー",
+  descEn: "An in-depth interview with founder Rina Oike on culture, entrepreneurship, and why onigiri is the perfect American convenience food.",
+  descJa: "創業者・尾池里奈の深堀インタビューが掲載。シアトル・マリナーズ本拠地への出店や、25歳での起業、ブランドに込めた想いについて熱く語ります。",
+  date: "30 March 2026",
+  href: "https://www.junglecity.com/eat/eat-more/onigiri-sen-rina-oike/",
+},
+
+{
+  category: "online",
+  articleLang: "en",
+  outlet: "Lookout Landing",
+  titleEn: "What to Eat at T-Mobile Park in 2026",
+  titleJa: "【2026年】T-モバイル・パークの必食グルメガイド",
+  descEn: "Lookout Landing's guide to the best ballpark food at T-Mobile Park features Onigiri Sen as a must-try option for the 2026 Mariners season.",
+  descJa: "シアトル・マリナーズの開幕に合わせた「Lookout Landing」の球場グルメ特集にて、今年スタジアムで絶対に食べるべき必食フードとしてOnigiri Senが選出されました。",
+  date: "25 March 2026",
+  href: "https://www.lookoutlanding.com/t-mobile-park/140695/what-to-eat-at-t-mobile-park-in-2026",
+},
+
+{
+  category: "online",
+  articleLang: "en",
+  outlet: "Seattle Weekly",
+  titleEn: "2026 Mariners Menu Preview: Best Food at T-Mobile Park",
+  titleJa: "2026年マリナーズ・球場メニューレビュー：T-モバイル・パークのベストフード",
+  descEn: "Seattle Weekly's preview of the 2026 Mariners season menu spotlights Onigiri Sen among the top new food offerings at T-Mobile Park.",
+  descJa: "「Seattle Weekly」による今シーズンの球場グルメ徹底レビューにて、T-モバイル・パークの期待の新メニューとしてOnigiri Senが堂々紹介されました。",
+  date: "18 March 2026",
+  href: "https://www.seattleweekly.com/2026/03/18/2026-mariners-menu-preview-best-food-at-t-mobile-park/",
+},
+
+{
+  category: "online",
+  articleLang: "ja",
+  outlet: "Soy Source",
+  titleEn: "Japanese Soul Food Onigiri is Taking Over Seattle!",
+  titleJa: "日本のソウルフード「おにぎり」がシアトルを席巻！",
+  descEn: "Japanese-language publication Soy Source covers the rise of Onigiri Sen and how traditional Japanese onigiri is resonating with Seattle's food culture.",
+  descJa: "シアトルの老舗日本語メディア「ソイソース」にて、日本の伝統的なおにぎりが、現地の食文化に深く浸透し、新たなムーブメントを起こしている様子が特集されました。",
+  date: "26 March 2025",
+  href: "https://soysource.net/food/feature1-03282025/",
+},
 ];
 
 const langLabel: Record<"en"|"ja"|"both", { label: string; color: string; bg: string }> = {
@@ -157,10 +162,10 @@ export default function MediaPage() {
         }}>
           <div>
             <div style={{ fontWeight:800, fontSize: isMobile ? 15 : 17, color:"#6f471c", marginBottom:6 }}>
-              {t("Press Enquiries","報道関係のお問い合わせ")}
+              {t("Press Enquiries","プレス・報道関係者様へのお問い合わせ")}
             </div>
             <p style={{ color:"#8a6a4a", fontSize:14, margin:0 }}>
-              {t("For interview requests, press kits, and high-res images, reach out directly.","インタビュー依頼、プレスキット、高解像度画像については直接ご連絡ください。")}
+              {t("For interview requests, press kits, and high-res images, reach out directly.","インタビューのご依頼、プレスキット、高解像度画像のご要望につきましては、こちらから直接ご連絡ください。")}
             </p>
           </div>
           <a

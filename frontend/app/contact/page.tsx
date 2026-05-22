@@ -385,15 +385,58 @@ export default function ContactPage() {
                   onChange={(e) => setFormData({ ...formData, heardFrom: e.target.value })}
                   style={{ ...input, appearance: "none", paddingRight: 36 }}
                 >
-                  <option value="">{t("Select an option", "選択してください")}</option>
-                  <option>{t("PCC Community Markets", "PCCコミュニティマーケット")}</option>
-                  <option>{t("T&T Supermarket", "T&Tスーパーマーケット")}</option>
-                  <option>{t("T-Mobile Park", "Tモバイルパーク")}</option>
-                  <option>{t("Instagram", "Instagram")}</option>
-                  <option>{t("KING 5 News", "KING 5ニュース")}</option>
-                  <option>{t("Jungle City", "Jungle City")}</option>
-                  <option>{t("Friend or Family", "友人・家族")}</option>
-                  <option>{t("Other", "その他")}</option>
+                 <option value="">
+  {t("Select an option", "選択してください")}
+</option>
+
+<option>
+  {t(
+    "Social Media (Instagram, TikTok, etc.)",
+    "ソーシャルメディア（Instagram、TikTok など）"
+  )}
+</option>
+
+<option>
+  {t(
+    "News, Articles, or Media",
+    "ニュース・記事・メディア"
+  )}
+</option>
+
+<option>
+  {t(
+    "At a Sports Stadium or Event",
+    "スポーツスタジアム・イベント"
+  )}
+</option>
+
+<option>
+  {t(
+    "At a Grocery Store or Cafe",
+    "スーパー・カフェ"
+  )}
+</option>
+
+<option>
+  {t(
+    "Online or Print Ads",
+    "オンライン広告・紙媒体広告"
+  )}
+</option>
+
+<option>
+  {t(
+    "Recommended by a Friend or Colleague",
+    "友人・同僚からの紹介"
+  )}
+</option>
+
+<option>
+  {t(
+    "Other",
+    "その他"
+  )}
+</option>
                 </select>
 
                 <span

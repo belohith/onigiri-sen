@@ -107,7 +107,7 @@ export default function OurStoryPage() {
                   <img src="/images/rina-oike.webp" alt="Rina Oike" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", objectPosition:"center 10%" }} />
                   <div style={{ position:"absolute", bottom:0, left:0, right:0, background:"linear-gradient(transparent, rgba(0,0,0,0.55))", padding:"16px 20px" }}>
                     <div style={{ fontWeight:900, fontSize:22, color:"#fff" }}>
-                      {t("RINA OIKE","及川 里奈")}
+                      {t("RINA OIKE","尾池里奈")}
                     </div>
                     <div style={{ fontSize:13, color:"rgba(255,255,255,0.9)" }}>
                       {t("Founder & CEO, Onigiri Sen","創業者 & CEO、おにぎり千")}

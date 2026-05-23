@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/images/og-banner.jpg",
+        url: "/images/og-banner.png",
         width: 1200,
         height: 630,
         alt: "Onigiri Sen",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Onigiri Sen",
     description: "Fresh Japanese onigiri, made daily.",
-    images: ["/images/og-banner.jpg"],
+    images: ["/images/og-banner.png"],
   },
 };
 

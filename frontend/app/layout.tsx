@@ -12,6 +12,32 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Onigiri Sen",
   description: "Japan's Tradition. Scaled for America.",
+
+  openGraph: {
+    title: "Onigiri Sen",
+    description: "Fresh Japanese onigiri, made daily.",
+    url: "https://onigiri-sen.vercel.app",
+    siteName: "Onigiri Sen",
+
+    images: [
+      {
+        url: "/images/og-banner.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Onigiri Sen",
+      },
+    ],
+
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Onigiri Sen",
+    description: "Fresh Japanese onigiri, made daily.",
+    images: ["/images/og-banner.jpg"],
+  },
 };
 
 export default function RootLayout({

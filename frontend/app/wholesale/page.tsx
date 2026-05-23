@@ -190,7 +190,7 @@ export default function WholesalePage() {
           >
             {t(
               "A Scalable, Reliable Partner\nfor Your Business.",
-              "あらゆる食の現場へ、\n 誰がよろこぶ \n (ヘルシーな~)を。"
+              "あらゆる食の現場へ、\n 誰もがよろこぶ \n\ (ヘルシーな選択肢を) を。"
             )}
           </h1>
 

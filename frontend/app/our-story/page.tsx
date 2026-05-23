@@ -27,7 +27,7 @@ function TimelineCarousel() {
   const images = [
     "/images/story-timeline-1.jpeg",
     "/images/story-timeline-2.JPG",
-    "/images/story-timeline-3.jpeg",
+    "/images/story-timeline-4.jpg",
   ];
   const [current, setCurrent] = useState(0);
   const prev = () => setCurrent((c) => (c - 1 + images.length) % images.length);
@@ -58,7 +58,7 @@ export default function OurStoryPage() {
   return (
     <>
       <Header />
-      <main style={{ fontFamily:"DM Sans, sans-serif", background:"#fff9f5" }}>
+      <main style={{ fontFamily:"DM Sans, sans-serif", background:"#fff9f5", marginTop:72 }}>
 
         {/* 1. TITLE */}
         <section style={{ padding: isMobile ? "48px 24px 0" : "56px 80px 0", textAlign:"center", background:"#fff9f5" }}>
@@ -164,7 +164,7 @@ export default function OurStoryPage() {
     <div style={{ position:"absolute", inset:0, overflow:"hidden" }}>
                     <img src="/images/rina-oike.webp" alt="" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", objectPosition:"center 10%" }} />
                   </div>
-                  <img src="/images/char-founder.png" alt="" style={{ position:"absolute", left:"-6rem", top:"55%", transform:"translateY(-50%)", height:160, objectFit:"contain" as const, zIndex:3 }} />
+                  {/* <img src="/images/char-founder.png" alt="" style={{ position:"absolute", left:"-6rem", top:"55%", transform:"translateY(-50%)", height:160, objectFit:"contain" as const, zIndex:3 }} /> */}
                   <div style={{ position:"relative", zIndex:1 }}>
                     <div style={{ fontWeight:900, fontSize:44, color:"#fff", letterSpacing:"0.05em", lineHeight:1.1 }}>
                       {t("RINA OIKE","及川 里奈")}

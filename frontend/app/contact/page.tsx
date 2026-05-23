@@ -90,7 +90,7 @@ export default function ContactPage() {
     <>
       <Header />
 
-      <main style={{ fontFamily: "DM Sans, sans-serif", background: "#fff" }}>
+      <main style={{ fontFamily: "DM Sans, sans-serif", background: "#fff", marginTop:72 }}>
         <section
           style={{
             padding: isMobile ? "64px 24px 36px" : "92px 80px 48px",

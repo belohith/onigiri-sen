@@ -63,7 +63,7 @@ export default function ProductsPage() {
   return (
     <>
       <Header />
-      <main style={{ fontFamily:"DM Sans, sans-serif", background:"#fff" }}>
+      <main style={{ fontFamily:"DM Sans, sans-serif", background:"#fff", marginTop:72 }}>
 
         {/* ── HERO ── */}
         <section style={{ background:"#fff9f5", textAlign:"center", padding: isMobile ? "56px 24px 0" : "72px 80px 0" }}>

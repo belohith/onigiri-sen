@@ -66,7 +66,7 @@ export default function HomePage() {
               "日本最高峰の漁場が育んだ有明海産の海苔から、和歌山産・1％以下の希少なオーガニック紀州梅にいたるまで、本当に安心・安全な食材だけを厳選。品質への妥協なき情熱を、その一つひとつに込めて届けます。"),
     },
     {
-      n:"02", img:"/images/why-healthy.png", mascot:"/images/char-pp.png",
+      n:"02", img:"/images/hero-11.jpg", mascot:"/images/char-pp.png",
       title: t("Healthy & Satisfying","手軽に、しっかり栄養"),
       body: t("Energy for Your Day. The natural umami of perfectly cooked rice paired with high-quality proteins like salmon and spicy tuna. We provide a deeply satisfying meal that fuels your busy modern lifestyle with lasting energy.",
               "ふっくら炊き上げたお米本来の旨みと、厳選した鮭やスパイシーツナといった良質なタンパク質。忙しい現代のライフスタイルに、確かな満足感とエネルギーを美味しくチャージします。"),
@@ -88,7 +88,7 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <main style={{ fontFamily:"DM Sans, sans-serif", background:"#fff" }}>
+      <main style={{ fontFamily:"DM Sans, sans-serif", background:"#fff", marginTop:72 }}>
 
         {/* ── HERO ── */}
         <section style={{ background:"#fdf5ef", marginTop:48 }}>
@@ -101,7 +101,7 @@ export default function HomePage() {
             `}</style>
             <div style={{ display:"flex", gap:16, height:"100%", width:"4912px", animation:"hero-scroll 60s linear infinite" }}>
               {[...Array(2)].map((_, pass) =>
-                ["/images/hero-7.jpg","/images/hero-8.jpg","/images/hero-9.jpg","/images/hero-4.jpg"].map((src, i) => (
+                ["/images/hero-10.jpg","/images/hero-11.jpg","/images/hero-12.jpg","/images/hero-4.jpg"].map((src, i) => (
                   <div key={`${pass}-${i}`} style={{ width: isMobile ? 300 : 600, height:"100%", borderRadius:"20px 20px 0 0", overflow:"hidden", flexShrink:0, background:"#c8bfb5" }}>
                     <img src={src} alt="" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
                   </div>

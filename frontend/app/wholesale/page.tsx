@@ -170,7 +170,7 @@ export default function WholesalePage() {
     <>
       <Header />
 
-      <main style={{ fontFamily: "DM Sans, sans-serif", background: "#fff" }}>
+      <main style={{ fontFamily: "DM Sans, sans-serif", background: "#fff", marginTop:72 }}>
         <section
           style={{
             padding: isMobile ? "72px 24px 40px" : "112px 80px 64px",

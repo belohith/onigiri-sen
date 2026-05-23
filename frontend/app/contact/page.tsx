@@ -153,12 +153,7 @@ export default function ContactPage() {
                 value: "contact@onigirisen.jp",
                 href: "mailto:contact@onigirisen.jp",
               },
-              {
-                icon: "/images/phone.png",
-                label: t("Phone", "電話番号"),
-                value: "(206) 445-8086",
-                href: "tel:2064458086",
-              },
+             
               {
                 icon: "/images/insta.png",
                 label: t("Instagram", "インスタグラム"),

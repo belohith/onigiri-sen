@@ -25,9 +25,9 @@ function useIsMobile() {
 
 function TimelineCarousel() {
   const images = [
-    "/images/story-timeline-1.jpeg",
-    "/images/story-timeline-2.JPG",
     "/images/story-timeline-4.jpg",
+    "/images/story-timeline-2.JPG",
+    "/images/story-timeline-1.jpeg",
   ];
   const [current, setCurrent] = useState(0);
   const prev = () => setCurrent((c) => (c - 1 + images.length) % images.length);
@@ -72,9 +72,9 @@ export default function OurStoryPage() {
           <div style={{ position:"absolute", inset:0 }}>
             <img src="/images/story-mission.png" alt="" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover" }} />
           </div>
-          <div style={{ position:"relative", zIndex:1, width:"100%", textAlign:"center", padding: isMobile ? "48px 24px" : "64px 120px", color:"#fff" }}>
+          <div style={{ position:"relative", zIndex:1, width:"100%", textAlign:"center", padding: isMobile ? "48px 24px" : "64px 120px", color:"#fff",whiteSpace: "pre-line", }}>
             <h2 style={{ fontWeight:700, fontSize: isMobile ? 24 : 42, lineHeight:1.2, margin:"0 0 16px", fontFamily:crimson.style.fontFamily }}>
-              {t("Mission — Bringing Onigiri into American Daily Life.", "ミッション — おにぎりをアメリカの日常へ")}
+              {t("Mission\nBringing Onigiri into American Daily Life.", " —ミッションーー \n おにぎりをアメリカの日常へ")}
             </h2>
             <p style={{ maxWidth:600, margin:"0 auto", fontSize: isMobile ? 15 : 18, lineHeight:1.85, opacity:0.9, fontFamily:crimson.style.fontFamily }}>
               {t(
@@ -266,18 +266,18 @@ export default function OurStoryPage() {
               {t("The Secret Behind Every Perfect Onigiri Bite","一口ごとに感動がある、美味しさの秘密。")}
             </p>
           </div>
-          <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap:24 }}>
+          <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap:24, whiteSpace:"pre-line" }}>
             {[
               {
                 src:"/images/fuji.png",
-                brand:t("FUJISEIKI — World's #1\nOnigiri Machine Manufacturer","不二精機（FUJISEIKI）— 世界No.1おにぎり機械メーカー"),
+                brand:t("FUJISEIKI — World's #1\nOnigiri Machine Manufacturer","不二精機（FUJISEIKI）— \n 世界No.1おにぎり機械メーカー"),
                 sub:t("Japan's Standard: Near 100% Share","国内シェアほぼ100％、信頼のおにぎり成形技術"),
                 body:t("The world's #1 manufacturer, boasting an approximately 100% share of hand-wrapped onigiri machines in Japanese convenience stores. Their technology balances the airy texture of hand-pressed onigiri with millimeter-level precision. Regardless of production volume, they deliver consistent, uncompromising, world-class quality for every order.",
                        "世界最高峰の成形技術を、アメリカへ。日本国内のコンビニにおける「手巻きおにぎりマシン」のシェアは約100%を誇る世界No.1メーカー。職人の手結びのようなふっくら感とミリ単位の正確さを両立。生産量に左右されることなく、あらゆるオーダーに対して常に均一で、妥協のない世界水準のクオリティをお届けします。"),
-                linkEn:"FUJISEIKI →", linkJa:"不二精機 →", href:"https://www.fujiseiki.co.jp",
+                linkEn:"FUJISEIKI →", linkJa:"不二精機 →", href:"https://international.fuji-seiki.co.jp/",
               },
               {
-                src:"/images/aiho.png",
+                src:"/images/aiho-3.png",
                 brand:t("AIHO — The Gold Standard\nof Rice Cooking","AIHO— プロの米炊きのゴールドスタンダード"),
                 sub:t("Engineered for the Perfect Grain","すべての米粒に、完璧を。"),
                 body:t("Great onigiri starts with perfect rice. AIHO's professional-grade IH pressure cooking system — trusted by Japan's largest rice producers — extracts the natural sweetness and ideal stickiness of every grain. Tender, fragrant, and delicious even when cold.",

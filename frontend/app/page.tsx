@@ -66,7 +66,7 @@ export default function HomePage() {
               "日本最高峰の漁場が育んだ有明海産の海苔から、和歌山産・1％以下の希少なオーガニック紀州梅にいたるまで、本当に安心・安全な食材だけを厳選。品質への妥協なき情熱を、その一つひとつに込めて届けます。"),
     },
     {
-      n:"02", img:"/images/hero-11.jpg", mascot:"/images/char-pp.png",
+      n:"02", img:"/images/why-healthy-1.png", mascot:"/images/char-pp.png",
       title: t("Healthy & Satisfying","手軽に、しっかり栄養"),
       body: t("Energy for Your Day. The natural umami of perfectly cooked rice paired with high-quality proteins like salmon and spicy tuna. We provide a deeply satisfying meal that fuels your busy modern lifestyle with lasting energy.",
               "ふっくら炊き上げたお米本来の旨みと、厳選した鮭やスパイシーツナといった良質なタンパク質。忙しい現代のライフスタイルに、確かな満足感とエネルギーを美味しくチャージします。"),
@@ -78,7 +78,7 @@ export default function HomePage() {
               "毎日作りたてのおにぎりをお届け。仕事の合間や、ちょっとした移動時間でも、素材本来の豊かな風味を引き立てた、本格的な味わいを楽しめます。"),
     },
     {
-      n:"04", img:"/images/why-scale.png", mascot:"/images/char-s.png",
+      n:"04", img:"/images/why-scale-1.png", mascot:"/images/char-s.png",
       title: t("Consistency & Scalability","変わらない品質と、究極の食感"),
       body: t("Powered by Japanese Technology. Our onigiri features the signature fluffy texture of hand-pressed rice, achieved through FUJISEIKI — the same world-leading technology trusted by Japan's top convenience chains.",
               "日本のトップチェーンを支える「不二精機」の成形技術と、大規模炊飯をリードする「AIHO」の最先端システムを導入。徹底した衛生管理と大量供給を可能にしながら、いつでも変わらない品質と、手結びのような「ふっくら」とした究極の食感をお届けします。"),
@@ -101,7 +101,7 @@ export default function HomePage() {
             `}</style>
             <div style={{ display:"flex", gap:16, height:"100%", width:"4912px", animation:"hero-scroll 60s linear infinite" }}>
               {[...Array(2)].map((_, pass) =>
-                ["/images/hero-10.jpg","/images/hero-11.jpg","/images/hero-12.jpg","/images/hero-4.jpg"].map((src, i) => (
+                ["/images/hero-10.jpg","/images/hero-11.jpg","/images/hero-13.jpg","/images/hero-4.jpg"].map((src, i) => (
                   <div key={`${pass}-${i}`} style={{ width: isMobile ? 300 : 600, height:"100%", borderRadius:"20px 20px 0 0", overflow:"hidden", flexShrink:0, background:"#c8bfb5" }}>
                     <img src={src} alt="" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
                   </div>

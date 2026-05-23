@@ -54,9 +54,7 @@ export default function Footer() {
             <a href="mailto:contact@onigirisen.jp" style={{ color:"rgba(255,255,255,0.6)", fontSize:13, textDecoration:"none" }}>
               contact@onigirisen.jp
             </a>
-            <a href="tel:2064458086" style={{ color:"rgba(255,255,255,0.6)", fontSize:13, textDecoration:"none" }}>
-              (206) 445-8086
-            </a>
+            
             <a href="https://instagram.com/onigirisen.jp" target="_blank" rel="noopener noreferrer" style={{ color:"rgba(255,255,255,0.6)", fontSize:13, textDecoration:"none" }}>
               Instagram: @onigirisen.jp
             </a>

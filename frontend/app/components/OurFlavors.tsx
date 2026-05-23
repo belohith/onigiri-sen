@@ -178,8 +178,8 @@ function FlavorCard({
     : 120;
 
   const imgSize = isMobile
-    ? 120
-    : 180;
+    ? 180
+    : 250;
 
   return (
     <div
@@ -250,8 +250,8 @@ function FlavorCard({
               : "24px 20px 12px",
 
             minHeight: isMobile
-              ? 140
-              : 220,
+              ? 180
+              : 280,
 
             position: "relative",
             background: "#fff",

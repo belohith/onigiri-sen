@@ -181,7 +181,7 @@ export default function WholesalePage() {
           <h1
             style={{
               fontWeight: 900,
-              fontSize: isMobile ? 28 : 42,
+              fontSize: isMobile ? 26 : 42,
               color: "#6f471c",
               lineHeight: 1.2,
               margin: "0 0 16px",
@@ -190,7 +190,7 @@ export default function WholesalePage() {
           >
             {t(
               "A Scalable, Reliable Partner\nfor Your Business.",
-              "あらゆる食の現場へ、\n誰もがよろこぶ「ヘルシーな選択肢」を。"
+              "あらゆる食の現場へ、\n 誰がよろこぶ \n (ヘルシーな~)を。"
             )}
           </h1>
 

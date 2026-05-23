@@ -101,7 +101,7 @@ export default function HomePage() {
             `}</style>
             <div style={{ display:"flex", gap:16, height:"100%", width:"4912px", animation:"hero-scroll 60s linear infinite" }}>
               {[...Array(2)].map((_, pass) =>
-                ["/images/hero-10.jpg","/images/hero-11.jpg","/images/hero-13.jpg","/images/hero-4.jpg"].map((src, i) => (
+                ["/images/hero-10.jpg","/images/hero-11.jpg","/images/hero-14.jpg","/images/hero-4.jpg"].map((src, i) => (
                   <div key={`${pass}-${i}`} style={{ width: isMobile ? 300 : 600, height:"100%", borderRadius:"20px 20px 0 0", overflow:"hidden", flexShrink:0, background:"#c8bfb5" }}>
                     <img src={src} alt="" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
                   </div>

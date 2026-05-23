@@ -149,7 +149,7 @@ const flavors: Flavor[] = [
 
   {
     img: "/images/flavors/yuzu-salmon.png",
-    mascot: "/images/char-sscc.png",
+    mascot: "/images/char-founder.png",
     nameEn: "Yuzu Salmon",
     nameJa: "柚子サーモン",
     tags: ["GF"],

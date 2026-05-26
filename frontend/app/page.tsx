@@ -92,25 +92,38 @@ export default function HomePage() {
 
         {/* ── HERO ── */}
         <section style={{ background:"#fdf5ef", marginTop:48 }}>
-          <div style={{ overflow:"hidden", height: isMobile ? 280 : 500, position:"relative" as const }}>
+          {/* Taller on both mobile and desktop so more of the product is visible */}
+          <div style={{ overflow:"hidden", height: isMobile ? 400 : 600, position:"relative" as const }}>
             <style>{`
-              @keyframes hero-scroll {
+              @keyframes hero-scroll-mobile {
+                0%   { transform: translateX(0); }
+                100% { transform: translateX(-1008px); }
+              }
+              @keyframes hero-scroll-desktop {
                 0%   { transform: translateX(0); }
                 100% { transform: translateX(-2448px); }
               }
             `}</style>
-            <div style={{ display:"flex", gap:16, height:"100%", width:"4912px", animation:"hero-scroll 60s linear infinite" }}>
+            <div style={{
+              display:"flex", gap:16, height:"100%",
+              width: isMobile ? "2032px" : "4912px",
+              animation: isMobile
+                ? "hero-scroll-mobile 30s linear infinite"
+                : "hero-scroll-desktop 60s linear infinite",
+            }}>
               {[...Array(2)].map((_, pass) =>
                 ["/images/hero-10.jpg","/images/hero-11.jpg","/images/hero-14.jpg","/images/hero-4.jpg"].map((src, i) => (
-                  <div key={`${pass}-${i}`} style={{ width: isMobile ? 300 : 600, height:"100%", borderRadius:"20px 20px 0 0", overflow:"hidden", flexShrink:0, background:"#c8bfb5" }}>
-                    <img src={src} alt="" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
+                  <div key={`${pass}-${i}`} style={{ width: isMobile ? 240 : 600, height:"100%", borderRadius:"20px 20px 0 0", overflow:"hidden", flexShrink:0, background:"#c8bfb5" }}>
+                    <img src={src} alt="" style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center center", display:"block" }} />
                   </div>
                 ))
               )}
             </div>
+
+            {/* Wave sits lower — taller SVG */}
             <div style={{ position:"absolute", bottom:0, left:0, right:0, zIndex:2, lineHeight:0 }}>
-              <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display:"block", width:"100%", height: isMobile ? 40 : 80 }}>
-                <path d="M0,40 C120,80 240,0 360,40 C480,80 600,0 720,40 C840,80 960,0 1080,40 C1200,80 1320,0 1440,40 L1440,80 L0,80 Z" fill="#fdefc8" />
+              <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ display:"block", width:"100%", height: isMobile ? 60 : 120 }}>
+                <path d="M0,60 C120,120 240,0 360,60 C480,120 600,0 720,60 C840,120 960,0 1080,60 C1200,120 1320,0 1440,60 L1440,120 L0,120 Z" fill="#fdefc8" />
               </svg>
             </div>
           </div>
@@ -137,7 +150,7 @@ export default function HomePage() {
                 </h1>
                 <p style={{ color:"#8a6a4a", fontSize: isMobile ? 14 : 15, lineHeight:1.7, margin:"0 0 28px", maxWidth:380 }}>
                   {t("Fresh, healthy, and portable — Japan's favorite everyday meal, now made for America.",
-                     "新鮮でヘルシー、そしてどこへでも。 \n日本で愛され続ける「おにぎり」という食文化を、アメリカでも。")}
+                     "新鮮でヘルシー、そしてどこへでも。 \n日本で愛され続ける「おにぎり」という食文化を、アメリカでも。")}
                 </p>
                 <div style={{ display:"flex", gap:12, flexWrap:"wrap" as const }}>
                   <Link href="/products" style={{ background:"#e8847a", color:"#fff", padding: isMobile ? "13px 24px" : "16px 36px", borderRadius:999, fontWeight:700, fontSize: isMobile ? 14 : 15, textDecoration:"none" }}>

@@ -93,7 +93,7 @@ export default function HomePage() {
         {/* ── HERO ── */}
         <section style={{ background:"#fdf5ef", marginTop:48 }}>
           {/* Taller on both mobile and desktop so more of the product is visible */}
-          <div style={{ overflow:"hidden", height: isMobile ? 400 : 600, position:"relative" as const }}>
+          <div style={{ overflow:"hidden", height: isMobile ? 380 : 580, position:"relative" as const }}>
             <style>{`
               @keyframes hero-scroll-mobile {
                 0%   { transform: translateX(0); }
@@ -178,7 +178,7 @@ export default function HomePage() {
               <div key={item.n} style={{ position:"relative" as const, marginTop: !isMobile && idx % 2 === 1 ? 80 : 0 }}>
                 <div style={{ background:"#fff", borderRadius:24, border:"2px dashed #f5aaaa", overflow:"hidden", paddingBottom:24 }}>
                   <div style={{ position:"relative" as const, height: isMobile ? 180 : 240, overflow:"hidden" }}>
-                    <img src={item.img} alt={item.title} style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
+                    <img src={item.img} alt={item.title} style={{ width:"100%", height:"100%", objectFit:"cover", display:"block", objectPosition: item.n === "04" ? "center 70%" : "center center" }} />
                     <div style={{ position:"absolute", bottom:8, left:16, fontWeight:900, fontSize: isMobile ? 48 : 64, lineHeight:1, color:"#f5a0a0", opacity:0.9 }}>
                       {item.n}
                     </div>
@@ -239,7 +239,7 @@ export default function HomePage() {
             {t("Follow Along !","私たちのストーリーをInstagramでフォロー！")}
           </h2>
           <p style={{ fontSize:16, opacity:0.85, margin:"0 0 24px" }}>@onigirisen.jp</p>
-          <img src="/images/char-ty.png" alt="" style={{ height: isMobile ? 180 : 300, objectFit:"contain" as const, display:"block", margin:"0 auto 24px" }} />
+          <img src="/images/char-instagram.png" alt="" style={{ height: isMobile ? 180 : 300, objectFit:"contain" as const, display:"block", margin:"0 auto 24px" }} />
           <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap:16, maxWidth:960, margin:"0 auto 36px" }}>
             <IgPost url="https://www.instagram.com/p/DWDJ9pHB1YV/" />
             {!isMobile && <IgPost url="https://www.instagram.com/p/DXpi8wZCITL/" />}

@@ -150,7 +150,7 @@ export default function HomePage() {
                   <img src="/images/char-bc.png" alt="" style={{ height:88, objectFit:"contain" as const }} />
                 </div>
               )}
-              <div style={{ display:"flex", flexDirection:"column" as const, justifyContent:"center", paddingLeft: isMobile ? 0 : 40, marginTop: isMobile ? 0 : -60, whiteSpace: "pre-line" as const }}>
+              <div style={{ display:"flex", flexDirection:"column" as const, justifyContent:"center", paddingLeft: isMobile ? 0 : 40, marginTop: isMobile ? 0 : 0, whiteSpace: "pre-line" as const }}>
                 <h1 style={{ fontWeight:900, fontSize: isMobile ? 32 : 44, color:"#6f471c", lineHeight:1.2, margin:"0 0 16px" }}>
                   {t("Japan's Tradition.\nScaled for America.","日本の伝統を、\nアメリカの日常へ。")}
                 </h1>

@@ -66,7 +66,7 @@ export default function ProductsPage() {
       <main style={{ fontFamily:"DM Sans, sans-serif", background:"#fff", marginTop:72 }}>
 
         {/* ── HERO ── */}
-        <section style={{ background:"#fff9f5", textAlign:"center", padding: isMobile ? "56px 24px 0" : "72px 80px 0" , whiteSpace:"pre-line"}}>
+        <section style={{ background:"#fff9f5", textAlign:"center", padding: isMobile ? "56px 24px 0" : "72px 80px 0", whiteSpace:"pre-line" }}>
           <h1 style={{ fontWeight:800, fontSize: isMobile ? 24 : 30, color:"#6f471c", margin:"0 0 12px" }}>
             {t("Products","商品一覧")}
           </h1>
@@ -89,44 +89,44 @@ export default function ProductsPage() {
           <h2 style={{ textAlign:"center", fontWeight:800, fontSize: isMobile ? 22 : 32, color:"#6f3a14", letterSpacing:0.2, margin:"0 0 40px", lineHeight:1.2 }}>
             {t("Selected Ingredients, Inclusive Choices","厳選された食材、多様な選択肢")}
           </h2>
-          <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: isMobile ? 48 : 32, maxWidth:900, margin:"0 auto" }}>
-            {ingredients.map((item) => (
-              <div key={item.title} style={{ display:"flex", flexDirection:"column" as const, alignItems:"center", gap:0 }}>
-                {/* Circle photo — sits above card, no overlap into text */}
-                <div style={{
-                  width: isMobile ? 150 : 190,
-                  height: isMobile ? 150 : 190,
-                  borderRadius:"50%", overflow:"hidden",
-                  background:"#ffefc8", flexShrink:0,
-                  position:"relative" as const, zIndex:1,
-                  boxShadow:"0 4px 16px rgba(0,0,0,0.08)",
-                  marginBottom: isMobile ? 0 : 0,
-                }}>
-                  <img src={item.src} alt={item.title} width={190} height={190} style={{ objectFit:"cover", width:"100%", height:"100%" }} />
-                </div>
-                {/* Yellow card:
-                    Mobile: no negative margin, image sits cleanly above card
-                    Desktop: small negative margin for the visual overlap effect, min-height keeps all equal */}
-                <div style={{
-                  background:"#ffefc8",
-                  borderRadius:24,
-                  padding: isMobile ? "28px 24px 32px" : "48px 28px 40px",
-                  marginTop: isMobile ? 0 : -20,
-                  width:"100%",
-                  minHeight: isMobile ? undefined : 260,
-                  boxSizing:"border-box" as const,
-                  textAlign:"center" as const,
-                }}>
-                  <div style={{ fontWeight:800, fontSize:14, color:"#6f471c", marginBottom:12, lineHeight:1.4 }}>
-                    {item.title}
+
+          {isMobile ? (
+            /* Mobile: image left, content right in one row */
+            <div style={{ display:"flex", flexDirection:"column", gap:16, maxWidth:500, margin:"0 auto" }}>
+              {ingredients.map((item) => (
+                <div key={item.title} style={{ display:"flex", alignItems:"center", gap:16, background:"#ffefc8", borderRadius:20, padding:"16px" }}>
+                  {/* Circle image */}
+                  <div style={{ width:90, height:90, borderRadius:"50%", overflow:"hidden", background:"#fff", flexShrink:0, boxShadow:"0 2px 10px rgba(0,0,0,0.08)" }}>
+                    <img src={item.src} alt={item.title} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
                   </div>
-                  <p style={{ color:"#6f471c", fontSize:13, lineHeight:1.85, margin:0 }}>
-                    {item.body}
-                  </p>
+                  {/* Content */}
+                  <div style={{ flex:1, minWidth:0 }}>
+                    <div style={{ fontWeight:800, fontSize:13, color:"#6f471c", marginBottom:6, lineHeight:1.4 }}>
+                      {item.title}
+                    </div>
+                    <p style={{ color:"#6f471c", fontSize:11, lineHeight:1.75, margin:0 }}>
+                      {item.body}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            /* Desktop: original circle + card layout */
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:32, maxWidth:900, margin:"0 auto" }}>
+              {ingredients.map((item) => (
+                <div key={item.title} style={{ display:"flex", flexDirection:"column" as const, alignItems:"center", gap:0 }}>
+                  <div style={{ width:190, height:190, borderRadius:"50%", overflow:"hidden", background:"#ffefc8", flexShrink:0, position:"relative" as const, zIndex:1, boxShadow:"0 4px 16px rgba(0,0,0,0.08)" }}>
+                    <img src={item.src} alt={item.title} width={190} height={190} style={{ objectFit:"cover", width:"100%", height:"100%" }} />
+                  </div>
+                  <div style={{ background:"#ffefc8", borderRadius:24, padding:"48px 28px 40px", marginTop:-20, width:"100%", minHeight:260, boxSizing:"border-box" as const, textAlign:"center" as const }}>
+                    <div style={{ fontWeight:800, fontSize:14, color:"#6f471c", marginBottom:12, lineHeight:1.4 }}>{item.title}</div>
+                    <p style={{ color:"#6f471c", fontSize:13, lineHeight:1.85, margin:0 }}>{item.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* ── DIETARY INFORMATION ── */}
@@ -140,17 +140,25 @@ export default function ProductsPage() {
                 key={d.label}
                 style={{
                   display:"flex",
-                  flexDirection: isMobile ? "column" as const : "row" as const,
-                  alignItems: isMobile ? "flex-start" : "center",
-                  gap: isMobile ? 8 : 28,
-                  padding: isMobile ? "16px 20px" : "20px 32px",
+                  flexDirection:"row" as const, // always row — bubble left, content right
+                  alignItems:"center",
+                  gap: isMobile ? 14 : 28,
+                  padding: isMobile ? "14px 16px" : "20px 32px",
                   borderBottom: i < dietary.length-1 ? "1.5px dashed #e4dcd4" : "none",
                 }}
               >
-                <span style={{ background:d.lb, color:d.lc, fontSize: isMobile ? 12 : 14, fontWeight:700, borderRadius:10, padding: isMobile ? "6px 14px" : "8px 20px", whiteSpace:"nowrap" as const, flexShrink:0, minWidth: isMobile ? 180 : 190, textAlign:"center" as const }}>
+                <span style={{
+                  background:d.lb, color:d.lc,
+                  fontSize: isMobile ? 11 : 14,
+                  fontWeight:700, borderRadius:10,
+                  padding: isMobile ? "6px 10px" : "8px 20px",
+                  whiteSpace:"nowrap" as const, flexShrink:0,
+                  minWidth: isMobile ? 120 : 190,
+                  textAlign:"center" as const,
+                }}>
                   {d.label}
                 </span>
-                <span style={{ color:d.ic, fontSize: isMobile ? 14 : 17, fontWeight:700 }}>
+                <span style={{ color:d.ic, fontSize: isMobile ? 13 : 17, fontWeight:700 }}>
                   {d.items}
                 </span>
               </div>
@@ -167,16 +175,10 @@ export default function ProductsPage() {
             {t("Taste the tradition for yourself.","伝統の味を、ぜひご自身でお確かめください。")}
           </p>
           <div style={{ display:"flex", gap:12, justifyContent:"center", flexWrap:"wrap" as const }}>
-            <Link
-              href="/our-story"
-              style={{ display:"inline-block", background:"#ed7e80", color:"#fff", padding: isMobile ? "13px 28px" : "16px 48px", borderRadius:999, fontWeight:800, fontSize: isMobile ? 14 : 16, textDecoration:"none", boxShadow:"0 4px 20px rgba(237,126,128,0.35)" }}
-            >
+            <Link href="/our-story" style={{ display:"inline-block", background:"#ed7e80", color:"#fff", padding: isMobile ? "13px 28px" : "16px 48px", borderRadius:999, fontWeight:800, fontSize: isMobile ? 14 : 16, textDecoration:"none", boxShadow:"0 4px 20px rgba(237,126,128,0.35)" }}>
               {t("Read Our Story →","私たちのストーリーを読む →")}
             </Link>
-            <Link
-              href="/wholesale"
-              style={{ display:"inline-block", background:"#fff", color:"#6f471c", padding: isMobile ? "13px 28px" : "16px 48px", borderRadius:999, fontWeight:800, fontSize: isMobile ? 14 : 16, textDecoration:"none", border:"2px solid #e8d8b8", boxShadow:"0 4px 20px rgba(0,0,0,0.06)" }}
-            >
+            <Link href="/wholesale" style={{ display:"inline-block", background:"#fff", color:"#6f471c", padding: isMobile ? "13px 28px" : "16px 48px", borderRadius:999, fontWeight:800, fontSize: isMobile ? 14 : 16, textDecoration:"none", border:"2px solid #e8d8b8", boxShadow:"0 4px 20px rgba(0,0,0,0.06)" }}>
               {t("Partner With Us →","パートナーシップについて →")}
             </Link>
           </div>

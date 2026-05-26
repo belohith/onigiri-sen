@@ -74,7 +74,7 @@ export default function OurStoryPage() {
           </div>
           <div style={{ position:"relative", zIndex:1, width:"100%", textAlign:"center", padding: isMobile ? "48px 24px" : "64px 120px", color:"#fff",whiteSpace: "pre-line", }}>
             <h2 style={{ fontWeight:700, fontSize: isMobile ? 24 : 42, lineHeight:1.2, margin:"0 0 16px", fontFamily:crimson.style.fontFamily }}>
-              {t("Mission\nBringing Onigiri into American Daily Life.", " —ミッションーー \n おにぎりをアメリカの日常へ")}
+              {t("Mission\nBringing Onigiri into American Daily Life.", " —ミッション— \n おにぎりをアメリカの日常へ")}
             </h2>
             <p style={{ maxWidth:600, margin:"0 auto", fontSize: isMobile ? 15 : 18, lineHeight:1.85, opacity:0.9, fontFamily:crimson.style.fontFamily }}>
               {t(

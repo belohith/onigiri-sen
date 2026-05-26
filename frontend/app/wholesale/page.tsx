@@ -208,7 +208,7 @@ export default function WholesalePage() {
         {/* ── HERO ── */}
         <section style={{ padding: isMobile ? "72px 24px 40px" : "112px 80px 64px", textAlign: "center", background: "#fdf9f4" }}>
           <h1 style={{ fontWeight: 900, fontSize: isMobile ? 26 : 42, color: "#6f471c", lineHeight: 1.2, margin: "0 0 16px", whiteSpace: "pre-line" }}>
-            {t("A Scalable, Reliable Partner\nfor Your Business.", "あらゆる食の現場へ、\n誰もが喜ぶ\n(ヘルシーな選択肢を)を。")}
+            {t("A Scalable, Reliable Partner\nfor Your Business.", "あらゆる食の現場へ、\n誰もが喜ぶ\nヘルシーな選択肢を")}
           </h1>
           <p style={{ color: "#6f471c", fontSize: isMobile ? 14 : 16, maxWidth: 560, margin: "0 auto 28px", lineHeight: 1.75 }}>
             {t(

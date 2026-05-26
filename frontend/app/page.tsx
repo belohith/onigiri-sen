@@ -66,13 +66,13 @@ export default function HomePage() {
               "日本最高峰の漁場が育んだ有明海産の海苔から、和歌山産・1％以下の希少なオーガニック紀州梅にいたるまで、本当に安心・安全な食材だけを厳選。品質への妥協なき情熱を、その一つひとつに込めて届けます。"),
     },
     {
-      n:"02", img:"/images/why-healthy-1.png", mascot:"/images/char-ps.png",
+      n:"02", img:"/images/why-healthy-1.png", mascot:"/images/char-pp.png",
       title: t("Healthy & Satisfying","手軽に、しっかり栄養"),
       body: t("Energy for Your Day. The natural umami of perfectly cooked rice paired with high-quality proteins like salmon and spicy tuna. We provide a deeply satisfying meal that fuels your busy modern lifestyle with lasting energy.",
               "ふっくら炊き上げたお米本来の旨みと、厳選した鮭やスパイシーツナといった良質なタンパク質。忙しい現代のライフスタイルに、確かな満足感とエネルギーを美味しくチャージします。"),
     },
     {
-      n:"03", img:"/images/why-fresh.png", mascot:"/images/char-cg.png",
+      n:"03", img:"/images/why-fresh.png", mascot:"/images/char-bc.png",
       title: t("Made Fresh Daily","毎日、できたての新鮮さを"),
       body: t("Made Daily, Ready to Grab. Prepared fresh every single day. Whether you are between meetings or on the move, enjoy an authentic, high-quality meal anytime, anywhere without compromise.",
               "毎日作りたてのおにぎりをお届け。仕事の合間や、ちょっとした移動時間でも、素材本来の豊かな風味を引き立てた、本格的な味わいを楽しめます。"),
@@ -136,15 +136,21 @@ export default function HomePage() {
               position:"relative" as const,
               gap: isMobile ? 24 : 0,
             }}>
-              {/* Mascots — hidden on mobile */}
-              {!isMobile && (
+              {/* Mascots — desktop: overlapping wave, mobile: row above text */}
+              {!isMobile ? (
                 <div style={{ position:"relative" as const, minHeight:260 }}>
-                  <img src="/images/char-pp.png" alt="" style={{ position:"absolute", bottom:0, left:60,  height:100, objectFit:"contain" as const }} />
-                  <img src="/images/char-s.png"  alt="" style={{ position:"absolute", bottom:0, left:180, height:110, objectFit:"contain" as const }} />
-                  <img src="/images/char-bc.png" alt="" style={{ position:"absolute", bottom:20,left:320, height:120, objectFit:"contain" as const }} />
+                  <img src="/images/char-pp.png" alt="" style={{ position:"absolute", bottom:100, left:60,  height:120, objectFit:"contain" as const }} />
+                  <img src="/images/char-s.png"  alt="" style={{ position:"absolute", bottom:100, left:180, height:130, objectFit:"contain" as const }} />
+                  <img src="/images/char-bc.png" alt="" style={{ position:"absolute", bottom:120, left:320, height:140, objectFit:"contain" as const }} />
+                </div>
+              ) : (
+                <div style={{ display:"flex", justifyContent:"center", alignItems:"flex-end", gap:8, marginBottom:8, marginTop:-8 }}>
+                  <img src="/images/char-pp.png" alt="" style={{ height:72, objectFit:"contain" as const }} />
+                  <img src="/images/char-s.png"  alt="" style={{ height:80, objectFit:"contain" as const }} />
+                  <img src="/images/char-bc.png" alt="" style={{ height:88, objectFit:"contain" as const }} />
                 </div>
               )}
-              <div style={{ display:"flex", flexDirection:"column" as const, justifyContent:"center", paddingLeft: isMobile ? 0 : 40 }}>
+              <div style={{ display:"flex", flexDirection:"column" as const, justifyContent:"center", paddingLeft: isMobile ? 0 : 40, marginTop: isMobile ? 0 : -60, whiteSpace: "pre-line" as const }}>
                 <h1 style={{ fontWeight:900, fontSize: isMobile ? 32 : 44, color:"#6f471c", lineHeight:1.2, margin:"0 0 16px" }}>
                   {t("Japan's Tradition.\nScaled for America.","日本の伝統を、\nアメリカの日常へ。")}
                 </h1>
@@ -207,8 +213,8 @@ export default function HomePage() {
             <span style={{ background:"#ffefc8", color:"#6f471c", borderRadius:999, padding:"8px 16px", fontSize:11, fontWeight:700, letterSpacing:1, display:"inline-block", marginBottom:16 }}>
               {t("WHAT IS ONIGIRI SEN?","Onigiri Sen とは?")}
             </span>
-            <h2 style={{ fontWeight:700, fontSize: isMobile ? 28 : 42, lineHeight:1.2, margin:"0 0 16px", maxWidth:560, fontFamily:crimson.style.fontFamily }}>
-              {t("A 1,000-Year Tradition for the Next 1,000 Years","千年の伝統を、次の千年へ。")}
+            <h2 style={{ fontWeight:700, fontSize: isMobile ? 28 : 42, lineHeight:1.2, margin:"0 0 16px", maxWidth:560, fontFamily:crimson.style.fontFamily, whiteSpace:"pre-line" as const }}>
+              {t("A 1,000-Year Tradition \nfor the Next 1,000 Years","千年の伝統を、\n次の千年へ。")}
             </h2>
             <p style={{ opacity:0.9, fontSize: isMobile ? 15 : 17, lineHeight:1.8, margin:"0 0 28px", maxWidth:500, fontFamily:crimson.style.fontFamily }}>
               {t("Onigiri has nourished Japan for over a millennium. We're bringing that tradition to America — made fresh daily with premium ingredients, wrapped in authentic Ariake nori.",
@@ -239,7 +245,7 @@ export default function HomePage() {
             {t("Follow Along !","私たちのストーリーをInstagramでフォロー！")}
           </h2>
           <p style={{ fontSize:16, opacity:0.85, margin:"0 0 24px" }}>@onigirisen.jp</p>
-          <img src="/images/char-instagram.png" alt="" style={{ height: isMobile ? 180 : 300, objectFit:"contain" as const, display:"block", margin:"0 auto 24px" }} />
+          <img src="/images/char-ty.png" alt="" style={{ height: isMobile ? 180 : 300, objectFit:"contain" as const, display:"block", margin:"0 auto 24px" }} />
           <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap:16, maxWidth:960, margin:"0 auto 36px" }}>
             <IgPost url="https://www.instagram.com/p/DWDJ9pHB1YV/" />
             {!isMobile && <IgPost url="https://www.instagram.com/p/DXpi8wZCITL/" />}

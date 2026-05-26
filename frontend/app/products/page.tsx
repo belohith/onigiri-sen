@@ -66,7 +66,7 @@ export default function ProductsPage() {
       <main style={{ fontFamily:"DM Sans, sans-serif", background:"#fff", marginTop:72 }}>
 
         {/* ── HERO ── */}
-        <section style={{ background:"#fff9f5", textAlign:"center", padding: isMobile ? "56px 24px 0" : "72px 80px 0" }}>
+        <section style={{ background:"#fff9f5", textAlign:"center", padding: isMobile ? "56px 24px 0" : "72px 80px 0" , whiteSpace:"pre-line"}}>
           <h1 style={{ fontWeight:800, fontSize: isMobile ? 24 : 30, color:"#6f471c", margin:"0 0 12px" }}>
             {t("Products","商品一覧")}
           </h1>
@@ -76,7 +76,7 @@ export default function ProductsPage() {
           <p style={{ fontWeight:200, color:"#6f471c", fontSize:13, maxWidth:500, margin:"0 auto", lineHeight:1.7 }}>
             {t(
               "Each Onigiri Sen rice ball is made with premium rice, wrapped in Ariake nori, and filled with carefully sourced ingredients. Pure craftsmanship in every bite.",
-              "厳選されたプレミアム米、パリッと香る有明海苔、そして丁寧に選び抜いた具材。一口ごとに、Onigiri Sen のこだわりが広がります。"
+              "厳選されたプレミアム米、パリッと香る有明海苔、そして丁寧に選び抜いた具材。\n一口ごとに、Onigiri Sen のこだわりが広がります。"
             )}
           </p>
         </section>
@@ -147,7 +147,7 @@ export default function ProductsPage() {
                   borderBottom: i < dietary.length-1 ? "1.5px dashed #e4dcd4" : "none",
                 }}
               >
-                <span style={{ background:d.lb, color:d.lc, fontSize: isMobile ? 12 : 14, fontWeight:700, borderRadius:10, padding: isMobile ? "6px 14px" : "8px 20px", whiteSpace:"nowrap" as const, flexShrink:0, minWidth: isMobile ? 0 : 150, textAlign:"center" as const }}>
+                <span style={{ background:d.lb, color:d.lc, fontSize: isMobile ? 12 : 14, fontWeight:700, borderRadius:10, padding: isMobile ? "6px 14px" : "8px 20px", whiteSpace:"nowrap" as const, flexShrink:0, minWidth: isMobile ? 180 : 190, textAlign:"center" as const }}>
                   {d.label}
                 </span>
                 <span style={{ color:d.ic, fontSize: isMobile ? 14 : 17, fontWeight:700 }}>

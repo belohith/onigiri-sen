@@ -35,12 +35,8 @@ function TimelineCarousel() {
 
   return (
     <div style={{ position:"relative", borderRadius:20, overflow:"hidden", background:"#c8bfb5" }}>
-  <img
-    src={images[current]}
-    alt={`Timeline ${current + 1}`}
-    style={{ width:"100%", height:"auto", display:"block", transition:"opacity 0.3s" }}
-  />
-<button onClick={prev} style={{ position:"absolute", left:12, top:"50%", transform:"translateY(-50%)", background:"rgba(255,255,255,0.8)", border:"none", borderRadius:"50%", width:40, height:40, cursor:"pointer", fontSize:22, fontWeight:700, display:"flex", alignItems:"center", justifyContent:"center", color:"#6f471c" }}>‹</button>
+      <img src={images[current]} alt={`Timeline ${current + 1}`} style={{ width:"100%", height:"auto", display:"block", transition:"opacity 0.3s" }} />
+      <button onClick={prev} style={{ position:"absolute", left:12, top:"50%", transform:"translateY(-50%)", background:"rgba(255,255,255,0.8)", border:"none", borderRadius:"50%", width:40, height:40, cursor:"pointer", fontSize:22, fontWeight:700, display:"flex", alignItems:"center", justifyContent:"center", color:"#6f471c" }}>‹</button>
       <button onClick={next} style={{ position:"absolute", right:12, top:"50%", transform:"translateY(-50%)", background:"rgba(255,255,255,0.8)", border:"none", borderRadius:"50%", width:40, height:40, cursor:"pointer", fontSize:22, fontWeight:700, display:"flex", alignItems:"center", justifyContent:"center", color:"#6f471c" }}>›</button>
       <div style={{ position:"absolute", bottom:14, left:"50%", transform:"translateX(-50%)", display:"flex", gap:8 }}>
         {images.map((_, i) => (
@@ -72,7 +68,7 @@ export default function OurStoryPage() {
           <div style={{ position:"absolute", inset:0 }}>
             <img src="/images/story-mission.png" alt="" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover" }} />
           </div>
-          <div style={{ position:"relative", zIndex:1, width:"100%", textAlign:"center", padding: isMobile ? "48px 24px" : "64px 120px", color:"#fff",whiteSpace: "pre-line", }}>
+          <div style={{ position:"relative", zIndex:1, width:"100%", textAlign:"center", padding: isMobile ? "48px 24px" : "64px 120px", color:"#fff", whiteSpace:"pre-line" }}>
             <h2 style={{ fontWeight:700, fontSize: isMobile ? 24 : 42, lineHeight:1.2, margin:"0 0 16px", fontFamily:crimson.style.fontFamily }}>
               {t("Mission\nBringing Onigiri into American Daily Life.", " —ミッション— \n おにぎりをアメリカの日常へ")}
             </h2>
@@ -101,20 +97,13 @@ export default function OurStoryPage() {
                     )}
                   </p>
                 </div>
-
-                {/* Founder photo — fixed height, no reflow on language change */}
                 <div style={{ borderRadius:20, overflow:"hidden", position:"relative", marginBottom:24, height:480, flexShrink:0 }}>
                   <img src="/images/rina-oike.webp" alt="Rina Oike" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", objectPosition:"center 10%" }} />
                   <div style={{ position:"absolute", bottom:0, left:0, right:0, background:"linear-gradient(transparent, rgba(0,0,0,0.55))", padding:"16px 20px" }}>
-                    <div style={{ fontWeight:900, fontSize:22, color:"#fff" }}>
-                      {t("RINA OIKE","尾池里奈")}
-                    </div>
-                    <div style={{ fontSize:13, color:"rgba(255,255,255,0.9)" }}>
-                      {t("Founder & CEO, Onigiri Sen","創業者 & CEO、おにぎり千")}
-                    </div>
+                    <div style={{ fontWeight:900, fontSize:22, color:"#fff" }}>{t("RINA OIKE","尾池里奈")}</div>
+                    <div style={{ fontSize:13, color:"rgba(255,255,255,0.9)" }}>{t("Founder & CEO, Onigiri Sen","創業者 & CEO、Onigiri Sen")}</div>
                   </div>
                 </div>
-
                 <div style={{ display:"flex", gap:12, flexWrap:"wrap" as const }}>
                   <a href="https://www.king5.com/video/entertainment/television/programs/new-day-northwest/onigiri-sen-goes-viral-for-japanese-grab-and-go-snack-new-day-nw/281-70888a26-d765-4dc6-8aac-8bb6f97d982a" target="_blank" rel="noopener noreferrer" style={{ display:"inline-block", borderRadius:999, border:"2px solid #ef7f88", background:"#fff", padding:"12px 20px", fontSize:13, fontWeight:900, color:"#ef7f88", textDecoration:"none" }}>
                     {t("Watch the KING 5 Feature →","KING 5 特集を見る →")}
@@ -126,17 +115,8 @@ export default function OurStoryPage() {
               </>
             ) : (
               <>
-                <div
-  style={{
-    background: "#f3a8b6",
-    width: lang === "ja" ? "66%" : "72%",
-    padding: lang === "ja"
-      ? "52px 240px 52px 80px"
-      : "52px 200px 52px 80px",
-    position: "relative",
-    zIndex: 10,
-  }}
->  <h2 style={{ fontWeight:900, fontSize:40, color:"#fff", margin:"0 0 32px" }}>
+                <div style={{ background:"#f3a8b6", width: lang === "ja" ? "66%" : "72%", padding: lang === "ja" ? "52px 240px 52px 80px" : "52px 200px 52px 80px", position:"relative", zIndex:10 }}>
+                  <h2 style={{ fontWeight:900, fontSize:40, color:"#fff", margin:"0 0 32px" }}>
                     {t("Founder's Story","創業者のストーリー")}
                   </h2>
                   <p style={{ fontSize:16, fontWeight:600, fontStyle:"italic", lineHeight:2.05, letterSpacing:"0.02em", color:"#fff", margin:0, maxWidth:760 }}>
@@ -146,32 +126,13 @@ export default function OurStoryPage() {
                     )}
                   </p>
                 </div>
-                <div
-  style={{
-    position: "absolute",
-    right: 0,
-    top: 60,
-    zIndex: 20,
-    width: lang === "ja" ? 620 : 520,
-    height: 660,
-    overflow: "hidden",
-    display: "flex",
-    flexDirection: "column" as const,
-    justifyContent: "flex-end",
-    padding: "40px 40px 48px",
-  }}
->
-    <div style={{ position:"absolute", inset:0, overflow:"hidden" }}>
+                <div style={{ position:"absolute", right:0, top:60, zIndex:20, width: lang === "ja" ? 620 : 520, height:660, overflow:"hidden", display:"flex", flexDirection:"column" as const, justifyContent:"flex-end", padding:"40px 40px 48px" }}>
+                  <div style={{ position:"absolute", inset:0, overflow:"hidden" }}>
                     <img src="/images/rina-oike.webp" alt="" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", objectPosition:"center 10%" }} />
                   </div>
-                  {/* <img src="/images/char-founder.png" alt="" style={{ position:"absolute", left:"-6rem", top:"55%", transform:"translateY(-50%)", height:160, objectFit:"contain" as const, zIndex:3 }} /> */}
                   <div style={{ position:"relative", zIndex:1 }}>
-                    <div style={{ fontWeight:900, fontSize:44, color:"#fff", letterSpacing:"0.05em", lineHeight:1.1 }}>
-                      {t("RINA OIKE","及川 里奈")}
-                    </div>
-                    <div style={{ fontWeight:700, fontSize:18, color:"rgba(255,255,255,0.9)", marginBottom:30, padding:5 }}>
-                      {t("Founder & CEO, Onigiri Sen","創業者 & CEO、おにぎり千")}
-                    </div>
+                    <div style={{ fontWeight:900, fontSize:44, color:"#fff", letterSpacing:"0.05em", lineHeight:1.1 }}>{t("RINA OIKE","尾池里奈")}</div>
+                    <div style={{ fontWeight:700, fontSize:18, color:"rgba(255,255,255,0.9)", marginBottom:30, padding:5 }}>{t("Founder & CEO, Onigiri Sen","創業者 & CEO、Onigiri Sen")}</div>
                   </div>
                 </div>
                 <div style={{ display:"flex", gap:40, flexWrap:"wrap" as const, marginTop:80, paddingLeft:80 }}>
@@ -187,15 +148,15 @@ export default function OurStoryPage() {
           </div>
         </section>
 
-        {/* 4. 1000 YEARS */}
-        <section style={{ position:"relative", overflow:"hidden", color:"#fff", minHeight: isMobile ? 320 : 600 }}>
+        {/* 4. 1000 YEARS — mobile matches desktop */}
+        <section style={{ position:"relative", overflow:"hidden", color:"#fff", minHeight: isMobile ? 500 : 600 }}>
           <img src="/images/story-1000y.png" alt="" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover" }} />
-          <div style={{ position:"relative", zIndex:1, textAlign:"center", padding: isMobile ? "56px 24px" : "80px 120px" }}>
-            <h2 style={{ fontWeight:700, fontSize: isMobile ? 28 : 48, lineHeight:1.2, margin:"0 0 24px", fontFamily:crimson.style.fontFamily }}>
-              {t("A 1,000-Year Tradition for the Next 1,000 Years","千年の伝統を、次の千年へ。")}
+          <div style={{ position:"relative", zIndex:1, textAlign:"center", padding: isMobile ? "60px 32px" : "80px 120px" }}>
+            <h2 style={{ fontWeight:700, fontSize: isMobile ? 36 : 48, lineHeight:1.2, margin:"0 0 24px", fontFamily:crimson.style.fontFamily, whiteSpace:"pre-line" as const }}>
+              {t("A 1,000-Year Tradition \nfor the Next 1,000 Years","千年の伝統を、\n次の千年へ。")}
             </h2>
-            <div style={{ border:"1px solid rgba(255,255,255,0.45)", borderRadius:12, padding: isMobile ? "16px 20px" : "24px 36px", maxWidth:560, margin:"0 auto" }}>
-              <p style={{ opacity:0.9, fontSize: isMobile ? 15 : 18, lineHeight:1.9, margin:0, fontFamily:crimson.style.fontFamily }}>
+            <div style={{ border:"1px solid rgba(255,255,255,0.45)", borderRadius:12, padding:"24px 28px", maxWidth:560, margin:"0 auto" }}>
+              <p style={{ opacity:0.9, fontSize: isMobile ? 16 : 18, lineHeight:1.9, margin:0, fontFamily:crimson.style.fontFamily }}>
                 {t(
                   "The name Onigiri Sen — Sen (千) meaning one thousand — carries a simple but powerful wish: to take a tradition that has lasted 1,000 years, and keep it for 1,000 more. Starting with Seattle. Expanding across America.",
                   "Onigiri Senの「千（Sen）」には、千年の歴史という意味が込められています。私たちのミッションは、これまで千年続いてきた伝統を、次の千年の未来へと繋いでいくこと。シアトルからはじまる私たちの挑戦は、このおにぎりという食文化をアメリカ全土へと広げていきます。"
@@ -209,9 +170,7 @@ export default function OurStoryPage() {
         <section style={{ padding: isMobile ? "48px 20px 60px" : "72px 80px 80px", background:"#ffefc8" }}>
           <div style={{ display:"flex", justifyContent:"center", marginBottom:40 }}>
             <div style={{ display:"inline-flex", alignItems:"center", gap:10, background:"#ed7e80", borderRadius:999, padding:"8px 20px" }}>
-              <span style={{ fontWeight:700, color:"#fff", fontSize:14 }}>
-                {t("A Journey Started in 2025","2025年。私たちの歩み。")}
-              </span>
+              <span style={{ fontWeight:700, color:"#fff", fontSize:14 }}>{t("A Journey Started in 2025","2025年。私たちの歩み。")}</span>
             </div>
           </div>
           <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 36 : 48 }}>
@@ -232,9 +191,8 @@ export default function OurStoryPage() {
                 {
                   date:"2026", dotColor:"#ed7e80",
                   title:t("Scaling the Vision","さらに大きな舞台へ"),
-                  body:t(
-  "The momentum continues. This year, we expand to T-Mobile Park stadium and take our next big leap into San Jose. California is next.",
-  "今年は大舞台であるT-Mobileパーク（球場）での取り扱いがスタート。そしてこの6月には、サンノゼへの進出へ。アメリカ中に新しい食文化を届けるため、次の一歩を踏み出します。"),
+                  body:t("The momentum continues. This year, we expand to T-Mobile Park stadium and take our next big leap into San Jose. California is next.",
+                         "今年は大舞台であるT-Mobileパーク（野球場）での取り扱いがスタート。そしてこの6月には、サンノゼへの進出へ。アメリカ中に新しい食文化を届けるため、次の一歩を踏み出します。"),
                 },
               ].map((item, i) => (
                 <div key={item.date} style={{ display:"grid", gridTemplateColumns:"64px 20px 1fr", gap:"0 12px", marginBottom:i<2?36:0 }}>
@@ -260,14 +218,14 @@ export default function OurStoryPage() {
             <div style={{ display:"inline-flex", alignItems:"center", gap:8, background:"#ed7e80", borderRadius:999, padding:"7px 20px", fontSize:11, fontWeight:700, letterSpacing:1.5, color:"#fff", marginBottom:20, textTransform:"uppercase" as const }}>
               {t("TECHNOLOGY","テクノロジー")}
             </div>
-            <h2 style={{ fontWeight:800, fontSize: isMobile ? 22 : 28, color:"#6f471c", margin:"0 0 10px" }}>
-              {t("Powered by Global Food-Tech","世界が誇る、日本の炊飯・成形技術。")}
+            <h2 style={{ fontWeight:800, fontSize: isMobile ? 22 : 28, color:"#6f471c", margin:"0 0 10px", whiteSpace:"pre-line" as const }}>
+              {t("Powered by Global Food-Tech","世界が誇る、\n日本の炊飯・成形技術。")}
             </h2>
             <p style={{ color:"#6f471c", fontSize:14, margin:0 }}>
               {t("The Secret Behind Every Perfect Onigiri Bite","一口ごとに感動がある、美味しさの秘密。")}
             </p>
           </div>
-          <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap:24, whiteSpace:"pre-line" }}>
+          <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap:24 }}>
             {[
               {
                 src:"/images/fuji.png",
@@ -309,8 +267,8 @@ export default function OurStoryPage() {
             <div style={{ display:"inline-flex", alignItems:"center", gap:8, background:"#ED7E80", borderRadius:999, padding:"7px 20px", fontSize:11, fontWeight:700, letterSpacing:1.5, color:"#fff", marginBottom:20, textTransform:"uppercase" as const }}>
               {t("INGREDIENTS","食材")}
             </div>
-            <h2 style={{ fontWeight:800, fontSize: isMobile ? 20 : 28, color:"#6f471c", margin:0 }}>
-              {t("Ingredients — The Perfect Union of Japan and America","日米の最高峰が交わる、こだわりの結晶")}
+            <h2 style={{ fontWeight:800, fontSize: isMobile ? 20 : 28, color:"#6f471c", margin:0, whiteSpace:"pre-line" as const }}>
+              {t("Ingredients — The Perfect Union \n of Japan and America","日米の最高峰が交わる、\nこだわりの結晶")}
             </h2>
           </div>
           <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: isMobile ? 16 : 24 }}>
@@ -325,13 +283,13 @@ export default function OurStoryPage() {
                 src:"/images/ingredient-ume-orchard.png",
                 label:t("KISHU UME (Organic Pickled Plum)","大地の恵みをそのままに オーガニック紀州梅"),
                 body:t("We use the 'Gold Standard' of Japanese plums—exceedingly rare, certified organic ume from Wakayama. Through personal visits to the orchards, we have witnessed firsthand the deep commitment to sustainable, chemical-free farming. Each fruit is hand-selected for its exquisite balance, specifically chosen to elevate the natural sweetness of our rice.",
-                       "和歌山県産の最高品質なオーガニック認証梅を使用。私たちは実際に現地農園を訪れ、農薬や肥料に頼らない持続可能な農法への真摯なこだわりを直接確かめてきました。日本の梅の「ゴールドスタンダード」とも言えるその味わいは、お米本来の甘みを最大限に引き立てます。 "),
+                       "和歌山県産の最高品質なオーガニック認証梅を使用。私たちは実際に現地農園を訪れ、農薬や肥料に頼らない持続可能な農法への真摯なこだわりを直接確かめてきました。日本の梅の「ゴールドスタンダード」とも言えるその味わいは、お米本来の甘みを最大限に引き立てます。"),
               },
               {
                 src:"/images/ingredient-rice-field.png",
                 label:t("TENKEI RICE (California Super Premium)","カリフォルニアの恵み 特選米「天恵（Tenkei）"),
                 body:t("Our canvas is Tenkei, a super-premium grain grown in the fertile soils of California. After rigorous testing with our AIHO system, we selected this specific grain for its unparalleled ability to achieve the perfect balance of sweetness and texture. By combining American-grown freshness with Japanese precision, we have crafted the ultimate bite.",
-                       "私たちの「キャンバス」は、カリフォルニア産最高級米「天恵」です。 AIHOのシステムで数多の銘柄をテストし、最も理想的な甘みと食感を引き出せる一粒を厳選しました。 日本の炊飯技術を掛け合わせることで、驚くほどふっくらとした、甘み溢れる「アメリカ生まれの最高の一粒」に仕上げています。"),
+                       "私たちの「キャンバス」は、カリフォルニア産最高級米「天恵」です。AIHOのシステムで数多の銘柄をテストし、最も理想的な甘みと食感を引き出せる一粒を厳選しました。日本の炊飯技術を掛け合わせることで、驚くほどふっくらとした、甘み溢れる「アメリカ生まれの最高の一粒」に仕上げています。"),
               },
             ].map((item) => (
               <div key={item.label} style={{ background:"#fff", borderRadius:16, overflow:"hidden" }}>

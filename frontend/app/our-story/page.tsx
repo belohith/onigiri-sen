@@ -75,15 +75,28 @@ export default function OurStoryPage() {
             <p style={{ maxWidth:600, margin:"0 auto", fontSize: isMobile ? 15 : 18, lineHeight:1.85, opacity:0.9, fontFamily:crimson.style.fontFamily }}>
               {t(
                 "We are making Japan's 1,000-year-old food culture more accessible than ever. By combining premium ingredients with masterful techniques, we provide the ultimate choice for those seeking a quick, delicious, and healthy meal — even in the busiest of lives. We bring this wholesome option directly to your everyday.",
-                "日本の1,000年の食文化をこれまで以上に身近にしています。最高の食材と卓越した技術を組み合わせ、忙しい毎日でも手軽に美味しく健康的な食事を提供します。"
+                "1000年続く日本の食文化を、もっと身近なものに。日本最高峰の有明海産海苔と、アメリカの豊かな食材を最高の技術で掛け合わせ、『新しい食のコラボ』を生み出しました。健康的でフレッシュな美味しい『おにぎり』を、アメリカの日常へと広げていきます。"
               )}
             </p>
           </div>
         </section>
 
         {/* 3. FOUNDER'S STORY */}
-        <section style={{ background:"#fff8f4", padding: isMobile ? "32px 20px" : "48px", margin:"48px 0", overflow:"hidden" }}>
-          <div style={{ position:"relative", maxWidth:1500, margin:"0 auto" }}>
+        <section
+  style={{
+    background: "#fff8f4",
+    padding: isMobile ? "32px 20px" : "48px 48px 140px",
+    margin: "48px 0",
+    overflow: isMobile ? "hidden" : "visible",
+  }}
+>  <div
+  style={{
+    position: "relative",
+    maxWidth: 1500,
+    margin: "0 auto",
+    minHeight: isMobile ? "auto" : 760,
+  }}
+>
             {isMobile ? (
               <>
                 <div style={{ background:"#f3a8b6", borderRadius:20, padding:"32px 24px", marginBottom:24 }}>
@@ -115,7 +128,8 @@ export default function OurStoryPage() {
               </>
             ) : (
               <>
-                <div style={{ background:"#f3a8b6", width: lang === "ja" ? "66%" : "72%", padding: lang === "ja" ? "52px 240px 52px 80px" : "52px 200px 52px 80px", position:"relative", zIndex:10 }}>
+                {/* Pink text card — fixed width independent of language */}
+                <div style={{ background:"#f3a8b6", width:"72%", padding:"52px 220px 52px 80px", position:"relative", zIndex:10 }}>
                   <h2 style={{ fontWeight:900, fontSize:40, color:"#fff", margin:"0 0 32px" }}>
                     {t("Founder's Story","創業者のストーリー")}
                   </h2>
@@ -126,7 +140,15 @@ export default function OurStoryPage() {
                     )}
                   </p>
                 </div>
-                <div style={{ position:"absolute", right:0, top:60, zIndex:20, width: lang === "ja" ? 620 : 520, height:660, overflow:"hidden", display:"flex", flexDirection:"column" as const, justifyContent:"flex-end", padding:"40px 40px 48px" }}>
+
+                {/* Photo card — fixed size, never changes */}
+                <div style={{
+                  position:"absolute", right:0, top:60, zIndex:20,
+                  width:520, height:660,
+                  overflow:"hidden",
+                  display:"flex", flexDirection:"column" as const, justifyContent:"flex-end",
+                  padding:"40px 40px 48px",
+                }}>
                   <div style={{ position:"absolute", inset:0, overflow:"hidden" }}>
                     <img src="/images/rina-oike.webp" alt="" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", objectPosition:"center 10%" }} />
                   </div>
@@ -135,6 +157,7 @@ export default function OurStoryPage() {
                     <div style={{ fontWeight:700, fontSize:18, color:"rgba(255,255,255,0.9)", marginBottom:30, padding:5 }}>{t("Founder & CEO, Onigiri Sen","創業者 & CEO、Onigiri Sen")}</div>
                   </div>
                 </div>
+
                 <div style={{ display:"flex", gap:40, flexWrap:"wrap" as const, marginTop:80, paddingLeft:80 }}>
                   <a href="https://www.king5.com/video/entertainment/television/programs/new-day-northwest/onigiri-sen-goes-viral-for-japanese-grab-and-go-snack-new-day-nw/281-70888a26-d765-4dc6-8aac-8bb6f97d982a" target="_blank" rel="noopener noreferrer" style={{ display:"inline-block", borderRadius:999, border:"3px solid #ef7f88", background:"#fff", padding:"18px 48px", fontSize:14, fontWeight:900, color:"#ef7f88", textDecoration:"none" }}>
                     {t("Watch the KING 5 Feature →","KING 5 特集を見る →")}
@@ -148,7 +171,7 @@ export default function OurStoryPage() {
           </div>
         </section>
 
-        {/* 4. 1000 YEARS — mobile matches desktop */}
+        {/* 4. 1000 YEARS */}
         <section style={{ position:"relative", overflow:"hidden", color:"#fff", minHeight: isMobile ? 500 : 600 }}>
           <img src="/images/story-1000y.png" alt="" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover" }} />
           <div style={{ position:"relative", zIndex:1, textAlign:"center", padding: isMobile ? "60px 32px" : "80px 120px" }}>

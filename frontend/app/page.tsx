@@ -54,6 +54,71 @@ function useIsMobile() {
   return isMobile;
 }
 
+function CaliforniaCountdown({ isMobile, t }: { isMobile: boolean; t: (en: string, ja: string) => string }) {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const target = new Date("2026-06-18T00:00:00-07:00").getTime(); // PDT
+    const tick = () => {
+      const now = Date.now();
+      const diff = Math.max(0, target - now);
+      setTimeLeft({
+        days:    Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours:   Math.floor((diff / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((diff / (1000 * 60)) % 60),
+        seconds: Math.floor((diff / 1000) % 60),
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const units = [
+    { value: timeLeft.days,    label: t("DAYS","日") },
+    { value: timeLeft.hours,   label: t("HOURS","時間") },
+    { value: timeLeft.minutes, label: t("MINUTES","分") },
+    { value: timeLeft.seconds, label: t("SECONDS","秒") },
+  ];
+
+  return (
+    <section style={{ background:"#fdefc8", padding: isMobile ? "40px 24px 48px" : "56px 80px 64px", textAlign:"center" }}>
+      <div style={{ display:"inline-flex", alignItems:"center", gap:8, background:"#ed7e80", borderRadius:999, padding:"6px 18px", marginBottom:16 }}>
+        <span style={{ fontWeight:700, color:"#fff", fontSize:11, letterSpacing:2, textTransform:"uppercase" as const }}>
+          {t("COMING THIS JUNE","2026年6月 オープン")}
+        </span>
+      </div>
+      <h2 style={{ fontWeight:900, fontSize: isMobile ? 22 : 32, color:"#6f471c", margin:"0 0 6px", lineHeight:1.2 }}>
+        {t("San Jose, California","サンノゼ、カリフォルニア")}
+      </h2>
+      <p style={{ color:"#8a6a4a", fontSize: isMobile ? 13 : 15, margin:"0 0 32px" }}>
+        {t("Fresh onigiri, coming to a store near you — June 18, 2026","新鮮なおにぎりが、あなたのそばへ — 2026年6月18日")}
+      </p>
+      <div style={{ display:"flex", justifyContent:"center", gap: isMobile ? 12 : 24 }}>
+        {units.map((u) => (
+          <div key={u.label} style={{ display:"flex", flexDirection:"column" as const, alignItems:"center", gap:6 }}>
+            <div style={{
+              background:"#6f471c", color:"#fff",
+              borderRadius: isMobile ? 16 : 20,
+              width: isMobile ? 72 : 110, height: isMobile ? 72 : 110,
+              display:"flex", alignItems:"center", justifyContent:"center",
+              fontWeight:900, fontSize: isMobile ? 28 : 48,
+              fontVariantNumeric:"tabular-nums",
+              letterSpacing:-1,
+              boxShadow:"0 4px 20px rgba(111,71,28,0.2)",
+            }}>
+              {String(u.value).padStart(2, "0")}
+            </div>
+            <span style={{ fontSize: isMobile ? 10 : 13, fontWeight:700, color:"#6f471c", letterSpacing:1.5 }}>
+              {u.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function HomePage() {
   const { t } = useLang();
   const isMobile = useIsMobile();
@@ -150,7 +215,7 @@ export default function HomePage() {
                   <img src="/images/char-bc.png" alt="" style={{ height:88, objectFit:"contain" as const }} />
                 </div>
               )}
-              <div style={{ display:"flex", flexDirection:"column" as const, justifyContent:"center", paddingLeft: isMobile ? 0 : 40, marginTop: isMobile ? 0 : 0, whiteSpace: "pre-line" as const }}>
+              <div style={{ display:"flex", flexDirection:"column" as const, justifyContent:"center", paddingLeft: isMobile ? 0 : 40, marginTop: isMobile ? 0 : -60 }}>
                 <h1 style={{ fontWeight:900, fontSize: isMobile ? 32 : 44, color:"#6f471c", lineHeight:1.2, margin:"0 0 16px" }}>
                   {t("Japan's Tradition.\nScaled for America.","日本の伝統を、\nアメリカの日常へ。")}
                 </h1>
@@ -170,6 +235,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* ── CALIFORNIA COUNTDOWN ── */}
+        <CaliforniaCountdown isMobile={isMobile} t={t} />
 
         {/* ── TRUSTED BY ── */}
         <TrustedBy />
@@ -213,8 +281,8 @@ export default function HomePage() {
             <span style={{ background:"#ffefc8", color:"#6f471c", borderRadius:999, padding:"8px 16px", fontSize:11, fontWeight:700, letterSpacing:1, display:"inline-block", marginBottom:16 }}>
               {t("WHAT IS ONIGIRI SEN?","Onigiri Sen とは?")}
             </span>
-            <h2 style={{ fontWeight:700, fontSize: isMobile ? 28 : 42, lineHeight:1.2, margin:"0 0 16px", maxWidth:560, fontFamily:crimson.style.fontFamily, whiteSpace:"pre-line" as const }}>
-              {t("A 1,000-Year Tradition \nfor the Next 1,000 Years","千年の伝統を、\n次の千年へ。")}
+            <h2 style={{ fontWeight:700, fontSize: isMobile ? 28 : 42, lineHeight:1.2, margin:"0 0 16px", maxWidth:560, fontFamily:crimson.style.fontFamily }}>
+              {t("A 1,000-Year Tradition for the Next 1,000 Years","千年の伝統を、次の千年へ。")}
             </h2>
             <p style={{ opacity:0.9, fontSize: isMobile ? 15 : 17, lineHeight:1.8, margin:"0 0 28px", maxWidth:500, fontFamily:crimson.style.fontFamily }}>
               {t("Onigiri has nourished Japan for over a millennium. We're bringing that tradition to America — made fresh daily with premium ingredients, wrapped in authentic Ariake nori.",

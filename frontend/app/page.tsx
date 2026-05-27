@@ -131,13 +131,13 @@ export default function HomePage() {
               "日本最高峰の漁場が育んだ有明海産の海苔から、和歌山産・1％以下の希少なオーガニック紀州梅にいたるまで、本当に安心・安全な食材だけを厳選。品質への妥協なき情熱を、その一つひとつに込めて届けます。"),
     },
     {
-      n:"02", img:"/images/why-healthy-1.png", mascot:"/images/char-pp.png",
+      n:"02", img:"/images/why-healthy-1.png", mascot:"/images/char-ps.png",
       title: t("Healthy & Satisfying","手軽に、しっかり栄養"),
       body: t("Energy for Your Day. The natural umami of perfectly cooked rice paired with high-quality proteins like salmon and spicy tuna. We provide a deeply satisfying meal that fuels your busy modern lifestyle with lasting energy.",
               "ふっくら炊き上げたお米本来の旨みと、厳選した鮭やスパイシーツナといった良質なタンパク質。忙しい現代のライフスタイルに、確かな満足感とエネルギーを美味しくチャージします。"),
     },
     {
-      n:"03", img:"/images/why-fresh.png", mascot:"/images/char-bc.png",
+      n:"03", img:"/images/why-fresh.png", mascot:"/images/char-cg.png",
       title: t("Made Fresh Daily","毎日、できたての新鮮さを"),
       body: t("Made Daily, Ready to Grab. Prepared fresh every single day. Whether you are between meetings or on the move, enjoy an authentic, high-quality meal anytime, anywhere without compromise.",
               "毎日作りたてのおにぎりをお届け。仕事の合間や、ちょっとした移動時間でも、素材本来の豊かな風味を引き立てた、本格的な味わいを楽しめます。"),
@@ -313,7 +313,7 @@ export default function HomePage() {
             {t("Follow Along !","私たちのストーリーをInstagramでフォロー！")}
           </h2>
           <p style={{ fontSize:16, opacity:0.85, margin:"0 0 24px" }}>@onigirisen.jp</p>
-          <img src="/images/char-ty.png" alt="" style={{ height: isMobile ? 180 : 300, objectFit:"contain" as const, display:"block", margin:"0 auto 24px" }} />
+          <img src="/images/char-instagram.png" alt="" style={{ height: isMobile ? 180 : 300, objectFit:"contain" as const, display:"block", margin:"0 auto 24px" }} />
           <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap:16, maxWidth:960, margin:"0 auto 36px" }}>
             <IgPost url="https://www.instagram.com/p/DWDJ9pHB1YV/" />
             {!isMobile && <IgPost url="https://www.instagram.com/p/DXpi8wZCITL/" />}

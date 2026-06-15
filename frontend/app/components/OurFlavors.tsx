@@ -90,7 +90,7 @@ const flavors: Flavor[] = [
   },
   {
     img: "/images/flavors/shredded-pork.png",
-    mascot: "/images/char-s.png",
+    mascot: "/images/char-sp.png",
     nameEn: "Shredded Pork",
     nameJa: "シュレッドポーク",
     tags: [],

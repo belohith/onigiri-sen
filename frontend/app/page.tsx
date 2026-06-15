@@ -58,7 +58,7 @@ function CaliforniaCountdown({ isMobile, t }: { isMobile: boolean; t: (en: strin
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    const target = new Date("2026-06-18T00:00:00-07:00").getTime(); // PDT
+    const target = new Date("2026-06-18T00:00:00-07:00").getTime();
     const tick = () => {
       const now = Date.now();
       const diff = Math.max(0, target - now);
@@ -150,14 +150,40 @@ export default function HomePage() {
     },
   ];
 
+  // Scrolling ticker headlines
+  const tickerEn = "🎉 Launching in California — San Jose, June 18, 2026!  ·  📺 Featured on KING 5 News  ·  🏟️ Now at T-Mobile Park (Mariners)  ·  📰 Covered by Lookout Landing, Seattle Weekly & more  ·  🛒 Find us at PCC, T&T, Town & Country  ·";
+  const tickerJa = "🎉 カリフォルニア・サンノゼに2026年6月18日オープン！  ·  📺 KING 5 Newsに特集掲載  ·  🏟️ T-Mobileパーク（マリナーズ）に出店中  ·  📰 Lookout Landing・Seattle Weeklyなど多数掲載  ·  🛒 PCC・T&T・Town & Countryで販売中  ·";
+
   return (
     <>
       <Header />
       <main style={{ fontFamily:"DM Sans, sans-serif", background:"#fff", marginTop:72 }}>
 
+        {/* ── NEWS TICKER BAR ── */}
+        <style>{`
+          @keyframes ticker-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+        `}</style>
+        <Link href="/media" style={{ textDecoration:"none", display:"block" }}>
+          <div style={{ background:"#6f471c", color:"#fff", overflow:"hidden", height:36, display:"flex", alignItems:"center", cursor:"pointer" }}>
+            {/* Fixed NEWS badge */}
+            <div style={{ background:"#ed7e80", color:"#fff", fontSize:10, fontWeight:800, letterSpacing:1.5, padding:"4px 14px", flexShrink:0, height:"100%", display:"flex", alignItems:"center", zIndex:2 }}>
+              {t("NEWS","ニュース")}
+            </div>
+            {/* Scrolling text — 2 copies for seamless loop */}
+            <div style={{ overflow:"hidden", flex:1, position:"relative" as const }}>
+              <div style={{ display:"flex", animation:"ticker-scroll 30s linear infinite", width:"max-content", whiteSpace:"nowrap" as const }}>
+                <span style={{ fontSize:12, fontWeight:600, opacity:0.95, padding:"0 40px" }}>{t(tickerEn, tickerJa)}</span>
+                <span style={{ fontSize:12, fontWeight:600, opacity:0.95, padding:"0 40px" }}>{t(tickerEn, tickerJa)}</span>
+              </div>
+            </div>
+          </div>
+        </Link>
+
         {/* ── HERO ── */}
         <section style={{ background:"#fdf5ef", marginTop:48 }}>
-          {/* Taller on both mobile and desktop so more of the product is visible */}
           <div style={{ overflow:"hidden", height: isMobile ? 380 : 580, position:"relative" as const }}>
             <style>{`
               @keyframes hero-scroll-mobile {
@@ -184,8 +210,6 @@ export default function HomePage() {
                 ))
               )}
             </div>
-
-            {/* Wave sits lower — taller SVG */}
             <div style={{ position:"absolute", bottom:0, left:0, right:0, zIndex:2, lineHeight:0 }}>
               <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ display:"block", width:"100%", height: isMobile ? 60 : 120 }}>
                 <path d="M0,60 C120,120 240,0 360,60 C480,120 600,0 720,60 C840,120 960,0 1080,60 C1200,120 1320,0 1440,60 L1440,120 L0,120 Z" fill="#fdefc8" />
@@ -201,7 +225,6 @@ export default function HomePage() {
               position:"relative" as const,
               gap: isMobile ? 24 : 0,
             }}>
-              {/* Mascots — desktop: overlapping wave, mobile: row above text */}
               {!isMobile ? (
                 <div style={{ position:"relative" as const, minHeight:260 }}>
                   <img src="/images/char-pp.png" alt="" style={{ position:"absolute", bottom:100, left:60,  height:120, objectFit:"contain" as const }} />

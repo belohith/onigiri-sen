@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { LangProvider } from "./context/LangContext";
 import "./globals.css";
 import Footer from "./components/Footer";
@@ -54,7 +55,7 @@ export default function RootLayout({
         <LangProvider>{children}
           <Footer />
         </LangProvider>
-        
+        <Analytics />
       </body>
     </html>
   );

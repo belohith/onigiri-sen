@@ -52,15 +52,6 @@ const flavors: Flavor[] = [
     allergensJa: "魚",
   },
   {
-    img: "/images/flavors/butter-corn.png",
-    mascot: "/images/char-bc.png",
-    nameEn: "Butter Corn",
-    nameJa: "バターコーン",
-    tags: ["GF", "Vegetarian"],
-    allergensEn: "Dairy",
-    allergensJa: "乳製品",
-  },
-  {
     img: "/images/flavors/shrimp-mayo.png",
     mascot: "/images/char-sm.png",
     nameEn: "Shrimp Mayo",

@@ -4,6 +4,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { LangProvider } from "./context/LangContext";
 import "./globals.css";
 import Footer from "./components/Footer";
+import { Analytics } from "@vercel/analytics/next"
 
 const dmSans = DM_Sans({
   subsets: ["latin"],

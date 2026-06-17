@@ -20,13 +20,12 @@ const pressRelease = {
   category: "print" as const,
   articleLang: "both" as const,
   outlet: "Onigiri Sen",
-  titleEn: "Press Release / Fact Sheet — San Jose California Launch",
-  titleJa: "プレスリリース / ファクトシート — サンノゼ・カリフォルニア進出",
-  descEn: "Official press release and fact sheet for the Onigiri Sen California launch. Full document available June 18, 2026 at 8:00 AM.",
-  descJa: "Onigiri Sen カリフォルニア進出に関する公式プレスリリース。2026年6月18日午前8時より公開予定。",
+  titleEn: "Press Release — Onigiri Sen Makes Bay Area Debut in San Jose",
+  titleJa: "プレスリリース — Onigiri Sen、サンノゼに初上陸",
+  descEn: "Official press release for the Onigiri Sen California launch at T&T Supermarket San Jose, June 18, 2026.",
+  descJa: "T&T Supermarket サンノゼ店でのOnigiri Senカリフォルニア進出に関する公式プレスリリース。2026年6月18日。",
   date: "18 June 2026",
-  href: "/press-release-california.pdf",
-  comingSoon: true,
+  href: "/press/california-launch",
 };
 
 const media: MediaItem[] = [
@@ -188,73 +187,70 @@ export default function MediaPage() {
         <section style={{ padding: isMobile ? "0 16px 64px" : "0 80px 100px" }}>
           <div style={{ display:"flex", flexDirection:"column" as const, gap:12 }}>
 
-            {/* ── PRESS RELEASE PLACEHOLDER ── */}
+            {/* ── PRESS RELEASE — clickable link to dedicated page ── */}
             {(() => {
               const item = pressRelease;
               const cat = categoryLabel[item.category];
               return (
-                <div
-                  key="press-release"
-                  style={{
-                    background: "#fffbf0",
-                    borderRadius: 20,
-                    padding: isMobile ? "20px 16px" : "28px 32px",
-                    display: "grid",
-                    gridTemplateColumns: isMobile ? "1fr" : "auto 1fr auto",
-                    gap: isMobile ? "12px 0" : "0 28px",
-                    alignItems: "center",
-                    border: "2px dashed #ed7e80",
-                    position: "relative" as const,
-                  }}
-                >
-                  {/* Coming soon ribbon */}
-                  <div style={{
-                    position: "absolute" as const, top: isMobile ? 14 : 18, right: isMobile ? 14 : 24,
-                    background: "#ed7e80", color: "#fff",
-                    fontSize: 10, fontWeight: 800, borderRadius: 999, padding: "3px 12px",
-                    letterSpacing: 1,
-                  }}>
-                    {t("LIVE JUN 18 · 8:00 AM","6/18 午前8時 公開予定")}
-                  </div>
+                <Link key="press-release" href={item.href} style={{ textDecoration: "none" }}>
+                  <div
+                    style={{
+                      background: "#fffbf0",
+                      borderRadius: 20,
+                      padding: isMobile ? "20px 16px" : "28px 32px",
+                      display: "grid",
+                      gridTemplateColumns: isMobile ? "1fr" : "auto 1fr auto",
+                      gap: isMobile ? "12px 0" : "0 28px",
+                      alignItems: "center",
+                      border: "2px solid #ed7e80",
+                      cursor: "pointer",
+                      transition: "box-shadow 0.2s",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 20px rgba(237,126,128,0.18)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                    }}
+                  >
+                    {isMobile ? (
+                      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" as const }}>
+                        <div style={{ fontWeight: 800, fontSize: 13, color: "#6f471c" }}>{item.outlet}</div>
+                        <div style={{ background: cat.bg, color: cat.color, fontSize: 10, fontWeight: 700, borderRadius: 999, padding: "2px 8px" }}>
+                          {lang === "ja" ? cat.ja : cat.en}
+                        </div>
+                        <div style={{ fontSize: 11, color: "#bbb", fontWeight: 500 }}>{item.date}</div>
+                        <div style={{ background: langLabel[item.articleLang].bg, color: langLabel[item.articleLang].color, fontSize: 9, fontWeight: 700, borderRadius: 999, padding: "2px 8px" }}>
+                          {langLabel[item.articleLang].label}
+                        </div>
+                      </div>
+                    ) : (
+                      <div style={{ textAlign: "center" as const, minWidth: 100 }}>
+                        <div style={{ fontWeight: 800, fontSize: 14, color: "#6f471c", marginBottom: 6, lineHeight: 1.3 }}>{item.outlet}</div>
+                        <div style={{ fontSize: 11, color: "#bbb", fontWeight: 500 }}>{item.date}</div>
+                        <div style={{ display: "inline-block", marginTop: 8, background: cat.bg, color: cat.color, fontSize: 10, fontWeight: 700, borderRadius: 999, padding: "3px 10px" }}>
+                          {lang === "ja" ? cat.ja : cat.en}
+                        </div>
+                        <div style={{ display: "inline-block", marginTop: 6, background: langLabel[item.articleLang].bg, color: langLabel[item.articleLang].color, fontSize: 9, fontWeight: 700, borderRadius: 999, padding: "2px 8px" }}>
+                          {langLabel[item.articleLang].label}
+                        </div>
+                      </div>
+                    )}
 
-                  {isMobile ? (
-                    <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" as const }}>
-                      <div style={{ fontWeight: 800, fontSize: 13, color: "#6f471c" }}>{item.outlet}</div>
-                      <div style={{ background: cat.bg, color: cat.color, fontSize: 10, fontWeight: 700, borderRadius: 999, padding: "2px 8px" }}>
-                        {lang === "ja" ? cat.ja : cat.en}
+                    <div>
+                      <div style={{ fontWeight: 800, fontSize: isMobile ? 14 : 16, color: "#2a2a2a", marginBottom: 6, lineHeight: 1.4 }}>
+                        {lang === "ja" ? item.titleJa : item.titleEn}
                       </div>
-                      <div style={{ fontSize: 11, color: "#bbb", fontWeight: 500 }}>{item.date}</div>
-                      <div style={{ background: langLabel[item.articleLang].bg, color: langLabel[item.articleLang].color, fontSize: 9, fontWeight: 700, borderRadius: 999, padding: "2px 8px" }}>
-                        {langLabel[item.articleLang].label}
-                      </div>
+                      <p style={{ color: "#8a6a4a", fontSize: 13, lineHeight: 1.75, margin: 0 }}>
+                        {lang === "ja" ? item.descJa : item.descEn}
+                      </p>
                     </div>
-                  ) : (
-                    <div style={{ textAlign: "center" as const, minWidth: 100 }}>
-                      <div style={{ fontWeight: 800, fontSize: 14, color: "#6f471c", marginBottom: 6, lineHeight: 1.3 }}>{item.outlet}</div>
-                      <div style={{ fontSize: 11, color: "#bbb", fontWeight: 500 }}>{item.date}</div>
-                      <div style={{ display: "inline-block", marginTop: 8, background: cat.bg, color: cat.color, fontSize: 10, fontWeight: 700, borderRadius: 999, padding: "3px 10px" }}>
-                        {lang === "ja" ? cat.ja : cat.en}
-                      </div>
-                      <div style={{ display: "inline-block", marginTop: 6, background: langLabel[item.articleLang].bg, color: langLabel[item.articleLang].color, fontSize: 9, fontWeight: 700, borderRadius: 999, padding: "2px 8px" }}>
-                        {langLabel[item.articleLang].label}
-                      </div>
-                    </div>
-                  )}
 
-                  <div>
-                    <div style={{ fontWeight: 800, fontSize: isMobile ? 14 : 16, color: "#2a2a2a", marginBottom: 6, lineHeight: 1.4 }}>
-                      {lang === "ja" ? item.titleJa : item.titleEn}
+                    <div style={{ color: "#ed7e80", display: "flex", alignItems: isMobile ? "flex-end" : "center", justifyContent: "center" }}>
+                      <ExternalIcon />
                     </div>
-                    <p style={{ color: "#8a6a4a", fontSize: 13, lineHeight: 1.75, margin: 0 }}>
-                      {lang === "ja" ? item.descJa : item.descEn}
-                    </p>
                   </div>
-
-                  {/* Lock icon instead of arrow */}
-                  <div style={{ color: "#ed7e80", display: "flex", alignItems: isMobile ? "flex-end" : "center", justifyContent: "center", fontSize: 18 }}>
-                    🔒
-                  </div>
-                </div>
+                </Link>
               );
             })()}
 

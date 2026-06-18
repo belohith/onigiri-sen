@@ -174,7 +174,7 @@ export default function WholesalePage() {
       if (data.success) {
         sendGAEvent("event", "form_submit", { form_name: "wholesale", inquiry_type: formData.inquiryType });
         clearDraft();
-        window.location.href = "/thank-you";
+        window.location.href = "/thank-you-wholesale";
       } else {
         setError(data.error || t("Failed to send inquiry.", "送信に失敗しました。"));
       }

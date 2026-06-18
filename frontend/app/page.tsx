@@ -54,66 +54,97 @@ function useIsMobile() {
   return isMobile;
 }
 
-function CaliforniaCountdown({ isMobile, t }: { isMobile: boolean; t: (en: string, ja: string) => string }) {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+// ── Confetti ──
+function Confetti() {
+  const [pieces, setPieces] = useState<Array<{
+    id: number; x: number; color: string; size: number;
+    duration: number; delay: number; shape: string;
+  }>>([]);
 
   useEffect(() => {
-    const target = new Date("2026-06-18T08:00:00-07:00").getTime();
-    const tick = () => {
-      const now = Date.now();
-      const diff = Math.max(0, target - now);
-      setTimeLeft({
-        days:    Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours:   Math.floor((diff / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((diff / (1000 * 60)) % 60),
-        seconds: Math.floor((diff / 1000) % 60),
-      });
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
+    const colors = ["#ed7e80","#ffd700","#6f471c","#4ecdc4","#ff8080","#ffefc8","#a8e6cf","#f3a8b6"];
+    const shapes = ["●","■","▲","★","♦"];
+    const newPieces = Array.from({ length: 200 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      size: Math.random() * 14 + 6,
+      duration: Math.random() * 4 + 4,
+      delay: Math.random() * 8,
+      shape: shapes[Math.floor(Math.random() * shapes.length)],
+    }));
+    setPieces(newPieces);
   }, []);
 
-  const units = [
-    { value: timeLeft.days,    label: t("DAYS","日") },
-    { value: timeLeft.hours,   label: t("HOURS","時間") },
-    { value: timeLeft.minutes, label: t("MINUTES","分") },
-    { value: timeLeft.seconds, label: t("SECONDS","秒") },
-  ];
-
   return (
-    <section style={{ background:"#fdefc8", padding: isMobile ? "40px 24px 48px" : "56px 80px 64px", textAlign:"center" }}>
-      <div style={{ display:"inline-flex", alignItems:"center", gap:8, background:"#ed7e80", borderRadius:999, padding:"6px 18px", marginBottom:16 }}>
-        <span style={{ fontWeight:700, color:"#fff", fontSize:11, letterSpacing:2, textTransform:"uppercase" as const }}>
-          {t("COMING THIS JUNE","2026年6月 オープン")}
+    <div style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:9999, overflow:"hidden" }}>
+      <style>{`
+        @keyframes confetti-fall {
+          0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+          100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+      `}</style>
+      {pieces.map((p) => (
+        <span
+          key={p.id}
+          style={{
+            position:"absolute",
+            left:`${p.x}%`,
+            top:-20,
+            fontSize:p.size,
+            color:p.color,
+            animation:`confetti-fall ${p.duration}s ${p.delay}s ease-in forwards`,
+          }}
+        >
+          {p.shape}
         </span>
-      </div>
-      <h2 style={{ fontWeight:900, fontSize: isMobile ? 22 : 32, color:"#6f471c", margin:"0 0 6px", lineHeight:1.2 }}>
-        {t("San Jose, California","サンノゼ、カリフォルニア")}
-      </h2>
-      <p style={{ color:"#8a6a4a", fontSize: isMobile ? 13 : 15, margin:"0 0 32px" }}>
-        {t("Fresh onigiri, coming to a store near you — June 18, 2026","新鮮なおにぎりが、あなたのそばへ — 2026年6月18日")}
-      </p>
-      <div style={{ display:"flex", justifyContent:"center", gap: isMobile ? 12 : 24 }}>
-        {units.map((u) => (
-          <div key={u.label} style={{ display:"flex", flexDirection:"column" as const, alignItems:"center", gap:6 }}>
-            <div style={{
-              background:"#6f471c", color:"#fff",
-              borderRadius: isMobile ? 16 : 20,
-              width: isMobile ? 72 : 110, height: isMobile ? 72 : 110,
-              display:"flex", alignItems:"center", justifyContent:"center",
-              fontWeight:900, fontSize: isMobile ? 28 : 48,
-              fontVariantNumeric:"tabular-nums",
-              letterSpacing:-1,
-              boxShadow:"0 4px 20px rgba(111,71,28,0.2)",
-            }}>
-              {String(u.value).padStart(2, "0")}
-            </div>
-            <span style={{ fontSize: isMobile ? 10 : 13, fontWeight:700, color:"#6f471c", letterSpacing:1.5 }}>
-              {u.label}
-            </span>
-          </div>
-        ))}
+      ))}
+    </div>
+  );
+}
+
+// ── California Launch Banner (replaces countdown) ──
+function CaliforniaLaunchBanner({ isMobile, t }: { isMobile: boolean; t: (en: string, ja: string) => string }) {
+  return (
+    <section style={{ background:"#fdefc8", padding: isMobile ? "40px 24px 48px" : "56px 80px 64px", textAlign:"center", position:"relative" as const, overflow:"hidden" }}>
+      {/* Background confetti dots decoration */}
+      <div style={{ position:"absolute", inset:0, opacity:0.06, backgroundImage:"radial-gradient(circle, #6f471c 1px, transparent 1px)", backgroundSize:"24px 24px", pointerEvents:"none" }} />
+
+      <div style={{ position:"relative", zIndex:1 }}>
+        <div style={{ display:"inline-flex", alignItems:"center", gap:8, background:"#ed7e80", borderRadius:999, padding:"6px 18px", marginBottom:16 }}>
+          <span style={{ fontWeight:700, color:"#fff", fontSize:11, letterSpacing:2, textTransform:"uppercase" as const }}>
+            🎉 {t("NOW OPEN","本日オープン")} 🎉
+          </span>
+        </div>
+
+        <h2 style={{ fontWeight:900, fontSize: isMobile ? 26 : 38, color:"#6f471c", margin:"0 0 10px", lineHeight:1.2 }}>
+          {t("We're in California!","カリフォルニアに上陸しました！")}
+        </h2>
+
+        <p style={{ color:"#8a6a4a", fontSize: isMobile ? 14 : 17, margin:"0 0 8px", fontWeight:600 }}>
+          {t("Now available at T&T Supermarket San Jose","T&T Supermarket サンノゼ店にて販売開始")}
+        </p>
+
+        <p style={{ color:"#a07850", fontSize: isMobile ? 12 : 14, margin:"0 0 28px" }}>
+          📍 {t("Westgate Center, Suite #501 · 1600 Saratoga Ave, San Jose, CA 95129","Westgate Center, Suite #501 · 1600 Saratoga Ave, San Jose, CA 95129")}
+        </p>
+
+        <div style={{ display:"flex", gap:12, justifyContent:"center", flexWrap:"wrap" as const }}>
+          <a
+            href="https://maps.google.com/?q=1600+Saratoga+Ave+San+Jose+CA+95129"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display:"inline-block", background:"#6f471c", color:"#fff", padding: isMobile ? "12px 24px" : "14px 32px", borderRadius:999, fontWeight:700, fontSize: isMobile ? 13 : 15, textDecoration:"none" }}
+          >
+            {t("Get Directions →","道順を見る →")}
+          </a>
+          <Link
+            href="/products"
+            style={{ display:"inline-block", background:"#fff", color:"#6f471c", border:"2px solid #e8d8b8", padding: isMobile ? "12px 24px" : "14px 32px", borderRadius:999, fontWeight:700, fontSize: isMobile ? 13 : 15, textDecoration:"none" }}
+          >
+            {t("See Our Flavors →","フレーバーを見る →")}
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -122,6 +153,14 @@ function CaliforniaCountdown({ isMobile, t }: { isMobile: boolean; t: (en: strin
 export default function HomePage() {
   const { t } = useLang();
   const isMobile = useIsMobile();
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  useEffect(() => {
+    // Show confetti on load, fade after 6s
+    setShowConfetti(true);
+    const timer = setTimeout(() => setShowConfetti(false), 15000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const whyItems = [
     {
@@ -150,13 +189,13 @@ export default function HomePage() {
     },
   ];
 
-  // Scrolling ticker headlines
-  const tickerEn = "🎉 Launching in California — San Jose, June 18, 2026!  ·  📺 Featured on KING 5 News  ·  🏟️ Now at T-Mobile Park (Mariners)  ·  📰 Covered by Lookout Landing, Seattle Weekly & more  ·  🛒 Find us at PCC, T&T, Town & Country  ·";
-  const tickerJa = "🎉 カリフォルニア・サンノゼに2026年6月18日オープン！  ·  📺 KING 5 Newsに特集掲載  ·  🏟️ T-Mobileパーク（マリナーズ）に出店中  ·  📰 Lookout Landing・Seattle Weeklyなど多数掲載  ·  🛒 PCC・T&T・Town & Countryで販売中  ·";
+  const tickerEn = "🎉 NOW OPEN in San Jose, California — T&T Supermarket, 1600 Saratoga Ave  ·  📺 Featured on KING 5 News  ·  🏟️ Now at T-Mobile Park (Mariners)  ·  📰 Covered by Lookout Landing, Seattle Weekly & more  ·  🛒 Find us at PCC, T&T, Town & Country  ·";
+  const tickerJa = "🎉 カリフォルニア・サンノゼ本日オープン！— T&T Supermarket, 1600 Saratoga Ave  ·  📺 KING 5 Newsに特集掲載  ·  🏟️ T-Mobileパーク（マリナーズ）に出店中  ·  📰 Lookout Landing・Seattle Weeklyなど多数掲載  ·  🛒 PCC・T&T・Town & Countryで販売中  ·";
 
   return (
     <>
       <Header />
+      {showConfetti && <Confetti />}
       <main style={{ fontFamily:"DM Sans, sans-serif", background:"#fff", marginTop:72 }}>
 
         {/* ── NEWS TICKER BAR ── */}
@@ -168,13 +207,11 @@ export default function HomePage() {
         `}</style>
         <Link href="/media" style={{ textDecoration:"none", display:"block" }}>
           <div style={{ background:"#6f471c", color:"#fff", overflow:"hidden", height:36, display:"flex", alignItems:"center", cursor:"pointer" }}>
-            {/* Fixed NEWS badge */}
             <div style={{ background:"#ed7e80", color:"#fff", fontSize:10, fontWeight:800, letterSpacing:1.5, padding:"4px 14px", flexShrink:0, height:"100%", display:"flex", alignItems:"center", zIndex:2 }}>
-              {t("NEWS","ニュース")}
+              🎉 {t("NOW OPEN","本日開店")}
             </div>
-            {/* Scrolling text — 2 copies for seamless loop */}
             <div style={{ overflow:"hidden", flex:1, position:"relative" as const }}>
-              <div style={{ display:"flex", animation:"ticker-scroll 30s linear infinite", width:"max-content", whiteSpace:"nowrap" as const }}>
+              <div style={{ display:"flex", animation:"ticker-scroll 35s linear infinite", width:"max-content", whiteSpace:"nowrap" as const }}>
                 <span style={{ fontSize:12, fontWeight:600, opacity:0.95, padding:"0 40px" }}>{t(tickerEn, tickerJa)}</span>
                 <span style={{ fontSize:12, fontWeight:600, opacity:0.95, padding:"0 40px" }}>{t(tickerEn, tickerJa)}</span>
               </div>
@@ -259,8 +296,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── CALIFORNIA COUNTDOWN ── */}
-        <CaliforniaCountdown isMobile={isMobile} t={t} />
+        {/* ── CALIFORNIA LAUNCH BANNER ── */}
+        <CaliforniaLaunchBanner isMobile={isMobile} t={t} />
 
         {/* ── TRUSTED BY ── */}
         <TrustedBy />

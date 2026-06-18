@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { sendGAEvent } from "@next/third-parties/google";
 import Header from "../components/Header";
 import TrustedBy from "../components/TrustedBy";
 import { useLang } from "../context/LangContext";
@@ -171,6 +172,7 @@ export default function WholesalePage() {
       const data = await response.json();
 
       if (data.success) {
+        sendGAEvent("event", "form_submit", { form_name: "wholesale", inquiry_type: formData.inquiryType });
         clearDraft();
         window.location.href = "/thank-you";
       } else {
@@ -208,7 +210,7 @@ export default function WholesalePage() {
         {/* ── HERO ── */}
         <section style={{ padding: isMobile ? "72px 24px 40px" : "112px 80px 64px", textAlign: "center", background: "#fdf9f4" }}>
           <h1 style={{ fontWeight: 900, fontSize: isMobile ? 26 : 42, color: "#6f471c", lineHeight: 1.2, margin: "0 0 16px", whiteSpace: "pre-line" }}>
-            {t("A Scalable, Reliable Partner\nfor Your Business.", "あらゆる食の現場へ、\n誰もが喜ぶ\nヘルシーな選択肢を")}
+            {t("A Scalable, Reliable Partner\nfor Your Business.", "あらゆる食の現場へ、\n誰もがよろこぶ「ヘルシーな選択肢」を。")}
           </h1>
           <p style={{ color: "#6f471c", fontSize: isMobile ? 14 : 16, maxWidth: 560, margin: "0 auto 28px", lineHeight: 1.75 }}>
             {t(
@@ -246,10 +248,10 @@ export default function WholesalePage() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? 14 : 20 }}>
             {[
-              { icon: "/images/icon-stadium.png", title: t("Stadium-Grade Scalability", "スタジアム規模の安定供給"), body: t("Whether for a single order or large-scale supply, every onigiri meets the same world-class standard. We supply major stadiums, supermarket chains, and airports without ever compromising on quality.", "規模にかかわらず、すべてのおにぎりが同じ厳格な基準を満たします。主要スタジアムやスーパーマーケットチェーン、空港などへの大規模供給においても、一貫した、妥協のない品質を保証します。") },
-              { icon: "/images/icon-robot.png",   title: t("World-Class\nJapanese Technology", "世界が認める日本の技術"),   body: t("We utilize forming machines from FUJISEIKI—trusted by all major Japanese convenience chains—alongside high-spec cooking systems from AIHO. Together, we reproduce the delicate texture of hand-pressed onigiri.", "日本の大手コンビニチェーンから絶大な信頼を寄せる不二精機の成形機と、大規模炊飯のプロフェッショナルであるAIHOの独自システムを導入しています。職人が手で握ったような繊細な食感を、科学の力で再現しました。") },
-              { icon: "/images/icon-shield.png",  title: t("Rigorous Hygiene &\nSafety Protocols", "徹底した衛生管理と安全基準"),  body: t("Our automated processes minimize human contact, ensuring safety standards that far exceed traditional manufacturing methods.", "製造工程を徹底的に自動化することで、人の手による接触を最小限に抑制。従来の製造手法を遥かに凌駕する安全ベンチマークを確立しました。高度なクリーンルーム環境と厳格な食品安全プロトコル（Food Safety Protocols）により、確かな安心を担保します。") },
-              { icon: "/images/icon-leaf.png",    title: t("Flexible Customization", "柔軟なカスタマイズ"),    body: t("Vegan, Gluten-Free, Organic, and custom flavors available. Strategic pricing tiers tailored to your retail environment and customer base.", "ヴィーガン、グルテンフリー、オーガニック、そして独自のカスタムフレーバーにも対応。多様なニーズを持つパートナー企業様に柔軟な戦略を提案します。") },
+              { icon: "/images/icon-stadium.png", title: t("Stadium-Grade Scalability", "スタジアム規模の安定供給"), body: t("Whether for a single order or large-scale supply, every onigiri meets the same world-class standard. We supply major stadiums, supermarket chains, and airports without ever compromising on quality.", "規模にかかわらず、すべてのおにぎりが同じ厳格な基準を満たします。") },
+              { icon: "/images/icon-robot.png",   title: t("World-Class\nJapanese Technology", "世界が認める日本の技術"),   body: t("We utilize forming machines from FUJISEIKI—trusted by all major Japanese convenience chains—alongside high-spec cooking systems from AIHO. Together, we reproduce the delicate texture of hand-pressed onigiri.", "不二精機の成形機とAIHOのシステムで、手握りの繊細な食感を再現します。") },
+              { icon: "/images/icon-shield.png",  title: t("Rigorous Hygiene &\nSafety Protocols", "徹底した衛生管理と安全基準"),  body: t("Our automated processes minimize human contact, ensuring safety standards that far exceed traditional manufacturing methods.", "製造工程の自動化により、従来の製造手法を遥かに超える安全基準を確立しました。") },
+              { icon: "/images/icon-leaf.png",    title: t("Flexible Customization", "柔軟なカスタマイズ"),    body: t("Vegan, Gluten-Free, Organic, and custom flavors available. Strategic pricing tiers tailored to your retail environment and customer base.", "ヴィーガン、グルテンフリー、オーガニック、カスタムフレーバーに対応。") },
             ].map((b) => (
               <div key={b.title} style={{ background: "#fff", borderRadius: isMobile ? 20 : 28, padding: isMobile ? "24px 16px 20px" : "36px 24px 32px", display: "flex", flexDirection: "column" as const, alignItems: "center", textAlign: "center" as const, gap: isMobile ? 10 : 16, boxShadow: "0 2px 16px rgba(0,0,0,0.05)" }}>
                 <img src={b.icon} alt="" style={{ width: isMobile ? 52 : 80, height: isMobile ? 52 : 80, objectFit: "contain" }} />

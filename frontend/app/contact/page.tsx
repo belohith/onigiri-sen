@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useMemo } from "react";
+import { sendGAEvent } from "@next/third-parties/google";
 import Header from "../components/Header";
 import Link from "next/link";
 import { useLang } from "../context/LangContext";
@@ -161,6 +162,7 @@ export default function ContactPage() {
       const data = await response.json();
 
       if (data.success) {
+        sendGAEvent("event", "form_submit", { form_name: "contact" });
         clearDraft();
         window.location.href = "/thank-you";
       } else {

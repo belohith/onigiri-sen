@@ -77,7 +77,6 @@ const flavors: Flavor[] = [
     tags: ["GF"],
     allergensEn: "Fish · Egg",
     allergensJa: "魚・卵",
-    comingSoon: true,
   },
   {
     img: "/images/flavors/shredded-pork.png",
@@ -87,7 +86,6 @@ const flavors: Flavor[] = [
     tags: [],
     allergensEn: "Egg · Pork",
     allergensJa: "卵・豚肉",
-    comingSoon: true,
   },
 ];
 

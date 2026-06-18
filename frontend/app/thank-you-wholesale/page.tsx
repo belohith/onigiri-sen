@@ -76,7 +76,7 @@ export default function ThankYouWholesalePage() {
             ))}
             <div style={{ position:"absolute" as const, inset:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
               <img
-                src="/images/char-wholesale.png"
+                src="/images/char-ty.png"
                 alt="Onigiri Sen mascots"
                 style={{ height: isMobile ? 130 : 200, width:"auto", objectFit:"contain" }}
               />

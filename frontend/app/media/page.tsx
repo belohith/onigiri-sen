@@ -56,7 +56,7 @@ const media: MediaItem[] = [
     articleLang: "both",
     outlet: "Jungle City",
     titleEn: "Rina Oike on Building a Japanese Food Brand in America",
-    titleJa: "及川里奈 — アメリカで日本の食ブランドを築く",
+    titleJa: "尾池里奈 — アメリカで日本の食ブランドを築く",
     descEn: "An in-depth interview with founder Rina Oike on culture, entrepreneurship, and why onigiri is the perfect American convenience food.",
     descJa: "創業者・及川里奈が文化、起業家精神、そしておにぎりが最高のアメリカのコンビニエンスフードである理由を語る深掘りインタビュー。",
     date: "30 March 2026",

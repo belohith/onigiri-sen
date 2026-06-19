@@ -50,9 +50,12 @@ const californiaStores: Store[] = [
     hoursEn: "Mon–Fri 9am–11pm · Sat–Sun 8am–11pm",
     hoursJa: "月〜金 9:00〜23:00 · 土日 8:00〜23:00",
     phone: "408-255-1688",
-    mapsUrl: "https://maps.app.goo.gl/wWJi4QAwfxp1Dx7d8",
+    mapsUrl: "https://maps.google.com/?q=1600+Saratoga+Ave+San+Jose+CA+95129",
   },
 ];
+
+const CA_MAP_EMBED =
+  "https://www.google.com/maps/d/embed?mid=1h6dTFWOK8ngVPQN-HUZvsf6lgPN_wL4&ehbc=2E312F&noprof=1";
 
 const WA_MAP_EMBED =
   "https://www.google.com/maps/d/embed?mid=1fRSBjWkwxia4rH771jkXLAy0JFWCCps&ehbc=2E312F&noprof=1";
@@ -173,6 +176,13 @@ export default function FindUsNearYou() {
                 style={{ width:"100%", boxSizing:"border-box", border:"1.5px solid #ede5da", borderRadius:10, padding:"9px 14px 9px 34px", fontSize:13, fontFamily:"DM Sans, sans-serif", outline:"none", color:"#2a2a2a", background:"#fff" }}
               />
             </div>
+          </div>
+        )}
+
+        {/* California map */}
+        {activeTab === "california" && (
+          <div style={{ border:"2px solid #ed7e80", borderTop:"none", borderBottom:"none", overflow:"hidden" }}>
+            <iframe src={CA_MAP_EMBED} width="100%" height={isMobile ? 220 : 340} style={{ display:"block", border:"none" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
           </div>
         )}
 

@@ -375,7 +375,7 @@ export default function HomePage() {
           <p style={{ fontSize:16, opacity:0.85, margin:"0 0 24px" }}>@onigirisen.jp</p>
           <img src="/images/char-instagram.png" alt="" style={{ height: isMobile ? 180 : 300, objectFit:"contain" as const, display:"block", margin:"0 auto 24px" }} />
           <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap:16, maxWidth:960, margin:"0 auto 36px" }}>
-            <IgPost url="https://www.instagram.com/p/DZvkF2Ry5uq/" />
+            <IgPost url="https://www.instagram.com/p/DZTB6vPBjIt/" />
             {!isMobile && <IgPost url="https://www.instagram.com/p/DZvWIG0Beh7/" />}
             {!isMobile && <IgPost url="https://www.instagram.com/p/DZp98ytJyr4/" />}
           </div>

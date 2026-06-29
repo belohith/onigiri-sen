@@ -31,6 +31,18 @@ const pressRelease = {
 const media: MediaItem[] = [
   {
     category: "online",
+    articleLang: "en",
+    outlet: "Silicon Valley Business Journal",
+    titleEn: "Seattle onigiri brand expands to Silicon Valley with wholesale-only model",
+    titleJa: "シアトル発おにぎりブランド、卸売専業モデルでシリコンバレーに進出",
+    descEn: "The Silicon Valley Business Journal covers Onigiri Sen's expansion into the Bay Area, spotlighting the brand's wholesale-only approach and launch at T&T Supermarket San Jose.",
+    descJa: "Silicon Valley Business Journalが、Onigiri Senのベイエリア進出と卸売専業モデルによるT&T Supermarketサンノゼ店でのローンチを特集しました。",
+    date: "15 June 2026",
+    href: "https://www.bizjournals.com/sanjose/news/2026/06/15/onigiri-sen-san-jose-t-t-supermarket-wholesale.html",
+    paywalled: true,
+  } as MediaItem & { paywalled?: boolean },
+  {
+    category: "online",
     articleLang: "ja",
     outlet: "Jungle City",
     titleEn: "Mother's Day Gift Guide and Seattle Picnic Guide",
@@ -56,7 +68,7 @@ const media: MediaItem[] = [
     articleLang: "both",
     outlet: "Jungle City",
     titleEn: "Rina Oike on Building a Japanese Food Brand in America",
-    titleJa: "尾池里奈 — アメリカで日本の食ブランドを築く",
+    titleJa: "及川里奈 — アメリカで日本の食ブランドを築く",
     descEn: "An in-depth interview with founder Rina Oike on culture, entrepreneurship, and why onigiri is the perfect American convenience food.",
     descJa: "創業者・及川里奈が文化、起業家精神、そしておにぎりが最高のアメリカのコンビニエンスフードである理由を語る深掘りインタビュー。",
     date: "30 March 2026",
@@ -297,6 +309,9 @@ export default function MediaPage() {
                         <div style={{ background:langLabel[item.articleLang].bg, color:langLabel[item.articleLang].color, fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>
                           {langLabel[item.articleLang].label}
                         </div>
+                        {(item as any).paywalled && (
+                          <div style={{ background:"#f5f5f5", color:"#888", fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>🔒 Paywall</div>
+                        )}
                       </div>
                     ) : (
                       /* Desktop: outlet column */
@@ -309,6 +324,9 @@ export default function MediaPage() {
                         <div style={{ display:"inline-block", marginTop:6, background:langLabel[item.articleLang].bg, color:langLabel[item.articleLang].color, fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>
                           {langLabel[item.articleLang].label}
                         </div>
+                        {(item as any).paywalled && (
+                          <div style={{ display:"inline-block", marginTop:6, background:"#f5f5f5", color:"#888", fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>🔒 Paywall</div>
+                        )}
                       </div>
                     )}
 

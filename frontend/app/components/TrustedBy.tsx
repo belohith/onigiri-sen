@@ -6,7 +6,7 @@ const partners = [
   { src:"/images/logo-tt.png",      alt:"T&T Supermarket" },
   { src:"/images/logo-pcc.png",     alt:"PCC Community Markets" },
   { src:"/images/logo-tmobile.png", alt:"T-Mobile Park" },
-  { src:"/images/logo-tc.jpeg",     alt:"Town & County Market" },
+  // { src:"/images/logo-tc.jpeg",  alt:"Town & County Market" }, // removed
   { src:"/images/logo-ack.png",     alt:"Artisan Community Kitchen" },
   { src:"/images/logo-ls.png",      alt:"Lakeside School" },
 ];
@@ -32,12 +32,12 @@ export default function TrustedBy() {
         {t("TRUSTED BY","取引先")}
       </div>
 
-      {/* Logo grid — 3 cols desktop, 2 cols mobile */}
+      {/* Logo grid — 3 cols first row, 2 cols second row on desktop; 2 cols mobile */}
       <div style={{
         display:"grid",
         gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
         gap: isMobile ? 12 : 20,
-        maxWidth: isMobile ? "100%" : 900,
+        maxWidth: isMobile ? "100%" : 860,
         margin: isMobile ? "0 16px 32px" : "0 auto 48px",
         padding: isMobile ? "0" : "0 80px",
       }}>
@@ -64,7 +64,7 @@ export default function TrustedBy() {
         ))}
       </div>
 
-      {/* Continuous scroll strip — 2 identical sets, scrolls by -50% for seamless loop */}
+      {/* Continuous scroll strip */}
       <div style={{ overflow:"hidden", width:"100%" }}>
         <div
           style={{

@@ -54,114 +54,9 @@ function useIsMobile() {
   return isMobile;
 }
 
-// ── Confetti ──
-function Confetti() {
-  const [pieces, setPieces] = useState<Array<{
-    id: number; x: number; color: string; size: number;
-    duration: number; delay: number; shape: string;
-  }>>([]);
-
-  useEffect(() => {
-    const colors = ["#ed7e80","#ffd700","#6f471c","#4ecdc4","#ff8080","#ffefc8","#a8e6cf","#f3a8b6"];
-    const shapes = ["●","■","▲","★","♦"];
-    const newPieces = Array.from({ length: 200 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      size: Math.random() * 14 + 6,
-      duration: Math.random() * 4 + 4,
-      delay: Math.random() * 8,
-      shape: shapes[Math.floor(Math.random() * shapes.length)],
-    }));
-    setPieces(newPieces);
-  }, []);
-
-  return (
-    <div style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:9999, overflow:"hidden" }}>
-      <style>{`
-        @keyframes confetti-fall {
-          0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
-          100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-        }
-      `}</style>
-      {pieces.map((p) => (
-        <span
-          key={p.id}
-          style={{
-            position:"absolute",
-            left:`${p.x}%`,
-            top:-20,
-            fontSize:p.size,
-            color:p.color,
-            animation:`confetti-fall ${p.duration}s ${p.delay}s ease-in forwards`,
-          }}
-        >
-          {p.shape}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-// ── California Launch Banner (replaces countdown) ──
-function CaliforniaLaunchBanner({ isMobile, t }: { isMobile: boolean; t: (en: string, ja: string) => string }) {
-  return (
-    <section style={{ background:"#fdefc8", padding: isMobile ? "40px 24px 48px" : "56px 80px 64px", textAlign:"center", position:"relative" as const, overflow:"hidden" }}>
-      {/* Background confetti dots decoration */}
-      <div style={{ position:"absolute", inset:0, opacity:0.06, backgroundImage:"radial-gradient(circle, #6f471c 1px, transparent 1px)", backgroundSize:"24px 24px", pointerEvents:"none" }} />
-
-      <div style={{ position:"relative", zIndex:1 }}>
-        <div style={{ display:"inline-flex", alignItems:"center", gap:8, background:"#ed7e80", borderRadius:999, padding:"6px 18px", marginBottom:16 }}>
-          <span style={{ fontWeight:700, color:"#fff", fontSize:11, letterSpacing:2, textTransform:"uppercase" as const }}>
-            🎉 {t("NOW OPEN","本日オープン")} 🎉
-          </span>
-        </div>
-
-        <h2 style={{ fontWeight:900, fontSize: isMobile ? 26 : 38, color:"#6f471c", margin:"0 0 10px", lineHeight:1.2 }}>
-          {t("We're in California!","カリフォルニアに上陸しました！")}
-        </h2>
-
-        <p style={{ color:"#8a6a4a", fontSize: isMobile ? 14 : 17, margin:"0 0 8px", fontWeight:600 }}>
-          {t("Now available at T&T Supermarket San Jose","T&T Supermarket サンノゼ店にて販売開始")}
-        </p>
-
-        <p style={{ color:"#a07850", fontSize: isMobile ? 12 : 14, margin:"0 0 28px" }}>
-          📍 {t("Westgate Center, Suite #501 · 1600 Saratoga Ave, San Jose, CA 95129","Westgate Center, Suite #501 · 1600 Saratoga Ave, San Jose, CA 95129")}
-        </p>
-
-        <div style={{ display:"flex", gap:12, justifyContent:"center", flexWrap:"wrap" as const }}>
-          <a
-            href="https://maps.google.com/?q=1600+Saratoga+Ave+San+Jose+CA+95129"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ display:"inline-block", background:"#6f471c", color:"#fff", padding: isMobile ? "12px 24px" : "14px 32px", borderRadius:999, fontWeight:700, fontSize: isMobile ? 13 : 15, textDecoration:"none" }}
-          >
-            {t("Get Directions →","道順を見る →")}
-          </a>
-          <Link
-            href="/products"
-            style={{ display:"inline-block", background:"#fff", color:"#6f471c", border:"2px solid #e8d8b8", padding: isMobile ? "12px 24px" : "14px 32px", borderRadius:999, fontWeight:700, fontSize: isMobile ? 13 : 15, textDecoration:"none" }}
-          >
-            {t("See Our Flavors →","フレーバーを見る →")}
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function HomePage() {
   const { t } = useLang();
   const isMobile = useIsMobile();
-  const [showConfetti, setShowConfetti] = useState(false);
-
-  useEffect(() => {
-    // Show confetti on load, fade after 6s
-    setShowConfetti(true);
-    const timer = setTimeout(() => setShowConfetti(false), 15000);
-    return () => clearTimeout(timer);
-  }, []);
-
   const whyItems = [
     {
       n:"01", img:"/images/why-ingredients.png", mascot:"/images/char-stm.png",
@@ -195,7 +90,6 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      {showConfetti && <Confetti />}
       <main style={{ fontFamily:"DM Sans, sans-serif", background:"#fff", marginTop:72 }}>
 
         {/* ── NEWS TICKER BAR ── */}
@@ -296,9 +190,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── CALIFORNIA LAUNCH BANNER ── */}
-        <CaliforniaLaunchBanner isMobile={isMobile} t={t} />
-
         {/* ── TRUSTED BY ── */}
         <TrustedBy />
 
@@ -375,9 +266,9 @@ export default function HomePage() {
           <p style={{ fontSize:16, opacity:0.85, margin:"0 0 24px" }}>@onigirisen.jp</p>
           <img src="/images/char-instagram.png" alt="" style={{ height: isMobile ? 180 : 300, objectFit:"contain" as const, display:"block", margin:"0 auto 24px" }} />
           <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap:16, maxWidth:960, margin:"0 auto 36px" }}>
-            <IgPost url="https://www.instagram.com/p/DZ2rKjbhiw3/" />
-            {!isMobile && <IgPost url="https://www.instagram.com/p/DZTB6vPBjIt/" />}
-            {!isMobile && <IgPost url="https://www.instagram.com/p/DZp98ytJyr4/" />}
+            <IgPost url="https://www.instagram.com/p/DWDJ9pHB1YV/" />
+            {!isMobile && <IgPost url="https://www.instagram.com/p/DXpi8wZCITL/" />}
+            {!isMobile && <IgPost url="https://www.instagram.com/p/DWZ3rimEkVV/" />}
           </div>
           <Link href="https://instagram.com/onigirisen.jp" target="_blank" style={{ display:"inline-block", border:"2px solid rgba(255,255,255,0.6)", color:"#fff", padding:"11px 28px", borderRadius:999, fontWeight:700, fontSize:14, textDecoration:"none" }}>
             {t("View on Instagram","Onigiri Sen をフォローする →")}

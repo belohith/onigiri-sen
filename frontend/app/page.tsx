@@ -266,9 +266,9 @@ export default function HomePage() {
           <p style={{ fontSize:16, opacity:0.85, margin:"0 0 24px" }}>@onigirisen.jp</p>
           <img src="/images/char-instagram.png" alt="" style={{ height: isMobile ? 180 : 300, objectFit:"contain" as const, display:"block", margin:"0 auto 24px" }} />
           <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap:16, maxWidth:960, margin:"0 auto 36px" }}>
-            <IgPost url="https://www.instagram.com/p/DWDJ9pHB1YV/" />
-            {!isMobile && <IgPost url="https://www.instagram.com/p/DXpi8wZCITL/" />}
-            {!isMobile && <IgPost url="https://www.instagram.com/p/DWZ3rimEkVV/" />}
+            <IgPost url="https://www.instagram.com/p/DZ2rKjbhiw3/" />
+            {!isMobile && <IgPost url="https://www.instagram.com/p/DZp98ytJyr4/" />}
+            {!isMobile && <IgPost url="https://www.instagram.com/p/DZTB6vPBjIt/" />}
           </div>
           <Link href="https://instagram.com/onigirisen.jp" target="_blank" style={{ display:"inline-block", border:"2px solid rgba(255,255,255,0.6)", color:"#fff", padding:"11px 28px", borderRadius:999, fontWeight:700, fontSize:14, textDecoration:"none" }}>
             {t("View on Instagram","Onigiri Sen をフォローする →")}

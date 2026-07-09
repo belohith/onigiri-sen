@@ -94,9 +94,41 @@ const openRoles: Array<{
 ];
 
 const values = [
-  { icon: "🌱", titleEn: "Grow With Us", titleJa: "一緒に成長しよう", bodyEn: "We're a fast-growing startup. The work you do now shapes what we become.", bodyJa: "急成長中のスタートアップです。今あなたがする仕事が、私たちの未来を形作ります。" },
-  { icon: "🍙", titleEn: "Food You're Proud Of", titleJa: "誇れる食をつくる", bodyEn: "We care deeply about quality and freshness. Every onigiri matters.", bodyJa: "品質と鮮度に真剣に向き合っています。おにぎり一つひとつに意味があります。" },
-  { icon: "🤝", titleEn: "Small Team, Big Impact", titleJa: "小さなチーム、大きな影響", bodyEn: "You'll work closely with the founders and have a real voice in how we operate.", bodyJa: "創業者と密接に連携し、私たちの運営に直接関わることができます。" },
+  {
+    icon: "❤️",
+    titleEn: "People First",
+    titleJa: "People First (大切な人の幸せを第一に)",
+    bodyEn: "We deeply respect the personal time and lives of our team. We are fiercely committed to creating an environment where our people and their families can thrive and lead deeply fulfilling lives — both materially and spiritually.",
+    bodyJa: "私たちは、メンバー一人ひとりの「人生の時間」に敬意を払います。スタッフとその家族が、物心両面で豊かで幸せな人生を送れる環境を、会社全体で追求し続けます。",
+  },
+  {
+    icon: "🙏",
+    titleEn: "Deep Gratitude",
+    titleJa: "Deep Gratitude (言葉と行動で示す、深い感謝)",
+    bodyEn: "Exceptional onigiri cannot be crafted alone. From the kitchen and distribution to front-line sales, we express our gratitude through both words and actions, building a culture rooted in deep, mutual respect.",
+    bodyJa: "美味しいおにぎりは、一人では作れません。キッチンで握る仲間、配送する仲間、販売する仲間、すべての人に「ありがとう」を言葉と行動で伝え合い、リスペクトの溢れるチームを築きます。",
+  },
+  {
+    icon: "🍙",
+    titleEn: "Uncompromising Quality",
+    titleJa: "Uncompromising Quality (本物への妥協なきこだわり)",
+    bodyEn: "What we deliver is not just food — it is the rich, authentic culinary culture of Japan. No matter how fast or large we grow, we will never compromise on our daily dedication to quality, taste, and absolute freshness.",
+    bodyJa: "私たちが届けるのは、単なる食べ物ではなく「日本の豊かな食文化」です。どんなに規模が大きくなっても、毎日の品質、味、フレッシュさへのこだわりには一切妥協しません。",
+  },
+  {
+    icon: "🤝",
+    titleEn: "Shared Success",
+    titleJa: "Shared Success (成長の喜びを、みんなで分かち合う)",
+    bodyEn: "Our company's growth is the ultimate fruit of our team's collective dedication. As we boldly chase massive milestones like expanding into major national retailers and scaling nationwide, every victory and success we achieve will be celebrated and shared with every single member of our team.",
+    bodyJa: "会社の成長は、チーム全員の貢献の結晶です。主要な大型小売店への展開や全米進出といった大きな目標に向かって共に挑戦し、掴み取った成果と成功は、必ず全員で分かち合います。",
+  },
+  {
+    icon: "🚀",
+    titleEn: "Continuous Evolution",
+    titleJa: "Continuous Evolution (現状に満足せず、共に進化し続ける)",
+    bodyEn: "Our current success serves merely as the starting point for our next endeavor. We consistently strive for elevated standards in taste, service, and team dynamics, rejecting complacency as we eagerly embrace new challenges.",
+    bodyJa: "今の成功は、次なる挑戦へのスタートラインに過ぎません。味、サービス、そしてチームのあり方に常に高い次元を追い求め、現状に満足することなく、新しい挑戦を続けていきます。",
+  },
 ];
 
 export default function CareersPage() {
@@ -211,9 +243,9 @@ export default function CareersPage() {
         {/* ── WHY JOIN ── */}
         <section style={{ padding: isMobile ? "40px 24px" : "64px 80px", background:"#ffefc8" }}>
           <h2 style={{ textAlign:"center", fontWeight:800, fontSize: isMobile ? 20 : 26, color:"#6f471c", margin:"0 0 36px" }}>
-            {t("Why Work With Us","なぜ私たちと働くのか")}
+            {t("Our Core Values","私たちのコアバリュー")}
           </h2>
-          <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: isMobile ? 16 : 24, maxWidth:900, margin:"0 auto" }}>
+          <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: isMobile ? 16 : 24, maxWidth:960, margin:"0 auto" }}>
             {values.map((v) => (
               <div key={v.titleEn} style={{ background:"#fff", borderRadius:20, padding: isMobile ? "24px 20px" : "32px 24px", textAlign:"center" as const, boxShadow:"0 2px 12px rgba(0,0,0,0.05)" }}>
                 <div style={{ fontSize:36, marginBottom:14 }}>{v.icon}</div>

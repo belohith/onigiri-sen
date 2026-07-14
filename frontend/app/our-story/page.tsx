@@ -863,7 +863,7 @@ export default function OurStoryPage() {
                 ),
                 linkEn: "FUJISEIKI →",
                 linkJa: "不二精機 →",
-                href: "https://international.fuji-seiki.co.jp/",
+                href: "https://www.ffm-usa.com/",
               },
               {
                 src: "/images/aiho-3.png",

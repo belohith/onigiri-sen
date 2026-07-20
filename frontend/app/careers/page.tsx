@@ -74,9 +74,68 @@ const openRoles: Array<{
   titleEn: string; titleJa: string;
   typeEn: string; typeJa: string;
   locationEn: string; locationJa: string;
+  payEn: string; payJa: string;
   descEn: string; descJa: string;
-  bulletsEn: string[]; bulletsJa: string[];
+  responsibilitiesEn: string[]; responsibilitiesJa: string[];
+  requirementsEn: string[]; requirementsJa: string[];
+  niceToHaveEn: string[]; niceToHaveJa: string[];
+  reportsToEn: string; reportsToJa: string;
 }> = [
+  {
+    id: "kitchen-woodinville",
+    titleEn: "Kitchen Staff",
+    titleJa: "キッチンスタッフ",
+    typeEn: "Full-time · 7 PM–3 AM",
+    typeJa: "フルタイム · 19:00〜3:00",
+    locationEn: "Woodinville, WA",
+    locationJa: "ウッディンビル、WA",
+    payEn: "$22/hr",
+    payJa: "時給 $22",
+    descEn: "As a kitchen staff member, you'll help fulfill our daily onigiri production, working efficiently and purposefully alongside the rest of the team to complete orders headed to grocery stores the following day.",
+    descJa: "キッチンスタッフとして、おにぎりの日々の製造を担当します。チームと協力しながら効率的かつ丁寧に作業を行い、翌日グロサリーストアへ出荷される注文を完成させます。",
+    responsibilitiesEn: [
+      "Set up the kitchen with the team, ready for production",
+      "Cook and tend to rice before it goes into the onigiri machine",
+      "Apply front stickers to nori (seaweed) sheets",
+      "Run the fill station (filling ingredients into rice molds)",
+      "Run the labeling station, applying back labels to finished onigiri",
+      "Wash dishes",
+      "Keep the kitchen clean and tidy after production",
+    ],
+    responsibilitiesJa: [
+      "チームと協力し、時間通りにキッチンを準備する",
+      "おにぎり製造機に入れる前に、お米を炊いて管理する",
+      "海苔シートに表面のシールを貼る",
+      "フィルステーション（型に具材を詰める作業）を担当する",
+      "ラベリングステーションで完成したおにぎりに裏面ラベルを貼る",
+      "食器を洗う",
+      "製造後、キッチンを清潔に保つ",
+    ],
+    requirementsEn: [
+      "Current, up-to-date Food Handler's card",
+      "Able to speak and understand English at a working level",
+      "Able to stand and walk for extended periods of time",
+      "Able to lift up to 40 lbs",
+    ],
+    requirementsJa: [
+      "有効な食品取扱者資格（Food Handler's card）",
+      "業務に支障のない英語力",
+      "長時間の立ち作業・移動が可能な方",
+      "40ポンド（約18kg）までの持ち上げが可能な方",
+    ],
+    niceToHaveEn: [
+      "Willingness to adapt and learn as the company grows",
+      "Previous experience working with Japanese cuisine",
+      "Able to speak and understand Japanese at a working level",
+    ],
+    niceToHaveJa: [
+      "会社の成長に合わせて柔軟に学ぶ姿勢がある方",
+      "日本料理に関わった経験がある方",
+      "日常会話レベルの日本語力がある方",
+    ],
+    reportsToEn: "Reports directly to the Kitchen Manager",
+    reportsToJa: "キッチンマネージャーの直属",
+  },
   // Example (uncomment to activate):
   // {
   //   id: "kitchen-sj",
@@ -86,10 +145,14 @@ const openRoles: Array<{
   //   typeJa: "パートタイム · 現地勤務",
   //   locationEn: "San Jose, CA",
   //   locationJa: "サンノゼ、CA",
+  //   payEn: "", payJa: "",
   //   descEn: "Join our San Jose kitchen team preparing fresh onigiri every morning.",
   //   descJa: "サンノゼのキッチンチームで毎朝新鮮なおにぎりを製造します。",
-  //   bulletsEn: ["Early morning hours (4–10 AM)", "Food handler certification preferred", "Must be able to lift 25 lbs"],
-  //   bulletsJa: ["早朝勤務（4〜10時）", "食品取扱者資格歓迎", "25ポンドの持ち上げが可能な方"],
+  //   responsibilitiesEn: [], responsibilitiesJa: [],
+  //   requirementsEn: ["Early morning hours (4–10 AM)", "Food handler certification preferred", "Must be able to lift 25 lbs"],
+  //   requirementsJa: ["早朝勤務（4〜10時）", "食品取扱者資格歓迎", "25ポンドの持ち上げが可能な方"],
+  //   niceToHaveEn: [], niceToHaveJa: [],
+  //   reportsToEn: "", reportsToJa: "",
   // },
 ];
 
@@ -289,13 +352,55 @@ export default function CareersPage() {
                     <span style={{ background:"#fff0ea", color:"#6f471c", fontSize:11, fontWeight:700, borderRadius:999, padding:"3px 12px" }}>
                       📍 {lang === "ja" ? role.locationJa : role.locationEn}
                     </span>
+                    {(lang === "ja" ? role.payJa : role.payEn) && (
+                      <span style={{ background:"#eaf7ea", color:"#3a7a3a", fontSize:11, fontWeight:700, borderRadius:999, padding:"3px 12px" }}>
+                        💰 {lang === "ja" ? role.payJa : role.payEn}
+                      </span>
+                    )}
                   </div>
-                  <p style={{ color:"#8a6a4a", fontSize:13, lineHeight:1.8, margin:"0 0 12px" }}>
+
+                  <p style={{ color:"#8a6a4a", fontSize:13, lineHeight:1.8, margin:"0 0 16px" }}>
                     {lang === "ja" ? role.descJa : role.descEn}
                   </p>
-                  <ul style={{ margin:0, paddingLeft:20, color:"#8a6a4a", fontSize:13, lineHeight:1.9 }}>
-                    {(lang === "ja" ? role.bulletsJa : role.bulletsEn).map((b, i) => <li key={i}>{b}</li>)}
-                  </ul>
+
+                  {(lang === "ja" ? role.responsibilitiesJa : role.responsibilitiesEn).length > 0 && (
+                    <div style={{ marginBottom:16 }}>
+                      <div style={{ fontWeight:700, fontSize:12, color:"#6f471c", marginBottom:6, textTransform:"uppercase" as const, letterSpacing:0.5 }}>
+                        {t("Key Responsibilities","主な業務内容")}
+                      </div>
+                      <ul style={{ margin:0, paddingLeft:20, color:"#8a6a4a", fontSize:13, lineHeight:1.9 }}>
+                        {(lang === "ja" ? role.responsibilitiesJa : role.responsibilitiesEn).map((b, i) => <li key={i}>{b}</li>)}
+                      </ul>
+                    </div>
+                  )}
+
+                  {(lang === "ja" ? role.requirementsJa : role.requirementsEn).length > 0 && (
+                    <div style={{ marginBottom:16 }}>
+                      <div style={{ fontWeight:700, fontSize:12, color:"#6f471c", marginBottom:6, textTransform:"uppercase" as const, letterSpacing:0.5 }}>
+                        {t("Requirements","応募資格")}
+                      </div>
+                      <ul style={{ margin:0, paddingLeft:20, color:"#8a6a4a", fontSize:13, lineHeight:1.9 }}>
+                        {(lang === "ja" ? role.requirementsJa : role.requirementsEn).map((b, i) => <li key={i}>{b}</li>)}
+                      </ul>
+                    </div>
+                  )}
+
+                  {(lang === "ja" ? role.niceToHaveJa : role.niceToHaveEn).length > 0 && (
+                    <div style={{ marginBottom:16 }}>
+                      <div style={{ fontWeight:700, fontSize:12, color:"#6f471c", marginBottom:6, textTransform:"uppercase" as const, letterSpacing:0.5 }}>
+                        {t("Nice to Have","歓迎条件")}
+                      </div>
+                      <ul style={{ margin:0, paddingLeft:20, color:"#8a6a4a", fontSize:13, lineHeight:1.9 }}>
+                        {(lang === "ja" ? role.niceToHaveJa : role.niceToHaveEn).map((b, i) => <li key={i}>{b}</li>)}
+                      </ul>
+                    </div>
+                  )}
+
+                  {(lang === "ja" ? role.reportsToJa : role.reportsToEn) && (
+                    <p style={{ color:"#bbb", fontSize:12, margin:0, fontStyle:"italic" as const }}>
+                      {lang === "ja" ? role.reportsToJa : role.reportsToEn}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>

@@ -38,9 +38,9 @@ const flavors: Flavor[] = [
     mascot: "/images/char-stm.png",
     nameEn: "Spicy Tuna Mayo",
     nameJa: "スパイシーツナマヨ",
-    tags: ["Organic"],
-    allergensEn: "Fish · Egg · Sesame",
-    allergensJa: "魚・卵・ごま",
+    tags: ["GF", "Organic"],
+    allergensEn: "Egg, Fish (Tuna), and Sesame",
+    allergensJa: "卵・魚（マグロ）・ごま",
   },
   {
     img: "/images/flavors/salmon.png",
@@ -48,8 +48,17 @@ const flavors: Flavor[] = [
     nameEn: "Salmon",
     nameJa: "鮭",
     tags: ["GF", "Organic"],
-    allergensEn: "Fish",
-    allergensJa: "魚",
+    allergensEn: "Fish (Salmon)",
+    allergensJa: "魚（鮭）",
+  },
+  {
+    img: "/images/flavors/butter-corn.png",
+    mascot: "/images/char-bc.png",
+    nameEn: "Butter Corn",
+    nameJa: "バターコーン",
+    tags: ["GF", "Vegetarian"],
+    allergensEn: "Dairy",
+    allergensJa: "乳製品",
   },
   {
     img: "/images/flavors/shrimp-mayo.png",
@@ -57,8 +66,8 @@ const flavors: Flavor[] = [
     nameEn: "Shrimp Mayo",
     nameJa: "海老マヨ",
     tags: [],
-    allergensEn: "Shellfish · Dairy · Egg",
-    allergensJa: "甲殻類・乳製品・卵",
+    allergensEn: "Egg, Fish (Tuna, Round Herring), Crustacean Shellfish (Shrimp), Soy, and Wheat",
+    allergensJa: "卵・魚（マグロ・マイワシ）・甲殻類（エビ）・大豆・小麦",
   },
   {
     img: "/images/flavors/pickled-plum.png",
@@ -71,21 +80,23 @@ const flavors: Flavor[] = [
   },
   {
     img: "/images/flavors/yuzu-salmon.png",
-    mascot: "/images/char-ys.png",
+    mascot: "/images/char-founder.png",
     nameEn: "Yuzu Salmon",
     nameJa: "柚子サーモン",
-    tags: [],
-    allergensEn: "Fish · Egg",
-    allergensJa: "魚・卵",
+    tags: ["GF"],
+    allergensEn: "Egg, Fish (Salmon), and Sesame",
+    allergensJa: "卵・魚（鮭）・ごま",
+    comingSoon: true,
   },
   {
     img: "/images/flavors/shredded-pork.png",
-    mascot: "/images/char-sp.png",
+    mascot: "/images/char-s.png",
     nameEn: "Shredded Pork",
     nameJa: "シュレッドポーク",
     tags: [],
-    allergensEn: "Egg · Pork",
-    allergensJa: "卵・豚肉",
+    allergensEn: "Egg, Soy, Wheat, and Sesame",
+    allergensJa: "卵・大豆・小麦・ごま",
+    comingSoon: true,
   },
 ];
 
@@ -194,10 +205,16 @@ export default function OurFlavors() {
           ))}
         </div>
 
-        <p style={{ paddingTop: isMobile ? 28 : 40, textAlign: "center", color: "#6f471c", fontSize: isMobile ? 12 : 16, lineHeight: 1.75, margin: 0 }}>
+        <p style={{ paddingTop: isMobile ? 28 : 40, textAlign: "center", color: "#6f471c", fontSize: isMobile ? 12 : 16, lineHeight: 1.75, margin: "0 0 10px" }}>
           {t(
             "Made fresh daily. \n Best consumed on the same day. Keep refrigerated.",
             "※毎日作りたてをお届けしています。\n※鮮度を保つため冷蔵保存し、当日中にお召し上がりください。"
+          )}
+        </p>
+        <p style={{ textAlign: "center", color: "#8a6a4a", fontSize: isMobile ? 11 : 13, lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>
+          {t(
+            "*Allergen information shown is based on our Seattle location.",
+            "※アレルゲン情報はシアトル店舗のものです。"
           )}
         </p>
       </div>

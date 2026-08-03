@@ -38,7 +38,7 @@ const flavors: Flavor[] = [
     mascot: "/images/char-stm.png",
     nameEn: "Spicy Tuna Mayo",
     nameJa: "スパイシーツナマヨ",
-    tags: ["GF", "Organic"],
+    tags: ["Organic"],
     allergensEn: "Egg, Fish (Tuna), and Sesame",
     allergensJa: "卵・魚（マグロ）・ごま",
   },
@@ -50,15 +50,6 @@ const flavors: Flavor[] = [
     tags: ["GF", "Organic"],
     allergensEn: "Fish (Salmon)",
     allergensJa: "魚（鮭）",
-  },
-  {
-    img: "/images/flavors/butter-corn.png",
-    mascot: "/images/char-bc.png",
-    nameEn: "Butter Corn",
-    nameJa: "バターコーン",
-    tags: ["GF", "Vegetarian"],
-    allergensEn: "Dairy",
-    allergensJa: "乳製品",
   },
   {
     img: "/images/flavors/shrimp-mayo.png",
@@ -80,23 +71,21 @@ const flavors: Flavor[] = [
   },
   {
     img: "/images/flavors/yuzu-salmon.png",
-    mascot: "/images/char-founder.png",
+    mascot: "/images/char-ys.png",
     nameEn: "Yuzu Salmon",
     nameJa: "柚子サーモン",
-    tags: ["GF"],
+    tags: [],
     allergensEn: "Egg, Fish (Salmon), and Sesame",
     allergensJa: "卵・魚（鮭）・ごま",
-    comingSoon: true,
   },
   {
     img: "/images/flavors/shredded-pork.png",
-    mascot: "/images/char-s.png",
+    mascot: "/images/char-sp.png",
     nameEn: "Shredded Pork",
     nameJa: "シュレッドポーク",
     tags: [],
     allergensEn: "Egg, Soy, Wheat, and Sesame",
     allergensJa: "卵・大豆・小麦・ごま",
-    comingSoon: true,
   },
 ];
 
@@ -205,7 +194,7 @@ export default function OurFlavors() {
           ))}
         </div>
 
-        <p style={{ paddingTop: isMobile ? 28 : 40, textAlign: "center", color: "#6f471c", fontSize: isMobile ? 12 : 16, lineHeight: 1.75, margin: "0 0 10px" }}>
+        <p style={{ paddingTop: isMobile ? 28 : 40, textAlign: "center", color: "#6f471c", fontSize: isMobile ? 12 : 16, lineHeight: 1.75, margin: "0 0 8px" }}>
           {t(
             "Made fresh daily. \n Best consumed on the same day. Keep refrigerated.",
             "※毎日作りたてをお届けしています。\n※鮮度を保つため冷蔵保存し、当日中にお召し上がりください。"

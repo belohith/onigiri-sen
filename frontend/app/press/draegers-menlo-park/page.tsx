@@ -39,7 +39,7 @@ export default function DraegersLaunchPressRelease() {
             {t("PRESS RELEASE","プレスリリース")}
           </div>
           <div style={{ color:"#bbb", fontSize:13, fontWeight:600, marginBottom:14 }}>
-            {label("August 6, 2026", "2026年8月6日")}
+            {label("August 7, 2026", "2026年8月7日")}
           </div>
           <h1 style={{ fontWeight:900, fontSize: isMobile ? 22 : 32, color:"#6f471c", margin:"0 auto", lineHeight:1.35, maxWidth:760 }}>
             {label(
@@ -50,12 +50,27 @@ export default function DraegersLaunchPressRelease() {
         </section>
 
         {/* ── BODY ── */}
-        <section style={{ padding: isMobile ? "8px 24px 56px" : "8px 80px 80px", maxWidth:800, margin:"0 auto" }}>
+        <section style={{ padding: isMobile ? "8px 24px 56px" : "8px 80px 80px", maxWidth:800, margin:"0 auto", position:"relative" as const }}>
+
+          {/* Partner logos — top right, horizontal */}
+          <div style={{ display:"flex", flexDirection:"row" as const, alignItems:"center", gap:16, float:"right" as const, margin: isMobile ? "0 0 16px 16px" : "4px 0 28px 40px", padding:"16px 20px", background:"#fff9f5", borderRadius:16, border:"1.5px solid #f0e4d4" }}>
+            <img
+              src="/images/char-founder.png"
+              alt="Onigiri Sen"
+              style={{ height: isMobile ? 56 : 80, objectFit:"contain" as const }}
+            />
+            <span style={{ fontSize: isMobile ? 16 : 22, color:"#e8d8c4", fontWeight:300 }}>×</span>
+            <img
+              src="/images/logo-draegers.png"
+              alt="Draeger's Market"
+              style={{ height: isMobile ? 40 : 60, objectFit:"contain" as const }}
+            />
+          </div>
 
           <p style={{ color:"#3a2a1a", fontSize: isMobile ? 14 : 16, lineHeight:1.9, margin:"0 0 28px" }}>
             {label(
-              `Onigiri Sen, Seattle's fast-growing Japanese rice ball brand, is expanding its Bay Area presence with a new partnership at Draeger's Market in Menlo Park. Starting August 6, 2026, fresh onigiri will be available daily at 1010 University Dr, Menlo Park, CA 94025 — bringing Onigiri Sen to the heart of Silicon Valley.`,
-              `シアトル発の急成長おにぎりブランド「Onigiri Sen」が、ベイエリアでの展開をさらに拡大。2026年8月6日より、メンロパークの Draeger's Market（1010 University Dr, Menlo Park, CA 94025）にて毎日新鮮なおにぎりの販売を開始します。シリコンバレーの中心地への進出となります。`
+              `Onigiri Sen, Seattle's fast-growing Japanese rice ball brand, is expanding its Bay Area presence with a new partnership at Draeger's Market in Menlo Park. Starting August 7, 2026, fresh onigiri will be available daily at 1010 University Dr, Menlo Park, CA 94025 — bringing Onigiri Sen to the heart of Silicon Valley.`,
+              `シアトル発の急成長おにぎりブランド「Onigiri Sen」が、ベイエリアでの展開をさらに拡大。2026年8月7日より、メンロパークの Draeger's Market（1010 University Dr, Menlo Park, CA 94025）にて毎日新鮮なおにぎりの販売を開始します。シリコンバレーの中心地への進出となります。`
             )}
           </p>
 

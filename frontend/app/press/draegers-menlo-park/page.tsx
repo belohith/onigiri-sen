@@ -52,8 +52,8 @@ export default function DraegersLaunchPressRelease() {
         {/* ── BODY ── */}
         <section style={{ padding: isMobile ? "8px 24px 56px" : "8px 80px 80px", maxWidth:800, margin:"0 auto", position:"relative" as const }}>
 
-          {/* Partner logos — top right, horizontal */}
-          <div style={{ display:"flex", flexDirection:"row" as const, alignItems:"center", gap:16, float:"right" as const, margin: isMobile ? "0 0 16px 16px" : "4px 0 28px 40px", padding:"16px 20px", background:"#fff9f5", borderRadius:16, border:"1.5px solid #f0e4d4" }}>
+          {/* Partner logos — standalone row above content */}
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:20, marginBottom: isMobile ? 32 : 40, padding: isMobile ? "16px 20px" : "20px 32px", background:"#fff9f5", borderRadius:16, border:"1.5px solid #f0e4d4" }}>
             <img
               src="/images/char-founder.png"
               alt="Onigiri Sen"

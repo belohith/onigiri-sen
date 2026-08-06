@@ -84,8 +84,8 @@ export default function HomePage() {
     },
   ];
 
-  const tickerEn = "🎉 NOW OPEN in San Jose, California — T&T Supermarket, 1600 Saratoga Ave  ·  📺 Featured on KING 5 News  ·  🏟️ Now at T-Mobile Park (Mariners)  ·  📰 Covered by Lookout Landing, Seattle Weekly & more  ·  🛒 Find us at PCC, T&T, Town & Country  ·";
-  const tickerJa = "🎉 カリフォルニア・サンノゼ本日オープン！— T&T Supermarket, 1600 Saratoga Ave  ·  📺 KING 5 Newsに特集掲載  ·  🏟️ T-Mobileパーク（マリナーズ）に出店中  ·  📰 Lookout Landing・Seattle Weeklyなど多数掲載  ·  🛒 PCC・T&T・Town & Countryで販売中  ·";
+  const tickerEn = "🎉 NOW at Draeger's Menlo Park — Bay Area's new location!  ·  🛒 Also at T&T Supermarket San Jose  ·  📺 Featured on KING 5 News  ·  🏟️ Now at T-Mobile Park (Mariners)  ·  📰 Covered by Lookout Landing, Seattle Weekly & more  ·";
+  const tickerJa = "🎉 Draeger's Menlo Parkに新登場！  ·  🛒 T&T Supermarket サンノゼ店でも販売中  ·  📺 KING 5 Newsに特集掲載  ·  🏟️ T-Mobileパーク（マリナーズ）に出店中  ·  📰 Lookout Landing・Seattle Weeklyなど多数掲載  ·";
 
   return (
     <>
@@ -266,9 +266,9 @@ export default function HomePage() {
           <p style={{ fontSize:16, opacity:0.85, margin:"0 0 24px" }}>@onigirisen.jp</p>
           <img src="/images/char-instagram.png" alt="" style={{ height: isMobile ? 180 : 300, objectFit:"contain" as const, display:"block", margin:"0 auto 24px" }} />
           <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap:16, maxWidth:960, margin:"0 auto 36px" }}>
-            <IgPost url="https://www.instagram.com/p/DZ2rKjbhiw3/" />
-            {!isMobile && <IgPost url="https://www.instagram.com/p/DZp98ytJyr4/" />}
-            {!isMobile && <IgPost url="https://www.instagram.com/p/DZTB6vPBjIt/" />}
+            <IgPost url="https://www.instagram.com/p/DWDJ9pHB1YV/" />
+            {!isMobile && <IgPost url="https://www.instagram.com/p/DXpi8wZCITL/" />}
+            {!isMobile && <IgPost url="https://www.instagram.com/p/DWZ3rimEkVV/" />}
           </div>
           <Link href="https://instagram.com/onigirisen.jp" target="_blank" style={{ display:"inline-block", border:"2px solid rgba(255,255,255,0.6)", color:"#fff", padding:"11px 28px", borderRadius:999, fontWeight:700, fontSize:14, textDecoration:"none" }}>
             {t("View on Instagram","Onigiri Sen をフォローする →")}

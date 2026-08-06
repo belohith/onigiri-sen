@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { useLang } from "../context/LangContext";
 
 const partners = [
-  { src:"/images/logo-tt.png",      alt:"T&T Supermarket" },
-  { src:"/images/logo-pcc.png",     alt:"PCC Community Markets" },
-  { src:"/images/logo-tmobile.png", alt:"T-Mobile Park" },
-  // { src:"/images/logo-tc.jpeg",  alt:"Town & County Market" }, // removed
-  { src:"/images/logo-ack.png",     alt:"Artisan Community Kitchen" },
-  { src:"/images/logo-ls.png",      alt:"Lakeside School" },
+  { src:"/images/logo-tt.png",       alt:"T&T Supermarket" },
+  { src:"/images/logo-pcc.png",      alt:"PCC Community Markets" },
+  { src:"/images/logo-tmobile.png",  alt:"T-Mobile Park" },
+  { src:"/images/logo-draegers.png", alt:"Draeger's Market" },
+  // { src:"/images/logo-tc.jpeg",   alt:"Town & County Market" }, // removed
+  { src:"/images/logo-ack.png",      alt:"Artisan Community Kitchen" },
+  { src:"/images/logo-ls.png",       alt:"Lakeside School" },
 ];
 
 function useIsMobile() {

@@ -47,6 +47,16 @@ const californiaStores: Store[] = [
     phone: "408-255-1688",
     mapsUrl: "https://maps.google.com/?q=1600+Saratoga+Ave+San+Jose+CA+95129",
   },
+  {
+    nameEn: "Draeger's Market – Menlo Park",
+    nameJa: "Draeger's Market – メンロパーク",
+    addressEn: "1010 University Dr, Menlo Park, CA 94025",
+    addressJa: "1010 University Dr, Menlo Park, CA 94025",
+    hoursEn: "Daily 7am–9pm",
+    hoursJa: "毎日 7:00〜21:00",
+    phone: "650-324-7700",
+    mapsUrl: "https://maps.google.com/?q=1010+University+Dr+Menlo+Park+CA+94025",
+  },
 ];
 
 const CA_MAP_EMBED =

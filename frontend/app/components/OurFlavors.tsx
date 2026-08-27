@@ -194,18 +194,13 @@ export default function OurFlavors() {
           ))}
         </div>
 
-        <p style={{ paddingTop: isMobile ? 28 : 40, textAlign: "center", color: "#6f471c", fontSize: isMobile ? 12 : 16, lineHeight: 1.75, margin: "0 0 8px" }}>
+        <p style={{ paddingTop: isMobile ? 28 : 40, textAlign: "center", color: "#6f471c", fontSize: isMobile ? 12 : 16, lineHeight: 1.75, margin: 0 }}>
           {t(
             "Made fresh daily. \n Best consumed on the same day. Keep refrigerated.",
             "※毎日作りたてをお届けしています。\n※鮮度を保つため冷蔵保存し、当日中にお召し上がりください。"
           )}
         </p>
-        <p style={{ textAlign: "center", color: "#8a6a4a", fontSize: isMobile ? 11 : 13, lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>
-          {t(
-            "*Allergen information shown is based on our Seattle location.",
-            "※アレルゲン情報はシアトル店舗のものです。"
-          )}
-        </p>
+
       </div>
 
       {/* Bottom Scallop */}

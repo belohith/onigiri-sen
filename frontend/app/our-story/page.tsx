@@ -702,8 +702,8 @@ export default function OurStoryPage() {
                   dotColor: "#ed7e80",
                   title: t("Scaling the Vision", "さらに大きな舞台へ"),
                   body: t(
-                    "The momentum continues. This year, we expand to T-Mobile Park stadium and take our next big leap into San Jose. California is next.",
-                    "今年は大舞台であるT-Mobileパーク（野球場）での取り扱いがスタート。そしてこの6月には、サンノゼへの進出へ。アメリカ中に新しい食文化を届けるため、次の一歩を踏み出します。"
+                    "The momentum continues. Building on our expansion to T-Mobile Park and San Jose, we are now taking our next big leap into Los Angeles. Southern California is next!",
+                    "今年は大舞台であるT-Mobileパーク（野球場）での取り扱いがスタートし、サンノゼへの進出も果たしました。そして次は、ロサンゼルスへ。アメリカ中に新しい食文化を届けるため、次の一歩を踏み出します。"
                   ),
                 },
               ].map((item, i) => (

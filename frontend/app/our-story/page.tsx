@@ -294,16 +294,7 @@ export default function OurStoryPage() {
                   </p>
                 </div>
 
-                <div
-                  style={{
-                    borderRadius: 20,
-                    overflow: "hidden",
-                    position: "relative",
-                    marginBottom: 24,
-                    height: "auto",
-                    flexShrink: 0,
-                  }}
-                >
+                <div style={{ borderRadius: 20, overflow: "hidden", position: "relative", marginBottom: 24, maxWidth: 340, margin: "0 auto 24px" }}>
                   <img
                     src="/images/rina-oike.webp"
                     alt="Rina Oike"
@@ -396,7 +387,7 @@ export default function OurStoryPage() {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "minmax(0, 1fr) 540px",
+                  gridTemplateColumns: "minmax(0, 1fr) 340px",
                   alignItems: "stretch",
                   gap: 0,
                 }}

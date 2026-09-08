@@ -300,7 +300,7 @@ export default function OurStoryPage() {
                     overflow: "hidden",
                     position: "relative",
                     marginBottom: 24,
-                    height: 480,
+                    height: 320,
                     flexShrink: 0,
                   }}
                 >
@@ -407,7 +407,7 @@ export default function OurStoryPage() {
                   style={{
                     background: "#f3a8b6",
                     padding: "64px 80px",
-                    minHeight: 650,
+                    minHeight: 420,
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
@@ -446,7 +446,7 @@ export default function OurStoryPage() {
                 <div
                   style={{
                     position: "relative",
-                    height: 650,
+                    height: 420,
                     overflow: "hidden",
                     background: "#ddd",
                   }}

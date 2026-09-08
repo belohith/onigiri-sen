@@ -300,7 +300,7 @@ export default function OurStoryPage() {
                     overflow: "hidden",
                     position: "relative",
                     marginBottom: 24,
-                    height: 320,
+                    height: "auto",
                     flexShrink: 0,
                   }}
                 >
@@ -308,12 +308,10 @@ export default function OurStoryPage() {
                     src="/images/rina-oike.webp"
                     alt="Rina Oike"
                     style={{
-                      position: "absolute",
-                      inset: 0,
+                     position: "relative",
                       width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      objectPosition: "center 10%",
+                      height: "auto",
+                      display: "block",
                     }}
                   />
 
@@ -407,7 +405,7 @@ export default function OurStoryPage() {
                   style={{
                     background: "#f3a8b6",
                     padding: "64px 80px",
-                    minHeight: 420,
+                    minHeight: "auto",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
@@ -446,7 +444,6 @@ export default function OurStoryPage() {
                 <div
                   style={{
                     position: "relative",
-                    height: 420,
                     overflow: "hidden",
                     background: "#ddd",
                   }}
@@ -456,9 +453,7 @@ export default function OurStoryPage() {
                     alt="Rina Oike"
                     style={{
                       width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      objectPosition: "center 10%",
+                      height: "auto",
                       display: "block",
                     }}
                   />

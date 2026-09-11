@@ -1030,12 +1030,12 @@ export default function OurStoryPage() {
               {
                 src: "/images/ingredient-rice-field.png",
                 label: t(
-                  "TENKEI RICE (California Super Premium)",
-                  "カリフォルニアの恵み 特選米「天恵（Tenkei）"
+                  "California Premium Rice",
+                  "カリフォルニアの恵み 特選米"
                 ),
                 body: t(
-                  "Our canvas is Tenkei, a super-premium grain grown in the fertile soils of California. After rigorous testing with our AIHO system, we selected this specific grain for its unparalleled ability to achieve the perfect balance of sweetness and texture. By combining American-grown freshness with Japanese precision, we have crafted the ultimate bite.",
-                  "私たちの「キャンバス」は、カリフォルニア産最高級米「天恵」です。AIHOのシステムで数多の銘柄をテストし、最も理想的な甘みと食感を引き出せる一粒を厳選しました。日本の炊飯技術を掛け合わせることで、驚くほどふっくらとした、甘み溢れる「アメリカ生まれの最高の一粒」に仕上げています。"
+                  "Our canvas is a premium-grade grain grown in the fertile soils of California. After rigorous testing with our AIHO system, we selected this specific grain for its unparalleled ability to achieve the perfect balance of sweetness and texture. By combining American-grown freshness with Japanese precision, we have crafted the ultimate bite.",
+                  "私たちの「キャンバス」は、カリフォルニア産の厳選された高品質米です。AIHOのシステムで数多の銘柄をテストし、最も理想的な甘みと食感を引き出せる一粒を厳選しました。日本の炊飯技術を掛け合わせることで、驚くほどふっくらとした、甘み溢れる「アメリカ生まれの最高の一粒」に仕上げています。"
                 ),
               },
             ].map((item) => (

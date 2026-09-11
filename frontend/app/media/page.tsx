@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useLang } from "../context/LangContext";
 
 type MediaItem = {
-  category: "tv" | "print" | "podcast" | "online";
+  category: "tv" | "print" | "podcast" | "online" | "print & online";
   articleLang: "en" | "ja" | "both";
   outlet: string;
   titleEn: string;
@@ -21,7 +21,7 @@ type MediaItem = {
 
 const media: MediaItem[] = [
   {
-    category: "print",
+    category: "print & online",
     articleLang: "en",
     outlet: "Seattle Magazine",
     titleEn: "Onigiri on the Rise — Seattle Magazine Spotlight",
@@ -131,6 +131,7 @@ const langLabel: Record<"en"|"ja"|"both", { label: string; color: string; bg: st
 const categoryLabel: Record<MediaItem["category"], { en: string; ja: string; color: string; bg: string }> = {
   tv:      { en: "TV / Video", ja: "テレビ・動画",  color: "#7a4a00", bg: "#fde8b0" },
   print:   { en: "Print",      ja: "印刷媒体",      color: "#1a4a30", bg: "#d4edda" },
+  "print & online": { en: "Print & Online", ja: "誌面・オンライン", color: "#2a6a8a", bg: "#e0f0f8" },
   podcast: { en: "Podcast",    ja: "ポッドキャスト", color: "#4a2a7a", bg: "#e8d8f8" },
   online:  { en: "Online",     ja: "オンライン",    color: "#7a2020", bg: "#fde8e8" },
 };

@@ -21,7 +21,7 @@ type MediaItem = {
 
 const media: MediaItem[] = [
   {
-    category: "online",
+    category: "print",
     articleLang: "en",
     outlet: "Seattle Magazine",
     titleEn: "Onigiri on the Rise — Seattle Magazine Spotlight",
@@ -32,7 +32,7 @@ const media: MediaItem[] = [
     href: "https://seattlemag.com/lifestyle/shop-local/onigiri-on-the-rise/",
   },
   {
-    category: "print" as const,
+    category: "online" as const,
     articleLang: "both" as const,
     outlet: "Onigiri Sen",
     titleEn: "Press Release — Onigiri Sen Makes Bay Area Debut in San Jose",

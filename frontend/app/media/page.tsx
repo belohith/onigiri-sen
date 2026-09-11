@@ -14,21 +14,34 @@ type MediaItem = {
   descJa: string;
   date: string;
   href: string;
+  paywalled?: boolean;
 };
 
-const pressRelease = {
-  category: "print" as const,
-  articleLang: "both" as const,
-  outlet: "Onigiri Sen",
-  titleEn: "Press Release — Onigiri Sen Makes Bay Area Debut in San Jose",
-  titleJa: "プレスリリース — Onigiri Sen、サンノゼに初上陸",
-  descEn: "Official press release for the Onigiri Sen California launch at T&T Supermarket San Jose, June 18, 2026.",
-  descJa: "T&T Supermarket サンノゼ店でのOnigiri Senカリフォルニア進出に関する公式プレスリリース。2026年6月18日。",
-  date: "18 June 2026",
-  href: "/press/california-launch",
-};
+
 
 const media: MediaItem[] = [
+  {
+    category: "online",
+    articleLang: "en",
+    outlet: "Seattle Magazine",
+    titleEn: "Onigiri on the Rise — Seattle Magazine Spotlight",
+    titleJa: "急成長するおにぎりブランド — Seattle Magazineでの特集掲載",
+    descEn: "Seattle Magazine covers Onigiri Sen's rapid growth, featuring an interview with CEO Rina Oike on starting from a 75-sq-ft kitchen, commitment to premium ingredients, and expanding to California.",
+    descJa: "Seattle MagazineがOnigiri Senの急成長を特集。CEO尾池里奈のインタビューを通じ、75平方フィートの小さなキッチンからのスタート、厳選素材へのこだわり、カリフォルニア進出について紹介されています。",
+    date: "31 August 2026",
+    href: "https://seattlemag.com/lifestyle/shop-local/onigiri-on-the-rise/",
+  },
+  {
+    category: "print" as const,
+    articleLang: "both" as const,
+    outlet: "Onigiri Sen",
+    titleEn: "Press Release — Onigiri Sen Makes Bay Area Debut in San Jose",
+    titleJa: "プレスリリース — Onigiri Sen、サンノゼに初上陸",
+    descEn: "Official press release for the Onigiri Sen California launch at T&T Supermarket San Jose, June 18, 2026.",
+    descJa: "T&T Supermarket サンノゼ店でのOnigiri Senカリフォルニア進出に関する公式プレスリリース。2026年6月18日。",
+    date: "18 June 2026",
+    href: "/press/california-launch",
+  },
   {
     category: "online",
     articleLang: "en",
@@ -40,7 +53,7 @@ const media: MediaItem[] = [
     date: "15 June 2026",
     href: "https://www.bizjournals.com/sanjose/news/2026/06/15/onigiri-sen-san-jose-t-t-supermarket-wholesale.html",
     paywalled: true,
-  } as MediaItem & { paywalled?: boolean },
+  },
   {
     category: "online",
     articleLang: "ja",
@@ -199,74 +212,7 @@ export default function MediaPage() {
         <section style={{ padding: isMobile ? "0 16px 64px" : "0 80px 100px" }}>
           <div style={{ display:"flex", flexDirection:"column" as const, gap:12 }}>
 
-            {/* ── PRESS RELEASE — clickable link to dedicated page ── */}
-            {(() => {
-              const item = pressRelease;
-              const cat = categoryLabel[item.category];
-              return (
-                <Link key="press-release" href={item.href} style={{ textDecoration: "none" }}>
-                  <div
-                    style={{
-                      background: "#fffbf0",
-                      borderRadius: 20,
-                      padding: isMobile ? "20px 16px" : "28px 32px",
-                      display: "grid",
-                      gridTemplateColumns: isMobile ? "1fr" : "auto 1fr auto",
-                      gap: isMobile ? "12px 0" : "0 28px",
-                      alignItems: "center",
-                      border: "2px solid #ed7e80",
-                      cursor: "pointer",
-                      transition: "box-shadow 0.2s",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 20px rgba(237,126,128,0.18)";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
-                    }}
-                  >
-                    {isMobile ? (
-                      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" as const }}>
-                        <div style={{ fontWeight: 800, fontSize: 13, color: "#6f471c" }}>{item.outlet}</div>
-                        <div style={{ background: cat.bg, color: cat.color, fontSize: 10, fontWeight: 700, borderRadius: 999, padding: "2px 8px" }}>
-                          {lang === "ja" ? cat.ja : cat.en}
-                        </div>
-                        <div style={{ fontSize: 11, color: "#bbb", fontWeight: 500 }}>{item.date}</div>
-                        <div style={{ background: langLabel[item.articleLang].bg, color: langLabel[item.articleLang].color, fontSize: 9, fontWeight: 700, borderRadius: 999, padding: "2px 8px" }}>
-                          {langLabel[item.articleLang].label}
-                        </div>
-                      </div>
-                    ) : (
-                      <div style={{ textAlign: "center" as const, minWidth: 100 }}>
-                        <div style={{ fontWeight: 800, fontSize: 14, color: "#6f471c", marginBottom: 6, lineHeight: 1.3 }}>{item.outlet}</div>
-                        <div style={{ fontSize: 11, color: "#bbb", fontWeight: 500 }}>{item.date}</div>
-                        <div style={{ display: "inline-block", marginTop: 8, background: cat.bg, color: cat.color, fontSize: 10, fontWeight: 700, borderRadius: 999, padding: "3px 10px" }}>
-                          {lang === "ja" ? cat.ja : cat.en}
-                        </div>
-                        <div style={{ display: "inline-block", marginTop: 6, background: langLabel[item.articleLang].bg, color: langLabel[item.articleLang].color, fontSize: 9, fontWeight: 700, borderRadius: 999, padding: "2px 8px" }}>
-                          {langLabel[item.articleLang].label}
-                        </div>
-                      </div>
-                    )}
-
-                    <div>
-                      <div style={{ fontWeight: 800, fontSize: isMobile ? 14 : 16, color: "#2a2a2a", marginBottom: 6, lineHeight: 1.4 }}>
-                        {lang === "ja" ? item.titleJa : item.titleEn}
-                      </div>
-                      <p style={{ color: "#8a6a4a", fontSize: 13, lineHeight: 1.75, margin: 0 }}>
-                        {lang === "ja" ? item.descJa : item.descEn}
-                      </p>
-                    </div>
-
-                    <div style={{ color: "#ed7e80", display: "flex", alignItems: isMobile ? "flex-end" : "center", justifyContent: "center" }}>
-                      <ExternalIcon />
-                    </div>
-                  </div>
-                </Link>
-              );
-            })()}
-
-            {media.map((item) => {
+                     {media.map((item) => {
               const cat = categoryLabel[item.category];
               return (
                 <a

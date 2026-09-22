@@ -56,7 +56,7 @@ export default function ProductsPage() {
   const dietary = [
     { label:t("Gluten-Free (GF)","グルテンフリー (GF)"), lc:"#fff", lb:"#8faa3a", ic:"#5a8a20", items:t("Salmon · Spicy Tuna Mayo · Ume","鮭 ・ スパイシーツナマヨ ・ 梅") },
     { label:t("Vegan","ヴィーガン"),                       lc:"#fff", lb:"#2d6a4f", ic:"#2d6a4f", items:t("Ume","梅") },
-    { label:t("Vegetarian","ベジタリアン"),                 lc:"#fff", lb:"#5aaa3a", ic:"#3a8a20", items:t("Ume · Butter Corn","梅 ・ バターコーン") },
+    { label:t("Vegetarian","ベジタリアン"),                 lc:"#fff", lb:"#5aaa3a", ic:"#3a8a20", items:t("Ume","梅") },
     { label:t("Organic","オーガニック"),                    lc:"#fff", lb:"#d4a017", ic:"#b88000", items:t("Salmon · Spicy Tuna Mayo · Ume","鮭 ・ スパイシーツナマヨ ・ 梅") },
   ];
 

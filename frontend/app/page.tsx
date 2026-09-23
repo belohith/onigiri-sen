@@ -84,8 +84,8 @@ export default function HomePage() {
     },
   ];
 
-  const tickerEn = "🎉 NOW at Draeger's Menlo Park — Bay Area's new location!  ·  🛒 Also at T&T Supermarket San Jose  ·  📺 Featured on KING 5 News  ·  🏟️ Now at T-Mobile Park (Mariners)  ·  📰 Covered by Lookout Landing, Seattle Weekly & more  ·";
-  const tickerJa = "🎉 Draeger's Menlo Parkに新登場！  ·  🛒 T&T Supermarket サンノゼ店でも販売中  ·  📺 KING 5 Newsに特集掲載  ·  🏟️ T-Mobileパーク（マリナーズ）に出店中  ·  📰 Lookout Landing・Seattle Weeklyなど多数掲載  ·";
+  const tickerEn = "🛒 Now at T&T Supermarket San Jose  ·  📺 Featured on KING 5 News  ·  🏟️ Now at T-Mobile Park (Mariners)  ·  📰 Covered by Lookout Landing, Seattle Weekly & more  ·";
+  const tickerJa = "🛒 T&T Supermarket サンノゼ店でも販売中  ·  📺 KING 5 Newsに特集掲載  ·  🏟️ T-Mobileパーク（マリナーズ）に出店中  ·  📰 Lookout Landing・Seattle Weeklyなど多数掲載  ·";
 
   return (
     <>

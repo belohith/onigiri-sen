@@ -12,6 +12,7 @@ type Store = {
   hoursJa: string;
   phone: string;
   mapsUrl: string;
+  comingSoon?: boolean;
 };
 
 const seattleStores: Store[] = [
@@ -33,6 +34,7 @@ const seattleStores: Store[] = [
   { nameEn: "PCC – West Seattle", nameJa: "PCC – ウェスト・シアトル", addressEn: "2749 California Ave SW, Seattle, WA 98116", addressJa: "2749 California Ave SW, Seattle, WA 98116", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "206-485-7185", mapsUrl: "https://maps.app.goo.gl/yGkveyuWcSy4vx42A" },
   // Town & Country locations removed
   { nameEn: "T&T Supermarket – Bellevue", nameJa: "T&T スーパーマーケット – ベルビュー", addressEn: "12620 SE 41st Pl, Bellevue, WA 98006", addressJa: "12620 SE 41st Pl, Bellevue, WA 98006", hoursEn: "Mon–Fri 9am–11pm, Sat–Sun 8am–11pm", hoursJa: "月〜金 9:00〜23:00、土日 8:00〜23:00", phone: "425-818-3260", mapsUrl: "https://maps.app.goo.gl/oCJECrBFY5CiJmag8" },
+  { nameEn: "Town & Country Market", nameJa: "Town & Country Market", addressEn: "Multiple Seattle-area locations", addressJa: "シアトル周辺（複数店舗）", hoursEn: "", hoursJa: "", phone: "", mapsUrl: "", comingSoon: new Date() < new Date("2026-09-28") },
   { nameEn: "T&T Supermarket – Lynnwood", nameJa: "T&T スーパーマーケット – リンウッド", addressEn: "19630 Hwy 99, Lynnwood, WA 98036", addressJa: "19630 Hwy 99, Lynnwood, WA 98036", hoursEn: "Daily 9am–10pm", hoursJa: "毎日 9:00〜22:00", phone: "425-648-2648", mapsUrl: "https://maps.app.goo.gl/4iiXrgtX6LiNAJGF7" },
 ];
 
@@ -47,16 +49,7 @@ const californiaStores: Store[] = [
     phone: "408-255-1688",
     mapsUrl: "https://maps.google.com/?q=1600+Saratoga+Ave+San+Jose+CA+95129",
   },
-  {
-    nameEn: "Draeger's Market – Menlo Park",
-    nameJa: "Draeger's Market – メンロパーク",
-    addressEn: "1010 University Dr, Menlo Park, CA 94025",
-    addressJa: "1010 University Dr, Menlo Park, CA 94025",
-    hoursEn: "Daily 7am–9pm",
-    hoursJa: "毎日 7:00〜21:00",
-    phone: "650-324-7700",
-    mapsUrl: "https://maps.google.com/?q=1010+University+Dr+Menlo+Park+CA+94025",
-  },
+  
 ];
 
 const CA_MAP_EMBED =
@@ -80,6 +73,7 @@ function StoreRow({ store, lang, isMobile, isNew }: { store: Store; lang: string
   const name = lang === "ja" ? store.nameJa : store.nameEn;
   const address = lang === "ja" ? store.addressJa : store.addressEn;
   const hours = lang === "ja" ? store.hoursJa : store.hoursEn;
+  const comingSoon = store.comingSoon ?? false;
 
   return (
     <div style={{ borderBottom:"1px solid #f5ede8", background:"#fff" }}>
@@ -94,7 +88,10 @@ function StoreRow({ store, lang, isMobile, isNew }: { store: Store; lang: string
         </svg>
         <div style={{ flex:1, minWidth:0 }}>
           <div style={{ display:"flex", alignItems:"center", gap:8, flexWrap:"wrap" as const }}>
-            <div style={{ fontSize: isMobile ? 12 : 13, fontWeight:700, color:"#5a3020" }}>{name}</div>
+            <div style={{ fontSize: isMobile ? 12 : 13, fontWeight:700, color:"#5a3020", display:"flex", alignItems:"center", gap:6, flexWrap:"wrap" }}>
+              {name}
+              {comingSoon && <span style={{ background:"#ffefc8", color:"#9C5700", fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>{lang==="ja" ? "近日オープン" : "Coming Soon"}</span>}
+            </div>
             {isNew && (
               <span style={{ background:"#ed7e80", color:"#fff", fontSize:9, fontWeight:800, borderRadius:999, padding:"2px 8px", letterSpacing:1 }}>
                 🎉 NOW OPEN

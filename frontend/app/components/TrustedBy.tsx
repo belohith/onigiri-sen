@@ -6,7 +6,6 @@ const partners = [
   { src:"/images/logo-tt.png",       alt:"T&T Supermarket",           href:"https://www.tntsupermarket.us/eng/" },
   { src:"/images/logo-pcc.png",      alt:"PCC Community Markets",     href:"https://www.pccmarkets.com/" },
   { src:"/images/logo-tmobile.png",  alt:"T-Mobile Park",             href:"https://www.mlb.com/mariners/ballpark" },
-  { src:"/images/logo-draegers.png", alt:"Draeger's Market",          href:"https://www.draegers.com/" },
   { src:"/images/logo-eom.png",      alt:"Eat on Monday",             href:"https://www.eatonmonday.com/" },
   // { src:"/images/logo-tc.jpeg",   alt:"Town & County Market",      href:"" }, // removed
   { src:"/images/logo-ack.png",      alt:"Artisan Community Kitchen", href:"https://www.artisancommunitykitchen.com/" },

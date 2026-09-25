@@ -32,7 +32,6 @@ const seattleStores: Store[] = [
   { nameEn: "PCC – Redmond", nameJa: "PCC – レドモンド", addressEn: "11435 Avondale Rd NE, Redmond, WA 98052", addressJa: "11435 Avondale Rd NE, Redmond, WA 98052", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "425-285-1400", mapsUrl: "https://maps.app.goo.gl/LA56ng5oiVsZXwTS6" },
   { nameEn: "PCC – View Ridge", nameJa: "PCC – ビューリッジ", addressEn: "6514 40th Ave NE, Seattle, WA 98115", addressJa: "6514 40th Ave NE, Seattle, WA 98115", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "206-526-7661", mapsUrl: "https://maps.app.goo.gl/1549HeSYAhdGuacb6" },
   { nameEn: "PCC – West Seattle", nameJa: "PCC – ウェスト・シアトル", addressEn: "2749 California Ave SW, Seattle, WA 98116", addressJa: "2749 California Ave SW, Seattle, WA 98116", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "206-485-7185", mapsUrl: "https://maps.app.goo.gl/yGkveyuWcSy4vx42A" },
-  // Town & Country locations removed
   { nameEn: "Town & Country – Ballard", nameJa: "Town & Country – バラード", addressEn: "1400 NW 56th St, Seattle, WA 98107", addressJa: "1400 NW 56th St, Seattle, WA 98107", hoursEn: "Daily 7am–10pm", hoursJa: "毎日 7:00〜22:00", phone: "(206) 783-7922", mapsUrl: "https://maps.app.goo.gl/CX5RFmDXiioX6j1t5" },
   { nameEn: "Town & Country – Shoreline", nameJa: "Town & Country – ショアライン", addressEn: "15505 Westminster Way N, Shoreline, WA 98133", addressJa: "15505 Westminster Way N, Shoreline, WA 98133", hoursEn: "Daily 7am–10pm", hoursJa: "毎日 7:00〜22:00", phone: "(206) 363-9226", mapsUrl: "https://maps.app.goo.gl/P7i4t6cXc3cqQnwJA" },
   { nameEn: "Town & Country – Mill Creek", nameJa: "Town & Country – ミルクリーク", addressEn: "15605 Main St, Mill Creek, WA 98012", addressJa: "15605 Main St, Mill Creek, WA 98012", hoursEn: "Daily 7am–10pm", hoursJa: "毎日 7:00〜22:00", phone: "(425) 357-3240", mapsUrl: "https://maps.app.goo.gl/V9Bfaxkr2eQQ1yEG6" },
@@ -50,7 +49,7 @@ const californiaStores: Store[] = [
     hoursEn: "Mon–Fri 9am–11pm · Sat–Sun 8am–11pm",
     hoursJa: "月〜金 9:00〜23:00 · 土日 8:00〜23:00",
     phone: "408-255-1688",
-    mapsUrl: "https://maps.google.com/?q=1600+Saratoga+Ave+San+Jose+CA+95129",
+    mapsUrl: "https://maps.app.goo.gl/EVCQvhSdADtiXo8t7",
   },
   
 ];

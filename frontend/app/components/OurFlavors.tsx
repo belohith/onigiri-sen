@@ -81,8 +81,8 @@ const flavors: Flavor[] = [
   {
     img: "/images/flavors/shredded-pork.png",
     mascot: "/images/char-sp.png",
-    nameEn: "Shredded Pork",
-    nameJa: "シュレッドポーク",
+    nameEn: "Pork Furikake",
+    nameJa: "豚フリカケ",
     tags: [],
     allergensEn: "Egg, Soy, Wheat, and Sesame",
     allergensJa: "卵・大豆・小麦・ごま",

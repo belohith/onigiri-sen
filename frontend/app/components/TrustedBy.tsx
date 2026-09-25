@@ -7,7 +7,7 @@ const partners = [
   { src:"/images/logo-pcc.png",      alt:"PCC Community Markets",     href:"https://www.pccmarkets.com/" },
   { src:"/images/logo-tmobile.png",  alt:"T-Mobile Park",             href:"https://www.mlb.com/mariners/ballpark" },
   { src:"/images/logo-eom.png",      alt:"Eat on Monday",             href:"https://www.eatonmonday.com/" },
-  // { src:"/images/logo-tc.jpeg",   alt:"Town & County Market",      href:"" }, // removed
+  { src:"/images/logo-tc.jpeg",   alt:"Town & Country Market",     href:"https://www.townandcountrymarket.com/" },
   { src:"/images/logo-ack.png",      alt:"Artisan Community Kitchen", href:"https://www.artisancommunitykitchen.com/" },
   { src:"/images/logo-ls.png",       alt:"Lakeside School",           href:"https://www.lakesideschool.org/" },
 ];

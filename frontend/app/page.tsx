@@ -84,8 +84,8 @@ export default function HomePage() {
     },
   ];
 
-  const tickerEn = "🛒 Now at T&T Supermarket San Jose  ·  📺 Featured on KING 5 News  ·  🏟️ Now at T-Mobile Park (Mariners)  ·  📰 Covered by Lookout Landing, Seattle Weekly & more  ·";
-  const tickerJa = "🛒 T&T Supermarket サンノゼ店でも販売中  ·  📺 KING 5 Newsに特集掲載  ·  🏟️ T-Mobileパーク（マリナーズ）に出店中  ·  📰 Lookout Landing・Seattle Weeklyなど多数掲載  ·";
+  const tickerEn = "🎉 Town & Country Market coming September 28th!  ·  🛒 Now at T&T Supermarket San Jose  ·  📺 Featured on KING 5 News  ·  🏟️ Now at T-Mobile Park (Mariners)  ·  📰 Covered by Lookout Landing, Seattle Weekly & more  ·";
+  const tickerJa = "🎉 Town & Country Market、9月28日より販売開始！  ·  🛒 T&T Supermarket サンノゼ店でも販売中  ·  📺 KING 5 Newsに特集掲載  ·  🏟️ T-Mobileパーク（マリナーズ）に出店中  ·  📰 Lookout Landing・Seattle Weeklyなど多数掲載  ·";
 
   return (
     <>

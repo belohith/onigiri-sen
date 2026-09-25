@@ -29,12 +29,15 @@ const seattleStores: Store[] = [
   { nameEn: "PCC – Green Lake Village", nameJa: "PCC – グリーンレイク・ビレッジ", addressEn: "450 NE 71st St, Seattle, WA 98115", addressJa: "450 NE 71st St, Seattle, WA 98115", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "206-729-5075", mapsUrl: "https://maps.app.goo.gl/aAZM86rWX173M3J28" },
   { nameEn: "PCC – Issaquah", nameJa: "PCC – イサクア", addressEn: "1810 12th Ave NW, Issaquah, WA 98027", addressJa: "1810 12th Ave NW, Issaquah, WA 98027", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "425-369-1222", mapsUrl: "https://maps.app.goo.gl/ed919ourv4hVW5HU9" },
   { nameEn: "PCC – Kirkland", nameJa: "PCC – カークランド", addressEn: "430 Kirkland Way, Kirkland, WA 98033", addressJa: "430 Kirkland Way, Kirkland, WA 98033", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "425-828-4622", mapsUrl: "https://maps.app.goo.gl/jzoRRNNvhksJGH1a8" },
-  { nameEn: "PCC – Redmond", nameJa: "PCC – レドモンド", addressEn: "11435 Avondale Rd NE, Redmond, WA 98052", addressJa: "11435 Avondale Rd NE, Redmond, WA 98052", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "425-285-1400", mapsUrl: "https://maps.app.goo.gl/Ef5LqDc5W8xX6Kbt8" },
+  { nameEn: "PCC – Redmond", nameJa: "PCC – レドモンド", addressEn: "11435 Avondale Rd NE, Redmond, WA 98052", addressJa: "11435 Avondale Rd NE, Redmond, WA 98052", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "425-285-1400", mapsUrl: "https://maps.app.goo.gl/LA56ng5oiVsZXwTS6" },
   { nameEn: "PCC – View Ridge", nameJa: "PCC – ビューリッジ", addressEn: "6514 40th Ave NE, Seattle, WA 98115", addressJa: "6514 40th Ave NE, Seattle, WA 98115", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "206-526-7661", mapsUrl: "https://maps.app.goo.gl/1549HeSYAhdGuacb6" },
   { nameEn: "PCC – West Seattle", nameJa: "PCC – ウェスト・シアトル", addressEn: "2749 California Ave SW, Seattle, WA 98116", addressJa: "2749 California Ave SW, Seattle, WA 98116", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "206-485-7185", mapsUrl: "https://maps.app.goo.gl/yGkveyuWcSy4vx42A" },
   // Town & Country locations removed
+  { nameEn: "Town & Country – Ballard", nameJa: "Town & Country – バラード", addressEn: "1400 NW 56th St, Seattle, WA 98107", addressJa: "1400 NW 56th St, Seattle, WA 98107", hoursEn: "Daily 7am–10pm", hoursJa: "毎日 7:00〜22:00", phone: "(206) 783-7922", mapsUrl: "https://maps.app.goo.gl/CX5RFmDXiioX6j1t5" },
+  { nameEn: "Town & Country – Shoreline", nameJa: "Town & Country – ショアライン", addressEn: "15505 Westminster Way N, Shoreline, WA 98133", addressJa: "15505 Westminster Way N, Shoreline, WA 98133", hoursEn: "Daily 7am–10pm", hoursJa: "毎日 7:00〜22:00", phone: "(206) 363-9226", mapsUrl: "https://maps.app.goo.gl/P7i4t6cXc3cqQnwJA" },
+  { nameEn: "Town & Country – Mill Creek", nameJa: "Town & Country – ミルクリーク", addressEn: "15605 Main St, Mill Creek, WA 98012", addressJa: "15605 Main St, Mill Creek, WA 98012", hoursEn: "Daily 7am–10pm", hoursJa: "毎日 7:00〜22:00", phone: "(425) 357-3240", mapsUrl: "https://maps.app.goo.gl/V9Bfaxkr2eQQ1yEG6" },
+  { nameEn: "Town & Country – Lakemont", nameJa: "Town & Country – レイクモント", addressEn: "4989 Lakemont Blvd SE, Bellevue, WA 98006", addressJa: "4989 Lakemont Blvd SE, Bellevue, WA 98006", hoursEn: "Daily 7am–10pm", hoursJa: "毎日 7:00〜22:00", phone: "(425) 653-2261", mapsUrl: "https://maps.app.goo.gl/e4PyTAt43K2wDZSRA" },
   { nameEn: "T&T Supermarket – Bellevue", nameJa: "T&T スーパーマーケット – ベルビュー", addressEn: "12620 SE 41st Pl, Bellevue, WA 98006", addressJa: "12620 SE 41st Pl, Bellevue, WA 98006", hoursEn: "Mon–Fri 9am–11pm, Sat–Sun 8am–11pm", hoursJa: "月〜金 9:00〜23:00、土日 8:00〜23:00", phone: "425-818-3260", mapsUrl: "https://maps.app.goo.gl/oCJECrBFY5CiJmag8" },
-  { nameEn: "Town & Country Market", nameJa: "Town & Country Market", addressEn: "Multiple Seattle-area locations", addressJa: "シアトル周辺（複数店舗）", hoursEn: "", hoursJa: "", phone: "", mapsUrl: "", comingSoon: new Date() < new Date("2026-09-28") },
   { nameEn: "T&T Supermarket – Lynnwood", nameJa: "T&T スーパーマーケット – リンウッド", addressEn: "19630 Hwy 99, Lynnwood, WA 98036", addressJa: "19630 Hwy 99, Lynnwood, WA 98036", hoursEn: "Daily 9am–10pm", hoursJa: "毎日 9:00〜22:00", phone: "425-648-2648", mapsUrl: "https://maps.app.goo.gl/4iiXrgtX6LiNAJGF7" },
 ];
 
@@ -92,11 +95,7 @@ function StoreRow({ store, lang, isMobile, isNew }: { store: Store; lang: string
               {name}
               {comingSoon && <span style={{ background:"#ffefc8", color:"#9C5700", fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>{lang==="ja" ? "近日オープン" : "Coming Soon"}</span>}
             </div>
-            {isNew && (
-              <span style={{ background:"#ed7e80", color:"#fff", fontSize:9, fontWeight:800, borderRadius:999, padding:"2px 8px", letterSpacing:1 }}>
-                🎉 NOW OPEN
-              </span>
-            )}
+            
           </div>
           <div style={{ fontSize:11, color:"#aaa", marginTop:2 }}>{address}</div>
           {hours && <div style={{ fontSize:11, color:"#c8a090", marginTop:2 }}>🕐 {hours}</div>}
@@ -192,7 +191,7 @@ export default function FindUsNearYou() {
         <div style={{ background:"#fff", border:"2px solid #ed7e80", borderTop:"1px solid #f5d0d0", borderRadius:"0 0 20px 20px", maxHeight: isMobile ? 280 : 360, overflowY:"auto" }}>
           {activeTab === "california" ? (
             californiaStores.map((store) => (
-              <StoreRow key={store.nameEn} store={store} lang={lang} isMobile={isMobile} isNew />
+              <StoreRow key={store.nameEn} store={store} lang={lang} isMobile={isMobile} />
             ))
           ) : filteredSeattle.length === 0 ? (
             <div style={{ padding:"24px 22px", color:"#bbb", fontSize:13, textAlign:"center" }}>

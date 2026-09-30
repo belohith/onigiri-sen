@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import OurFlavors from "./components/OurFlavors";
 import FindUsNearYou from "./components/Findusnearyou";
 import TrustedBy from "./components/TrustedBy";
+import AskWidget from "./components/AskWidget";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Crimson_Text } from "next/font/google";
@@ -191,6 +192,16 @@ export default function HomePage() {
         </section>
 
         {/* ── TRUSTED BY ── */}
+        {/* ── AI Ask Widget ── */}
+        <section style={{ background: "#ffefc8", padding: "48px 24px 12px" }}>
+          <div style={{ textAlign: "center", marginBottom: 20 }}>
+            <p style={{ fontWeight: 700, letterSpacing: 2, color: "#6f471c", fontSize: isMobile ? 13 : 15, margin: "0 0 16px", textTransform: "uppercase" }}>
+              {t("Have a question?", "何かご質問はありますか？")}
+            </p>
+          </div>
+          <AskWidget />
+        </section>
+
         <TrustedBy />
 
         {/* ── WHY ONIGIRI SEN ── */}

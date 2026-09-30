@@ -1,0 +1,12 @@
+name = "onigiri-ask"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+account_id = "320e3a181f09c5a79d79670ad7c239e3"
+
+[ai]
+binding = "AI"
+
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "onigiri-knowledge"

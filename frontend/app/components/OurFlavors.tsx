@@ -50,6 +50,15 @@ type Flavor = {
 
 const flavors: Flavor[] = [
   {
+    img: "/images/flavors/takana.png",
+    mascot: "/images/char-takana.png",
+    nameEn: "Takana (Pickled Mustard Greens)",
+    nameJa: "高菜",
+    tags: ["Vegan", "Vegetarian"],
+    allergensEn: "Soy, Wheat, and Sesame",
+    allergensJa: "大豆・小麦・ごま",
+  },
+  {
     img: "/images/flavors/spicy-tuna-mayo.png",
     mascot: "/images/char-stm.png",
     nameEn: "Spicy Tuna Mayo",

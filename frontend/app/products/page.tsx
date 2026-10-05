@@ -84,14 +84,14 @@ export default function ProductsPage() {
       lc: "#fff",
       lb: "#2d6a4f",
       ic: "#2d6a4f",
-      items: t("Ume", "梅"),
+      items: t("Ume · Takana", "梅 ・ 高菜"),
     },
     {
       label: t("Vegetarian", "ベジタリアン"),
       lc: "#fff",
       lb: "#5aaa3a",
       ic: "#3a8a20",
-      items: t("Ume", "梅"),
+      items: t("Ume · Takana", "梅 ・ 高菜"),
     },
     {
       label: t("Organic", "オーガニック"),

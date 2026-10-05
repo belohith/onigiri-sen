@@ -686,20 +686,35 @@ export default function OurStoryPage() {
                 {
                   date: "2026",
                   dotColor: "#ed7e80",
-                  title: t("Scaling the Vision", "さらに大きな舞台へ"),
+                  title: t(
+                    "Strengthening Our Base & Entering California",
+                    "地盤の確立と、カリフォルニアへの第一歩"
+                  ),
                   body: t(
-                    "The momentum continues. Building on our expansion to T-Mobile Park and San Jose, we are now taking our next big leap into Los Angeles. Southern California is next!",
-                    "今年は大舞台であるT-Mobileパーク（野球場）での取り扱いがスタートし、サンノゼへの進出も果たしました。そして次は、ロサンゼルスへ。アメリカ中に新しい食文化を届けるため、次の一歩を踏み出します。"
+                    "The momentum accelerates. Expanding into T-Mobile Park and Town & Country Markets solidified our Pacific Northwest foundation, while our launch in San Jose marked our very first footprint in California.",
+                    "勢いはさらに加速します。大舞台である「T-Mobileパーク」や「Town & Country Markets」への展開で地元シアトルでの地盤を固めつつ、サンノゼへの進出でカリフォルニア市場への第一歩を踏み出しました。"
                   ),
                 },
-              ].map((item, i) => (
+                {
+                  date: "2026 Late",
+                  dotColor: "#ed7e80",
+                  title: t(
+                    "Expanding to San Francisco & Los Angeles",
+                    "サンフランシスコ、そしてロサンゼルスへ"
+                  ),
+                  body: t(
+                    "Taking our California expansion to the next level, we are launching in San Francisco in November, followed by Los Angeles in December—bringing authentic onigiri to the West Coast’s largest metro areas.",
+                    "11月にサンフランシスコ、12月にはロサンゼルスへと立て続けに進出し、カリフォルニアを代表する二大都市へ一気に展開を広げていきます。"
+                  ),
+                },
+              ].map((item, i, timeline) => (
                 <div
                   key={item.date}
                   style={{
                     display: "grid",
                     gridTemplateColumns: "64px 20px 1fr",
                     gap: "0 12px",
-                    marginBottom: i < 2 ? 36 : 0,
+                    marginBottom: i < timeline.length - 1 ? 36 : 0,
                   }}
                 >
                   <div
@@ -732,7 +747,7 @@ export default function OurStoryPage() {
                       }}
                     />
 
-                    {i < 2 && (
+                    {i < timeline.length - 1 && (
                       <div
                         style={{
                           width: 2,

@@ -26,6 +26,7 @@ export default function Header() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- close the mobile menu after route changes
   useEffect(() => setMenuOpen(false), [pathname]);
 
   const navLinks = [

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import Header from "../components/Header";
 import Link from "next/link";
@@ -102,6 +102,7 @@ export default function ContactPage() {
   // ── Load saved draft on mount ──
   useEffect(() => {
     const draft = loadDraft();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- restore the sessionStorage draft after hydration (reading it during render would cause a hydration mismatch)
     if (draft) setFormData(draft);
   }, []);
 

@@ -100,6 +100,22 @@ function useIsMobile() {
   return isMobile;
 }
 
+const SelectField = ({
+  label, value, onChange, children,
+}: {
+  label: string; value: string; onChange: (value: string) => void; children: React.ReactNode;
+}) => (
+  <div>
+    <label style={labelStyle}>{label}</label>
+    <div style={{ position: "relative" }}>
+      <select value={value} onChange={(e) => onChange(e.target.value)} style={{ ...inputStyle, appearance: "none", paddingRight: 36 } as React.CSSProperties}>
+        {children}
+      </select>
+      <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", pointerEvents: "none", color: "#bbb", fontSize: 14 }}>▾</span>
+    </div>
+  </div>
+);
+
 export default function WholesalePage() {
   const { t } = useLang();
   const isMobile = useIsMobile();
@@ -128,6 +144,7 @@ export default function WholesalePage() {
   // Load draft
   useEffect(() => {
     const draft = loadDraft();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- restore the sessionStorage draft after hydration (reading it during render would cause a hydration mismatch)
     if (draft) setFormData(draft);
   }, []);
 
@@ -185,22 +202,6 @@ export default function WholesalePage() {
       setLoading(false);
     }
   }
-
-  const SelectField = ({
-    label, value, onChange, children,
-  }: {
-    label: string; value: string; onChange: (value: string) => void; children: React.ReactNode;
-  }) => (
-    <div>
-      <label style={labelStyle}>{label}</label>
-      <div style={{ position: "relative" }}>
-        <select value={value} onChange={(e) => onChange(e.target.value)} style={{ ...inputStyle, appearance: "none", paddingRight: 36 } as React.CSSProperties}>
-          {children}
-        </select>
-        <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", pointerEvents: "none", color: "#bbb", fontSize: 14 }}>▾</span>
-      </div>
-    </div>
-  );
 
   return (
     <>

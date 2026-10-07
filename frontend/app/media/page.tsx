@@ -1,6 +1,5 @@
 "use client";
 import Header from "../components/Header";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useLang } from "../context/LangContext";
 
@@ -256,7 +255,7 @@ export default function MediaPage() {
                         <div style={{ background:langLabel[item.articleLang].bg, color:langLabel[item.articleLang].color, fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>
                           {langLabel[item.articleLang].label}
                         </div>
-                        {(item as any).paywalled && (
+                        {item.paywalled && (
                           <div style={{ background:"#f5f5f5", color:"#888", fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>🔒 Paywall</div>
                         )}
                       </div>
@@ -271,7 +270,7 @@ export default function MediaPage() {
                         <div style={{ display:"inline-block", marginTop:6, background:langLabel[item.articleLang].bg, color:langLabel[item.articleLang].color, fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>
                           {langLabel[item.articleLang].label}
                         </div>
-                        {(item as any).paywalled && (
+                        {item.paywalled && (
                           <div style={{ display:"inline-block", marginTop:6, background:"#f5f5f5", color:"#888", fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>🔒 Paywall</div>
                         )}
                       </div>

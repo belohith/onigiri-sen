@@ -211,6 +211,7 @@ export default function CareersPage() {
 
   useEffect(() => {
     const draft = loadDraft();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- restore the sessionStorage draft after hydration (reading it during render would cause a hydration mismatch)
     if (draft) setFormData(draft);
   }, []);
 

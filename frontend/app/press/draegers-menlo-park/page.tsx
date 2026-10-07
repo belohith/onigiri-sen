@@ -145,7 +145,7 @@ export default function DraegersLaunchPressRelease() {
           </h2>
           <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "140px 1fr", gap: isMobile ? "6px 0" : "14px 24px", marginBottom:32, fontSize: isMobile ? 14 : 15 }}>
             <div style={{ fontWeight:800, color:"#6f471c" }}>{label("Location","場所")}</div>
-            <div style={{ color:"#3a2a1a", lineHeight:1.8 }}>Draeger's Market Menlo Park · 1010 University Dr, Menlo Park, CA 94025</div>
+            <div style={{ color:"#3a2a1a", lineHeight:1.8 }}>Draeger&apos;s Market Menlo Park · 1010 University Dr, Menlo Park, CA 94025</div>
 
             <div style={{ fontWeight:800, color:"#6f471c", marginTop: isMobile ? 10 : 0 }}>{label("Hours","営業時間")}</div>
             <div style={{ color:"#3a2a1a", lineHeight:1.8 }}>{label("Daily 7:00 AM – 9:00 PM","毎日 7:00〜21:00")}</div>

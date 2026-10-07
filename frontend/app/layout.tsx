@@ -12,13 +12,14 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.onigirisen.jp"),
   title: "Onigiri Sen",
   description: "Japan's Tradition. Scaled for America.",
 
   openGraph: {
     title: "Onigiri Sen",
     description: "Fresh Japanese onigiri, made daily.",
-    url: "https://onigiri-sen.vercel.app",
+    url: "https://www.onigirisen.jp",
     siteName: "Onigiri Sen",
 
     images: [

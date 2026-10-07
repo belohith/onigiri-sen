@@ -46,18 +46,12 @@ type Flavor = {
   allergensEn?: string;
   allergensJa?: string;
   comingSoon?: boolean;
+  plantBased?: boolean;
+  isNew?: boolean;
 };
 
 const flavors: Flavor[] = [
-  {
-    img: "/images/flavors/takana.png",
-    mascot: "/images/char-takana.png",
-    nameEn: "Takana (Pickled Mustard Greens)",
-    nameJa: "高菜",
-    tags: ["Vegan", "Vegetarian"],
-    allergensEn: "Soy, Wheat, and Sesame",
-    allergensJa: "大豆・小麦・ごま",
-  },
+  // Regular items (Spicy Tuna Mayo, the best seller, stays first). New regular flavors go at the end of this group.
   {
     img: "/images/flavors/spicy-tuna-mayo.png",
     mascot: "/images/char-stm.png",
@@ -87,15 +81,6 @@ const flavors: Flavor[] = [
     allergensJa: "卵・魚（マグロ・マイワシ）・甲殻類（エビ）・大豆・小麦",
   },
   {
-    img: "/images/flavors/pickled-plum.png",
-    mascot: "/images/char-pp.png",
-    nameEn: "Pickled Plum (Ume)",
-    nameJa: "梅",
-    tags: ["GF", "Vegan", "Organic", "Vegetarian"],
-    allergensEn: "",
-    allergensJa: "",
-  },
-  {
     img: "/images/flavors/yuzu-salmon.png",
     mascot: "/images/char-ys.png",
     nameEn: "Yuzu Salmon",
@@ -112,6 +97,28 @@ const flavors: Flavor[] = [
     tags: [],
     allergensEn: "Egg, Soy, Wheat, and Sesame",
     allergensJa: "卵・大豆・小麦・ごま",
+  },
+  // Plant-based items, shown under the "Plant-based" heading in this order.
+  {
+    img: "/images/flavors/pickled-plum.png",
+    mascot: "/images/char-pp.png",
+    nameEn: "Pickled Plum (Ume)",
+    nameJa: "梅",
+    tags: ["GF", "Vegan", "Organic", "Vegetarian"],
+    allergensEn: "",
+    allergensJa: "",
+    plantBased: true,
+  },
+  {
+    img: "/images/flavors/takana.png",
+    mascot: "/images/char-takana.png",
+    nameEn: "Takana (Pickled Mustard Greens)",
+    nameJa: "高菜",
+    tags: ["Vegan", "Vegetarian"],
+    allergensEn: "Soy, Wheat, and Sesame",
+    allergensJa: "大豆・小麦・ごま",
+    plantBased: true,
+    isNew: true,
   },
 ];
 
@@ -173,6 +180,27 @@ function FlavorCard({
           position: "relative",
         }}
       >
+        {/* NEW badge */}
+        {f.isNew && (
+          <div
+            style={{
+              position: "absolute",
+              top: isMobile ? 10 : 14,
+              right: isMobile ? 10 : 14,
+              zIndex: 2,
+              background: "#ed7e80",
+              color: "#fff",
+              fontSize: isMobile ? 10 : 12,
+              fontWeight: 800,
+              letterSpacing: 1.5,
+              borderRadius: 999,
+              padding: isMobile ? "4px 10px" : "5px 14px",
+            }}
+          >
+            NEW
+          </div>
+        )}
+
         {/* Product Image */}
         <div
           style={{
@@ -317,6 +345,17 @@ export default function OurFlavors() {
   const { t, lang } = useLang();
   const isMobile = useIsMobile();
 
+  const regularFlavors = flavors.filter((f) => !f.plantBased);
+  const plantBasedFlavors = flavors.filter((f) => f.plantBased);
+
+  const gridStyle: React.CSSProperties = {
+    display: "grid",
+    gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
+    gap: isMobile ? 10 : 14,
+    maxWidth: isMobile ? "100%" : 800,
+    margin: "0 auto",
+  };
+
   return (
     <section style={{ background: "#fff9f5" }}>
       {/* Top Scallop */}
@@ -356,25 +395,30 @@ export default function OurFlavors() {
           {t("OUR FLAVORS", "フレーバー")}
         </h2>
 
-        <div
+        <div style={gridStyle}>
+          {regularFlavors.map((f) => (
+            <FlavorCard key={f.nameEn} f={f} t={t} lang={lang} isMobile={isMobile} />
+          ))}
+        </div>
+
+        {/* Plant-based heading (shown once) */}
+        <h3
           style={{
-            display: "grid",
-            gridTemplateColumns: isMobile
-              ? "repeat(2, 1fr)"
-              : "repeat(3, 1fr)",
-            gap: isMobile ? 10 : 14,
-            maxWidth: isMobile ? "100%" : 800,
-            margin: "0 auto",
+            textAlign: "center",
+            fontWeight: 900,
+            fontSize: isMobile ? 15 : 20,
+            letterSpacing: 2,
+            color: "#6f471c",
+            margin: isMobile ? "32px 0 4px" : "48px 0 8px",
+            textTransform: "uppercase" as const,
           }}
         >
-          {flavors.map((f) => (
-            <FlavorCard
-              key={f.nameEn}
-              f={f}
-              t={t}
-              lang={lang}
-              isMobile={isMobile}
-            />
+          {t("Plant-based", "プラントベース")}
+        </h3>
+
+        <div style={gridStyle}>
+          {plantBasedFlavors.map((f) => (
+            <FlavorCard key={f.nameEn} f={f} t={t} lang={lang} isMobile={isMobile} />
           ))}
         </div>
 

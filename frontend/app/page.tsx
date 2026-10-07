@@ -24,7 +24,8 @@ function InstagramScript() {
 
 function IgPost({ url }: { url: string }) {
   useEffect(() => {
-    if ((window as any).instgrm) (window as any).instgrm.Embeds.process();
+    const w = window as Window & { instgrm?: { Embeds: { process: () => void } } };
+    if (w.instgrm) w.instgrm.Embeds.process();
   }, []);
   const html = [
     '<blockquote',
@@ -84,8 +85,8 @@ export default function HomePage() {
     },
   ];
 
-  const tickerEn = "🎉 Town & Country Market coming September 28th!  ·  🛒 Now at T&T Supermarket San Jose  ·  📺 Featured on KING 5 News  ·  🏟️ Now at T-Mobile Park (Mariners)  ·  📰 Covered by Lookout Landing, Seattle Weekly & more  ·";
-  const tickerJa = "🎉 Town & Country Market、9月28日より販売開始！  ·  🛒 T&T Supermarket サンノゼ店でも販売中  ·  📺 KING 5 Newsに特集掲載  ·  🏟️ T-Mobileパーク（マリナーズ）に出店中  ·  📰 Lookout Landing・Seattle Weeklyなど多数掲載  ·";
+  const tickerEn = "🎉 Now at Town & Country Market  ·  🛒 Now at T&T Supermarket San Jose  ·  📺 Featured on KING 5 News  ·  🏟️ Now at T-Mobile Park (Mariners)  ·  📰 Covered by Lookout Landing, Seattle Weekly & more  ·";
+  const tickerJa = "🎉 Town & Country Marketで販売中  ·  🛒 T&T Supermarket サンノゼ店でも販売中  ·  📺 KING 5 Newsに特集掲載  ·  🏟️ T-Mobileパーク（マリナーズ）に出店中  ·  📰 Lookout Landing・Seattle Weeklyなど多数掲載  ·";
 
   return (
     <>

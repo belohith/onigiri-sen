@@ -67,7 +67,7 @@ export default function ThankYouPage() {
               { top:"28%", right:"7%",  char:"★", color:"#ff8080", size:16 },
               { top:"55%", right:"5%",  char:"⌒", color:"#4ecdc4", size:26 },
             ].map((d, i) => (
-              <span key={i} style={{ position:"absolute", top:d.top, left:(d as any).left, right:(d as any).right, fontSize:d.size, color:d.color, fontWeight:900 }}>{d.char}</span>
+              <span key={i} style={{ position:"absolute", top:d.top, left:d.left, right:d.right, fontSize:d.size, color:d.color, fontWeight:900 }}>{d.char}</span>
             ))}
             <div style={{ position:"absolute" as const, inset:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
               <img

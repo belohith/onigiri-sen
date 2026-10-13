@@ -17,7 +17,6 @@ type Store = {
 
 const seattleStores: Store[] = [
   { nameEn: "PCC – Ballard", nameJa: "PCC – バラード", addressEn: "1451 NW 46th St, Seattle, WA 98107", addressJa: "1451 NW 46th St, Seattle, WA 98107", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "206-538-0130", mapsUrl: "https://maps.app.goo.gl/t7ZwkcDSmrZ5D3x7A" },
-  { nameEn: "PCC – Bellevue", nameJa: "PCC – ベルビュー", addressEn: "11615 NE 4th St, Bellevue, WA 98004", addressJa: "11615 NE 4th St, Bellevue, WA 98004", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "425-615-0295", mapsUrl: "https://maps.app.goo.gl/v6QRB8ULSGzdehTG7" },
   { nameEn: "PCC – Bothell", nameJa: "PCC – ボセル", addressEn: "22621 Bothell Everett Hwy, Bothell, WA 98021", addressJa: "22621 Bothell Everett Hwy, Bothell, WA 98021", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "425-492-0122", mapsUrl: "https://maps.app.goo.gl/2PEjQ8JWZZxvcgnc9" },
   { nameEn: "PCC – Burien", nameJa: "PCC – ブリエン", addressEn: "15840 1st Ave S #102, Burien, WA 98148", addressJa: "15840 1st Ave S #102, Burien, WA 98148", hoursEn: "Daily 6am–11pm", hoursJa: "毎日 6:00〜23:00", phone: "206-708-6908", mapsUrl: "https://maps.app.goo.gl/64mosjUyZRa44zqU8" },
   { nameEn: "PCC – Central District", nameJa: "PCC – セントラル・ディストリクト", addressEn: "2230 E Union St, Seattle, WA 98122", addressJa: "2230 E Union St, Seattle, WA 98122", hoursEn: "Daily 6am–10pm", hoursJa: "毎日 6:00〜22:00", phone: "206-605-6053", mapsUrl: "https://maps.app.goo.gl/8cfKHpUh8WyZcpoY7" },

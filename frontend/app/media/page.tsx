@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useLang } from "../context/LangContext";
 
 type MediaItem = {
-  category: "tv" | "print" | "podcast" | "online" | "print & online";
+  category: "tv" | "print" | "podcast" | "radio" | "online" | "print & online";
   articleLang: "en" | "ja" | "both";
   outlet: string;
   titleEn: string;
@@ -14,11 +14,29 @@ type MediaItem = {
   date: string;
   href: string;
   paywalled?: boolean;
+  // Several destinations (e.g. Spotify / Apple Podcasts / YouTube): shown as a row of buttons instead of making the whole card a link
+  links?: { label: string; href: string }[];
 };
 
 
 
 const media: MediaItem[] = [
+  {
+    category: "radio",
+    articleLang: "en",
+    outlet: "Hot Stove Radio (KIRO Radio 97.3 FM)",
+    titleEn: "Tom Douglas Names Onigiri Sen His Taste of the Week",
+    titleJa: "トム・ダグラス氏が「Taste of the Week(今週のおすすめ)」にOnigiri Senを選出",
+    descEn: "Tom Douglas, James Beard Award winner and host of KIRO Radio's Hot Stove Society, names Onigiri Sen his Taste of the Week and praises our packaging. Starts at 6:47 (podcast) or 9:15 (YouTube).",
+    descJa: "ジェームズ・ビアード賞受賞のシェフで、KIROラジオの番組「Hot Stove Society」のホストを務めるトム・ダグラス氏が、Onigiri Senを今週のおすすめに選び、パッケージの工夫を絶賛しました。ポッドキャストは6分47秒から、YouTubeは9分15秒から。",
+    date: "10 October 2026",
+    href: "https://open.spotify.com/episode/5AM1dgxFwPkgmiazId8Mmz?si=PXOPHZBZSEi8bMl86LMn8g",
+    links: [
+      { label: "Spotify", href: "https://open.spotify.com/episode/5AM1dgxFwPkgmiazId8Mmz?si=PXOPHZBZSEi8bMl86LMn8g" },
+      { label: "Apple Podcasts", href: "https://podcasts.apple.com/us/podcast/hot-stove-society-the-return-of-the/id503308704?i=1000795179333" },
+      { label: "YouTube", href: "https://www.youtube.com/live/dpltTSF65JM?si=xZKVGkIBFMOKFL5t&t=555s" },
+    ],
+  },
   {
     category: "print & online",
     articleLang: "en",
@@ -132,6 +150,7 @@ const categoryLabel: Record<MediaItem["category"], { en: string; ja: string; col
   print:   { en: "Print",      ja: "印刷媒体",      color: "#1a4a30", bg: "#d4edda" },
   "print & online": { en: "Print & Online", ja: "誌面・オンライン", color: "#2a6a8a", bg: "#e0f0f8" },
   podcast: { en: "Podcast",    ja: "ポッドキャスト", color: "#4a2a7a", bg: "#e8d8f8" },
+  radio:   { en: "Radio / Podcast", ja: "ラジオ / ポッドキャスト", color: "#1f5f5b", bg: "#d6f0ec" },
   online:  { en: "Online",     ja: "オンライン",    color: "#7a2020", bg: "#fde8e8" },
 };
 
@@ -214,12 +233,16 @@ export default function MediaPage() {
 
                      {media.map((item) => {
               const cat = categoryLabel[item.category];
+              const multiLink = !!item.links?.length;
+              // A card with several links can't itself be a link (no nested <a>), so it becomes a plain wrapper
+              const Wrapper = multiLink ? "div" : "a";
+              const wrapperProps = multiLink
+                ? {}
+                : { href: item.href, target: "_blank", rel: "noopener noreferrer" };
               return (
-                <a
+                <Wrapper
                   key={item.titleEn}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...wrapperProps}
                   style={{ textDecoration:"none" }}
                 >
                   <div
@@ -232,7 +255,7 @@ export default function MediaPage() {
                       gap: isMobile ? "12px 0" : "0 28px",
                       alignItems:"center",
                       border:"1.5px solid #f0e4d4",
-                      cursor:"pointer",
+                      cursor: multiLink ? "default" : "pointer",
                       transition:"border-color 0.2s, box-shadow 0.2s",
                     }}
                     onMouseEnter={(e) => {
@@ -284,14 +307,30 @@ export default function MediaPage() {
                       <p style={{ color:"#8a6a4a", fontSize:13, lineHeight:1.75, margin:0 }}>
                         {lang === "ja" ? item.descJa : item.descEn}
                       </p>
+                      {multiLink && (
+                        <div style={{ display:"flex", flexWrap:"wrap" as const, gap:8, marginTop:12 }}>
+                          {item.links!.map((l) => (
+                            <a
+                              key={l.label}
+                              href={l.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{ display:"inline-flex", alignItems:"center", gap:6, background:"#fff4ef", color:"#c45a5c", border:"1.5px solid #f6c9c5", borderRadius:999, padding:"6px 14px", fontSize:12, fontWeight:700, textDecoration:"none" }}
+                            >
+                              {l.label}
+                              <ExternalIcon />
+                            </a>
+                          ))}
+                        </div>
+                      )}
                     </div>
 
-                    {/* Arrow — always shown */}
+                    {/* Arrow — shown when the whole card is one link */}
                     <div style={{ color:"#ed7e80", display:"flex", alignItems: isMobile ? "flex-end" : "center", justifyContent: isMobile ? "flex-end" : "center" }}>
-                      <ExternalIcon />
+                      {!multiLink && <ExternalIcon />}
                     </div>
                   </div>
-                </a>
+                </Wrapper>
               );
             })}
           </div>

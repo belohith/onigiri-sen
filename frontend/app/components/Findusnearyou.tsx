@@ -55,10 +55,10 @@ const californiaStores: Store[] = [
 ];
 
 const CA_MAP_EMBED =
-  "https://www.google.com/maps/d/embed?mid=1h6dTFWOK8ngVPQN-HUZvsf6lgPN_wL4&ehbc=2E312F&noprof=1";
+  "https://www.google.com/maps/d/embed?mid=1MBNIggz08dOjIDp_T70mxBK9OgSrJeM&ehbc=2E312F&noprof=1";
 
 const WA_MAP_EMBED =
-  "https://www.google.com/maps/d/embed?mid=1fRSBjWkwxia4rH771jkXLAy0JFWCCps&ehbc=2E312F&noprof=1";
+  "https://www.google.com/maps/d/embed?mid=1c0MWwkwggqD_bjAn2j7O_I_7iubBD-A&ehbc=2E312F&noprof=1";
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);

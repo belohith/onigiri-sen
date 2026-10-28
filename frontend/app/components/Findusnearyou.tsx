@@ -51,6 +51,16 @@ const californiaStores: Store[] = [
     phone: "408-255-1688",
     mapsUrl: "https://maps.app.goo.gl/EVCQvhSdADtiXo8t7",
   },
+  {
+    nameEn: "T&T Supermarket – San Francisco",
+    nameJa: "T&T スーパーマーケット – サンフランシスコ",
+    addressEn: "San Francisco City Center, Suite 300 · 2675 Geary Blvd, San Francisco, CA 94118",
+    addressJa: "San Francisco City Center, Suite 300 · 2675 Geary Blvd, San Francisco, CA 94118",
+    hoursEn: "",
+    hoursJa: "",
+    phone: "",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=T%26T+Supermarket+2675+Geary+Blvd+San+Francisco+CA+94118",
+  },
   
 ];
 

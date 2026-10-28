@@ -75,8 +75,8 @@ export default function ProductsPage() {
       lb: "#8faa3a",
       ic: "#5a8a20",
       items: t(
-        "Salmon · Spicy Tuna Mayo* · Yuzu Salmon · Ume",
-        "鮭 ・ スパイシーツナマヨ* ・ 柚子サーモン ・ 梅"
+        "Salmon · Spicy Tuna Mayo* · Yuzu Salmon · Mentaiko Mayo · Ume",
+        "鮭 ・ スパイシーツナマヨ* ・ 柚子サーモン ・ 明太子マヨ ・ 梅"
       ),
     },
     {

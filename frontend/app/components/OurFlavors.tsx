@@ -98,6 +98,16 @@ const flavors: Flavor[] = [
     allergensEn: "Egg, Soy, Wheat, and Sesame",
     allergensJa: "卵・大豆・小麦・ごま",
   },
+  {
+    img: "/images/flavors/mentaiko-mayo.png",
+    mascot: "/images/char-mentaiko.png",
+    nameEn: "Mentaiko Mayo",
+    nameJa: "明太子マヨ",
+    tags: ["GF"],
+    allergensEn: "Egg, Pollock (Fish Egg), and Bonito",
+    allergensJa: "卵・スケトウダラ（魚卵）・かつお",
+    isNew: true,
+  },
   // Plant-based items, shown under the "Plant-based" heading in this order.
   {
     img: "/images/flavors/pickled-plum.png",

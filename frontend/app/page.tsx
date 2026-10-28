@@ -85,8 +85,8 @@ export default function HomePage() {
     },
   ];
 
-  const tickerEn = "🎉 Now at Town & Country Market  ·  🛒 Now at T&T Supermarket San Jose  ·  📺 Featured on KING 5 News  ·  🏟️ Now at T-Mobile Park (Mariners)  ·  📰 Covered by Lookout Landing, Seattle Weekly & more  ·";
-  const tickerJa = "🎉 Town & Country Marketで販売中  ·  🛒 T&T Supermarket サンノゼ店でも販売中  ·  📺 KING 5 Newsに特集掲載  ·  🏟️ T-Mobileパーク（マリナーズ）に出店中  ·  📰 Lookout Landing・Seattle Weeklyなど多数掲載  ·";
+  const tickerEn = "🛒 Now at T&T Supermarket San Francisco · 🍙 New: Mentaiko Mayo (First at T&T SF!)  ·  🎉 Now at Town & Country Market  ·  🛒 Now at T&T Supermarket San Jose  ·  📺 Featured on KING 5 News  ·  🏟️ Now at T-Mobile Park (Mariners)  ·  📰 Covered by Lookout Landing, Seattle Weekly & more  ·";
+  const tickerJa = "🛒 T&T Supermarket サンフランシスコ店で販売開始 · 🍙 新発売：明太子マヨ（サンフランシスコ店で先行販売中！）  ·  🎉 Town & Country Marketで販売中  ·  🛒 T&T Supermarket サンノゼ店でも販売中  ·  📺 KING 5 Newsに特集掲載  ·  🏟️ T-Mobileパーク（マリナーズ）に出店中  ·  📰 Lookout Landing・Seattle Weeklyなど多数掲載  ·";
 
   return (
     <>

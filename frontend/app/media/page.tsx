@@ -22,6 +22,17 @@ type MediaItem = {
 
 const media: MediaItem[] = [
   {
+    category: "online",
+    articleLang: "both",
+    outlet: "Onigiri Sen",
+    titleEn: "Press Release — Onigiri Sen Brings Fresh Onigiri to T&T's New San Francisco Store",
+    titleJa: "プレスリリース — 毎朝つくりたての本格おにぎり「Onigiri Sen」、T&Tサンフランシスコ新店に初上陸",
+    descEn: "Official press release for Onigiri Sen's launch at T&T Supermarket San Francisco (City Center), with six flavors including the debut of Mentaiko Mayo. Nov. 5, 2026.",
+    descJa: "T&T Supermarket サンフランシスコ店（San Francisco City Center内）での販売開始と、新フレーバー「明太子マヨ」の初登場に関する公式プレスリリース。2026年11月5日。",
+    date: "5 November 2026",
+    href: "/press/san-francisco-launch",
+  },
+  {
     category: "radio",
     articleLang: "en",
     outlet: "Hot Stove Radio (KIRO Radio 97.3 FM)",

@@ -72,7 +72,7 @@ export default function HomePage() {
               "ふっくら炊き上げたお米本来の旨みと、厳選した鮭やスパイシーツナといった良質なタンパク質。忙しい現代のライフスタイルに、確かな満足感とエネルギーを美味しくチャージします。"),
     },
     {
-      n:"03", img:"/images/why-fresh.png", mascot:"/images/char-cg.png",
+      n:"03", img:"/images/why-fresh.png", mascot:"/images/char-sm.png",
       title: t("Made Fresh Daily","毎日、できたての新鮮さを"),
       body: t("Made Daily, Ready to Grab. Prepared fresh every single day. Whether you are between meetings or on the move, enjoy an authentic, high-quality meal anytime, anywhere without compromise.",
               "毎日作りたてのおにぎりをお届け。仕事の合間や、ちょっとした移動時間でも、素材本来の豊かな風味を引き立てた、本格的な味わいを楽しめます。"),
@@ -161,13 +161,13 @@ export default function HomePage() {
                 <div style={{ position:"relative" as const, minHeight:260 }}>
                   <img src="/images/char-pp.png" alt="" style={{ position:"absolute", bottom:100, left:60,  height:120, objectFit:"contain" as const }} />
                   <img src="/images/char-s.png"  alt="" style={{ position:"absolute", bottom:100, left:180, height:130, objectFit:"contain" as const }} />
-                  <img src="/images/char-bc.png" alt="" style={{ position:"absolute", bottom:120, left:320, height:140, objectFit:"contain" as const }} />
+                  <img src="/images/char-stm.png" alt="" style={{ position:"absolute", bottom:120, left:320, height:140, objectFit:"contain" as const }} />
                 </div>
               ) : (
                 <div style={{ display:"flex", justifyContent:"center", alignItems:"flex-end", gap:8, marginBottom:8, marginTop:-8 }}>
                   <img src="/images/char-pp.png" alt="" style={{ height:72, objectFit:"contain" as const }} />
                   <img src="/images/char-s.png"  alt="" style={{ height:80, objectFit:"contain" as const }} />
-                  <img src="/images/char-bc.png" alt="" style={{ height:88, objectFit:"contain" as const }} />
+                  <img src="/images/char-stm.png" alt="" style={{ height:88, objectFit:"contain" as const }} />
                 </div>
               )}
               <div style={{ display:"flex", flexDirection:"column" as const, justifyContent:"center", paddingLeft: isMobile ? 0 : 40, marginTop: isMobile ? 0 : -60 }}>

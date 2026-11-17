@@ -92,8 +92,8 @@ const flavors: Flavor[] = [
   {
     img: "/images/flavors/shredded-pork.png",
     mascot: "/images/char-sp.png",
-    nameEn: "Pork Furikake",
-    nameJa: "豚フリカケ",
+    nameEn: "Shredded Pork (Pork Furikake)",
+    nameJa: "シュレッドポーク（豚フリカケ）",
     tags: [],
     allergensEn: "Egg, Soy, Wheat, and Sesame",
     allergensJa: "卵・大豆・小麦・ごま",
@@ -431,6 +431,24 @@ export default function OurFlavors() {
             <FlavorCard key={f.nameEn} f={f} t={t} lang={lang} isMobile={isMobile} />
           ))}
         </div>
+
+        {/* Allergen notice */}
+        <p
+          style={{
+            fontFamily: "DM Sans, sans-serif",
+            maxWidth: 720,
+            margin: isMobile ? "20px auto 0" : "28px auto 0",
+            textAlign: "center",
+            color: "#8a6a4a",
+            fontSize: isMobile ? 11 : 12,
+            lineHeight: 1.6,
+          }}
+        >
+          {t(
+            "Allergen Notice: Our products are prepared in a shared kitchen facility that handles wheat and other major allergens. Due to the potential risk of cross-contact during preparation, we cannot guarantee that any item is 100% allergen-free. If you have a severe food allergy or celiac disease, please contact us before purchasing.",
+            "アレルゲンに関するお知らせ：当社の商品は、小麦およびその他の主要アレルゲンを扱う共用キッチンで製造しています。調理工程で混入する可能性があるため、アレルゲンを100％含まないことは保証できません。重度の食物アレルギーやセリアック病をお持ちの方は、ご購入前にお問い合わせください。"
+          )}
+        </p>
 
         <p
           style={{

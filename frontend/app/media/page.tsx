@@ -7,11 +7,13 @@ type MediaItem = {
   category: "tv" | "print" | "podcast" | "radio" | "online" | "print & online";
   articleLang: "en" | "ja" | "both";
   outlet: string;
+  outletJa?: string;
   titleEn: string;
   titleJa: string;
   descEn: string;
   descJa: string;
   date: string;
+  dateJa?: string;
   href: string;
   paywalled?: boolean;
   // Several destinations (e.g. Spotify / Apple Podcasts / YouTube): shown as a row of buttons instead of making the whole card a link
@@ -21,6 +23,19 @@ type MediaItem = {
 
 
 const media: MediaItem[] = [
+  {
+    category: "print & online",
+    articleLang: "ja",
+    outlet: "Lighthouse (California)",
+    outletJa: "ライトハウス（カリフォルニア版）",
+    titleEn: "My Turning Point — Lighthouse California Interview with CEO Rina Oike",
+    titleJa: "私の転機 ― ライトハウス カリフォルニア版 創業者インタビュー",
+    descEn: "California's Japanese community magazine Lighthouse features an interview with Founder & CEO Rina Oike in its \"My Turning Point\" (Watashi no Tenki) column, sharing her journey launching Onigiri Sen in the U.S. and expanding fresh, authentic Japanese onigiri across the U.S.",
+    descJa: "カリフォルニアの日本語情報誌『ライトハウス』の連載企画「私の転機」にて、創業者・CEOの尾池里奈のインタビューが掲載されました。アメリカでの起業のきっかけや、毎朝作りたての本格おにぎりを広める想いについてお話ししています。",
+    date: "24 November 2026",
+    dateJa: "2026年11月24日",
+    href: "https://magazine.us-lighthouse.com/publication/?i=873990&p=46&view=issueViewer",
+  },
   {
     category: "online",
     articleLang: "both",
@@ -150,10 +165,10 @@ const media: MediaItem[] = [
   },
 ];
 
-const langLabel: Record<"en"|"ja"|"both", { label: string; color: string; bg: string }> = {
-  en:   { label: "EN",    color: "#1a3a6a", bg: "#dce8ff" },
-  ja:   { label: "日本語", color: "#6a1a1a", bg: "#ffe8e8" },
-  both: { label: "EN/日本語", color: "#4a2a6a", bg: "#ede8ff" },
+const langLabel: Record<"en"|"ja"|"both", { label: string; labelJa: string; color: string; bg: string }> = {
+  en:   { label: "EN",    labelJa: "EN",    color: "#1a3a6a", bg: "#dce8ff" },
+  ja:   { label: "JP",    labelJa: "日本語", color: "#6a1a1a", bg: "#ffe8e8" },
+  both: { label: "EN/JP", labelJa: "EN/日本語", color: "#4a2a6a", bg: "#ede8ff" },
 };
 
 const categoryLabel: Record<MediaItem["category"], { en: string; ja: string; color: string; bg: string }> = {
@@ -281,13 +296,13 @@ export default function MediaPage() {
                     {/* On mobile: outlet + category pill + date in a row */}
                     {isMobile ? (
                       <div style={{ display:"flex", alignItems:"center", gap:10, flexWrap:"wrap" as const }}>
-                        <div style={{ fontWeight:800, fontSize:13, color:"#6f471c" }}>{item.outlet}</div>
+                        <div style={{ fontWeight:800, fontSize:13, color:"#6f471c" }}>{lang === "ja" && item.outletJa ? item.outletJa : item.outlet}</div>
                         <div style={{ background:cat.bg, color:cat.color, fontSize:10, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>
                           {lang === "ja" ? cat.ja : cat.en}
                         </div>
-                        <div style={{ fontSize:11, color:"#bbb", fontWeight:500 }}>{item.date}</div>
+                        <div style={{ fontSize:11, color:"#bbb", fontWeight:500 }}>{lang === "ja" && item.dateJa ? item.dateJa : item.date}</div>
                         <div style={{ background:langLabel[item.articleLang].bg, color:langLabel[item.articleLang].color, fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>
-                          {langLabel[item.articleLang].label}
+                          {lang === "ja" ? langLabel[item.articleLang].labelJa : langLabel[item.articleLang].label}
                         </div>
                         {item.paywalled && (
                           <div style={{ background:"#f5f5f5", color:"#888", fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>🔒 Paywall</div>
@@ -296,13 +311,13 @@ export default function MediaPage() {
                     ) : (
                       /* Desktop: outlet column */
                       <div style={{ textAlign:"center" as const, minWidth:100 }}>
-                        <div style={{ fontWeight:800, fontSize:14, color:"#6f471c", marginBottom:6, lineHeight:1.3 }}>{item.outlet}</div>
-                        <div style={{ fontSize:11, color:"#bbb", fontWeight:500 }}>{item.date}</div>
+                        <div style={{ fontWeight:800, fontSize:14, color:"#6f471c", marginBottom:6, lineHeight:1.3 }}>{lang === "ja" && item.outletJa ? item.outletJa : item.outlet}</div>
+                        <div style={{ fontSize:11, color:"#bbb", fontWeight:500 }}>{lang === "ja" && item.dateJa ? item.dateJa : item.date}</div>
                         <div style={{ display:"inline-block", marginTop:8, background:cat.bg, color:cat.color, fontSize:10, fontWeight:700, borderRadius:999, padding:"3px 10px" }}>
                           {lang === "ja" ? cat.ja : cat.en}
                         </div>
                         <div style={{ display:"inline-block", marginTop:6, background:langLabel[item.articleLang].bg, color:langLabel[item.articleLang].color, fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>
-                          {langLabel[item.articleLang].label}
+                          {lang === "ja" ? langLabel[item.articleLang].labelJa : langLabel[item.articleLang].label}
                         </div>
                         {item.paywalled && (
                           <div style={{ display:"inline-block", marginTop:6, background:"#f5f5f5", color:"#888", fontSize:9, fontWeight:700, borderRadius:999, padding:"2px 8px" }}>🔒 Paywall</div>
